@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Python Loops: A Beginner's Guide - Musfique Ahmed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #161625;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .back-link {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #9d4edd;
+            text-decoration: none;
+        }
+        .blog-post-article {
+            background-color: #202035;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .blog-post-article h1 {
+            color: #b39ddb; /* Lighter Purple */
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .blog-post-article .post-meta {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+        .blog-post-article p, .blog-post-article ul li {
+            margin-bottom: 1.2em;
+            font-size: 1.05em;
+        }
+        .blog-post-article ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        .blog-post-article pre {
+            background-color: #161625;
+            color: #d0d0d0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+        }
+        .blog-post-article code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .blog-post-article img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            background-color: #161625;
+            border-top: 1px solid #2a2a3e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html#blog" class="back-link">&laquo; Back to Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <article class="blog-post-article">
+                <h1>Understanding Python Loops: A Beginner's Guide</h1>
+                <p class="post-meta">Published on: June 5, 2025 by Musfique Ahmed</p>
+
+                <p>Loops are fundamental constructs in almost every programming language, and Python is no exception. They allow you to execute a block of code repeatedly, saving you from writing the same lines of code multiple times. This post aims to break down the two main types of loops in Python – <code>for</code> loops and <code>while</code> loops – with simple examples to help newcomers grasp these essential concepts.</p>
+
+                <h2>The 'for' Loop</h2>
+                <p>A <code>for</code> loop in Python is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string) or other iterable objects. With the <code>for</code> loop, we can execute a set of statements, once for each item in a list, tuple, set etc.</p>
+                <p><strong>Example: Iterating over a list</strong></p>
+                <pre><code>
+# A list of fruits
+fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+  print(fruit)
+                </code></pre>
+                <p>Output:</p>
+                <pre><code>
+apple
+banana
+cherry
+                </code></pre>
+                <p>You can also use the <code>range()</code> function with a <code>for</code> loop to iterate a specific number of times:</p>
+                <pre><code>
+for i in range(5):  # This will loop from 0 to 4
+  print(f"Current number is: {i}")
+                </code></pre>
+                 <p>Output:</p>
+                <pre><code>
+Current number is: 0
+Current number is: 1
+Current number is: 2
+Current number is: 3
+Current number is: 4
+                </code></pre>
+
+                <h2>The 'while' Loop</h2>
+                <p>A <code>while</code> loop in Python is used to execute a block of statements as long as a given condition is true. The condition is checked before each iteration. Once the condition becomes false, the loop terminates.</p>
+                <p><strong>Example: Counting up to a number</strong></p>
+                <pre><code>
+count = 1
+while count <= 5:
+  print(f"Count is: {count}")
+  count += 1  # Important: Increment the counter, or you'll have an infinite loop!
+
+print("Loop finished!")
+                </code></pre>
+                <p>Output:</p>
+                <pre><code>
+Count is: 1
+Count is: 2
+Count is: 3
+Count is: 4
+Count is: 5
+Loop finished!
+                </code></pre>
+                <p>It's crucial to ensure that the condition in a <code>while</code> loop will eventually become false; otherwise, you'll create an infinite loop that can freeze your program.</p>
+
+                <h2>Loop Control Statements</h2>
+                <p>Python provides a few statements to control the flow of loops:</p>
+                <ul>
+                    <li><strong><code>break</code>:</strong> Terminates the loop prematurely, regardless of the loop's condition.</li>
+                    <li><strong><code>continue</code>:</strong> Skips the rest of the code inside the loop for the current iteration and proceeds to the next iteration.</li>
+                    <li><strong><code>pass</code>:</strong> Acts as a placeholder. When the <code>pass</code> statement is executed, nothing happens. It's useful when a statement is required syntactically but you do not want any command or code to execute.</li>
+                </ul>
+
+                <p>Understanding loops is a critical step in becoming proficient in Python. They are used everywhere, from simple iteration tasks to complex algorithms. Practice with these examples, try modifying them, and soon you'll be looping like a pro!</p>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+        </div>
+    </footer>
+
+</body>
+</html>
