@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts - Musfique Ahmed</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Dark blue-black */
+            color: #e0e0e0; /* Light grey for text */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header { /* Simplified header for this page */
+            background-color: #161625;
+            padding: 1.5rem 0; /* Slightly more padding */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        nav .logo { /* Re-using logo style */
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #9d4edd; /* Purple */
+            text-decoration: none;
+            display: inline-block;
+        }
+        /* General Section Styling */
+        .page-section {
+            padding: 40px 0; /* Reduced padding compared to main page sections */
+        }
+        .page-section h1 { /* Changed from h2 for main page title */
+            text-align: center;
+            font-size: 2.5em; /* Slightly larger for page title */
+            color: #9d4edd; /* Purple */
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .page-section h1::after {
+            content: '';
+            display: block;
+            width: 70px; /* Slightly wider underline */
+            height: 3px;
+            background-color: #9d4edd; /* Purple */
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Blog Grid (copied from index.html styles) */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .project-card {
+            background-color: #202035;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #9d4edd;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3);
+        }
+        .project-card h3 {
+            color: #b39ddb;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        .project-card .excerpt {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .project-card .post-meta {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+        .project-card .read-more-link {
+            display: inline-block;
+            color: #9d4edd;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            margin-top: auto;
+        }
+        .project-card .read-more-link:hover {
+            color: #c58af9;
+        }
+
+        /* Footer (copied from index.html styles) */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #161625;
+            border-top: 1px solid #2a2a3e;
+            margin-top: 60px; /* Ensure space before footer */
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+         /* Responsive adjustments for blog grid */
+        @media (max-width: 992px) and (min-width: 600px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 599px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Musfique Ahmed</a>
+                </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <div class="container">
+                <h1>All Blog Posts</h1>
+                <div class="blog-grid">
+                    <div class="project-card">
+                        <h3>One Link to Rule Them All: Conquering Survey Chaos</h3>
+                        <p class="post-meta">Published on: June 20, 2025</p>
+                        <p class="excerpt">Ever been neck-deep in a project, hit a seemingly insurmountable logistical wall, and then had that "aha!" moment that makes you feel like a coding wizard...? </p>
+                        <a href="blog-post-4.html" class="read-more-link">Read More »</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>The Importance of Data Visualization</h3>
+                        <p class="post-meta">Published on: June 12, 2025</p>
+                        <p class="excerpt">Why is visualizing data so crucial? A look into how tools like Matplotlib can transform raw data into meaningful insights...</p>
+                        <a href="blog-post-3.html" class="read-more-link">Read More »</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Understanding Python Loops: A Beginner's Guide</h3>
+                        <p class="post-meta">Published on: June 5, 2025</p>
+                        <p class="excerpt">Breaking down 'for' and 'while' loops in Python with simple examples. This post aims to help newcomers grasp these essential concepts...</p>
+                        <a href="blog-post-2.html" class="read-more-link">Read More »</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>My First Steps into Data Science</h3>
+                        <p class="post-meta">Published on: May 29, 2025</p>
+                        <p class="excerpt">An introduction to why I chose data science, the initial challenges, and the exciting discoveries along the way. Exploring the fundamentals that sparked my passion...</p>
+                        <a href="blog-post-1.html" class="read-more-link">Read More »</a>
+                    </div>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <p><a href="index.html" style="color: #9d4edd; text-decoration:none;">Back to Main Portfolio</a></p>
+            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+        </div>
+    </footer>
+
+</body>
+</html>
