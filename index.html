@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musfique Ahmed - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Dark blue-black */
+            color: #e0e0e0; /* Light grey for text */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #161625; /* Slightly lighter dark blue */
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #9d4edd; /* Purple */
+            text-decoration: none;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #ffffff;
+            background-color: #9d4edd; /* Purple */
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.95)), url('https://placehold.co/1200x800/10101F/3F3F7F?text=Tech+Background') no-repeat center center/cover; /* Placeholder background */
+        }
+        .hero-content {
+            max-width: 700px;
+        }
+        .hero-content img.profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid #9d4edd; /* Purple border */
+            margin-bottom: 25px;
+            object-fit: cover;
+        }
+        .hero-content h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .hero-content .subtitle {
+            font-size: 1.4em;
+            color: #c0c0c0; /* Lighter grey */
+            margin-bottom: 20px;
+        }
+        .hero-content .short-bio {
+            font-size: 1.1em;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #9d4edd; /* Purple */
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+        }
+        .cta-button:hover {
+            background-color: #8a3ab3; /* Darker Purple */
+            transform: translateY(-2px);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #2a2a3e; /* Separator */
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        section h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #9d4edd; /* Purple */
+            margin-bottom: 40px;
+            position: relative;
+        }
+         section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #9d4edd; /* Purple */
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        #about .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        #about .about-image-container {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+        #about .about-image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            border: 3px solid #3c3c5a;
+        }
+         #about h3 {
+            color: #b39ddb; /* Lighter Purple */
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        #about ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #about ul li {
+            background-color: #202035; /* Darker element background */
+            margin-bottom: 8px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 3px solid #9d4edd; /* Purple accent */
+        }
+        #about .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+
+        /* Portfolio Section */
+        #portfolio .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .project-card {
+            background-color: #202035; /* Darker element background */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #9d4edd;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3);
+        }
+        .project-card h3 {
+            color: #b39ddb; /* Lighter Purple */
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        .project-card p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        .project-card .tech-used {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+        .project-card .project-link {
+            display: inline-block;
+            color: #9d4edd;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .project-card .project-link:hover {
+            color: #c58af9; /* Lighter hover purple */
+        }
+
+        /* Contact Section */
+        #contact .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        #contact .contact-info, #contact .contact-form-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        #contact .contact-info h3 {
+            color: #b39ddb;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        #contact .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        #contact .contact-info p svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: #9d4edd;
+        }
+        #contact .contact-info a {
+            color: #c0c0c0;
+            text-decoration: none;
+        }
+        #contact .contact-info a:hover {
+            color: #9d4edd;
+        }
+        #contact .social-links a {
+            margin-right: 15px;
+            display: inline-block;
+        }
+        #contact .social-links svg {
+            width: 28px;
+            height: 28px;
+            fill: #9d4edd;
+            transition: fill 0.3s ease, transform 0.2s ease;
+        }
+        #contact .social-links a:hover svg {
+            fill: #c58af9;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #161625;
+            border-top: 1px solid #2a2a3e;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav .logo {
+                margin-bottom: 10px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li a {
+                display: block;
+                padding: 10px;
+            }
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            .hero-content .subtitle {
+                font-size: 1.2em;
+            }
+            #about .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">Musfique Ahmed</a>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <img src="0.jpg" alt="Musfique Ahmed" class="profile-pic" onerror="this.onerror=null; this.src='https://placehold.co/180x180/1A1A2E/9D4EDD?text=MA';">
+                <h1>Musfique Ahmed</h1>
+                <p class="subtitle">Data Science Student | Python Developer | Educator</p>
+                <p class="short-bio">
+                    Dedicated and detail-oriented Data Science student with strong programming, teaching, and communication skills. Committed to making technical concepts accessible.
+                </p>
+                <a href="#portfolio" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Hello! I'm Musfique Ahmed, a passionate Data Science student at United International University. My journey in tech is driven by a fascination with how data can tell stories and solve complex problems. I have experience in teaching Python, designing structured lesson plans, and I'm proficient in data analysis, visualization, and various Python libraries.
+                        </p>
+                        <p>
+                            I thrive in environments where I can contribute to academic growth, mentor peers, and coordinate events. My goal is to make technical concepts understandable and engaging for everyone.
+                        </p>
+
+                        <h3>Education</h3>
+                        <ul>
+                            <li><strong>Bachelor of Data Science:</strong> United International University (Current CGPA: 3.87, 45 credits completed)</li>
+                            <li><strong>HSC:</strong> Dhaka Residential Model College (GPA: 5.00)</li>
+                            <li><strong>SSC:</strong> Monipur High School & College (GPA: 5.00)</li>
+                        </ul>
+
+                        <h3>Key Skills</h3>
+                        <div class="skills-grid">
+                            <ul>
+                                <li>Python</li>
+                                <li>HTML</li>
+                                <li>Pandas</li>
+                                <li>NumPy</li>
+                            </ul>
+                            <ul>
+                                <li>Matplotlib</li>
+                                <li>Streamlit</li>
+                                <li>Data Analysis</li>
+                                <li>Data Visualization</li>
+                            </ul>
+                             <ul>
+                                <li>MS Excel</li>
+                                <li>Jupyter Notebooks</li>
+                                <li>VS Code</li>
+                                <li>Communication</li>
+                             </ul>
+                             <ul>
+                                <li>Teaching</li>
+                                <li>Mentoring</li>
+                                <li>Problem-Solving</li>
+                                <li>Event Coordination</li>
+                             </ul>
+                        </div>
+                    </div>
+                    <div class="about-image-container">
+                         <img src="2.jpg" alt="Musfique Ahmed" onerror="this.onerror=null; this.src='https://placehold.co/300x400/1A1A2E/9D4EDD?text=Profile';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h2>Portfolio & Experience</h2>
+                <p style="text-align:center; margin-bottom: 30px;">Here are some of the projects I've worked on and experiences I've gained. (More details coming soon!)</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Instructor - Programming with Python</h3>
+                        <p>Conducted a structured 3-month Python course for Songjog Foundation & Internet Society Foundation. Delivered online training, prepared course materials, and taught core/advanced Python topics.</p>
+                        <p class="tech-used">Python, Online Teaching Platforms</p>
+                        </div>
+
+                    <div class="project-card">
+                        <h3>Data Analysis Dashboards</h3>
+                        <p>Built data analysis dashboards and visualizations as part of academic work, applying Python for problem-solving and data-driven storytelling.</p>
+                        <p class="tech-used">Python, Pandas, Matplotlib</p>
+                        </div>
+
+                    <div class="project-card">
+                        <h3>President - UIU Data Science Club</h3>
+                        <p>Led the digital and academic growth of the club. Planned and managed workshops and outreach campaigns related to Python and data science.</p>
+                        <p class="tech-used">Leadership, Event Management, Python, Data Science</p>
+                        </div>
+                     <div class="project-card">
+                        <h3>Co-founder/Owner - Campus Desserts & Nikah Nama</h3>
+                        <p>Led content creation, branding, and customer engagement. Managed operations, team coordination, and business promotion for entrepreneurial ventures.</p>
+                        <p class="tech-used">Entrepreneurship, Branding, Team Management</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Contact Details</h3>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <a href="mailto:anikmushfik@gmail.com">anikmushfik@gmail.com</a>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <a href="tel:+8801961905838">+880 1961-905838</a>
+                        </p>
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            Mirpur-12, Dhaka, Bangladesh
+                        </p>
+                        <h3>Connect with Me</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/Musfique-Ahmed" target="_blank" title="GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/musfique-ahmed-aa89a5293/" target="_blank" title="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="https://www.facebook.com/anik.mushfik" target="_blank" title="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10s-10 4.477-10 10c0 5.013 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.891h2.54v-2.099c0-2.508 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.459h-1.28c-1.24 0-1.628.772-1.628 1.563v1.778h2.773l-.443 2.891h-2.33v6.987c4.781-.75 8.437-4.865 8.437-9.878z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <h3>Send a Message (Placeholder)</h3>
+                        <form action="#" method="POST" style="opacity: 0.6; pointer-events: none;"> <div style="margin-bottom: 15px;">
+                                <label for="name" style="display: block; margin-bottom: 5px;">Name</label>
+                                <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #3c3c5a; background-color: #2a2a3e; color: #e0e0e0;">
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label for="email" style="display: block; margin-bottom: 5px;">Email</label>
+                                <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #3c3c5a; background-color: #2a2a3e; color: #e0e0e0;">
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <label for="message" style="display: block; margin-bottom: 5px;">Message</label>
+                                <textarea id="message" name="message" rows="4" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #3c3c5a; background-color: #2a2a3e; color: #e0e0e0;"></textarea>
+                            </div>
+                            <button type="submit" class="cta-button" style="opacity: 0.6; cursor: not-allowed;">Send (Disabled)</button>
+                        </form>
+                        <p style="font-size: 0.9em; margin-top:15px; color: #aaa;"><em>Contact form is currently a visual placeholder.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <p>Designed with a professional touch in black and purple.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Active link highlighting
+                document.querySelectorAll('nav a').forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Active link highlighting on scroll
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('nav ul li a');
+        window.onscroll = () => {
+          var current = "home"; // Default to home
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 70) { // 70 to make it trigger a bit earlier
+              current = section.getAttribute("id"); }
+          });
+
+          navLi.forEach((a) => {
+            a.classList.remove("active");
+            if (a.getAttribute('href') === `#${current}`) {
+              a.classList.add("active");
+            }
+          });
+        };
+
+        // The JavaScript block that caused the error has been removed.
+        // The img onerror attribute handles image loading fallbacks directly.
+
+    </script>
+
+</body>
+</html>
