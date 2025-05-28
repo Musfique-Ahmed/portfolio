@@ -52,7 +52,7 @@
             flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
         nav ul li {
-            margin-left: 20px;
+            margin-left: 20px; /* Default for larger screens */
         }
         nav ul li a {
             color: #e0e0e0;
@@ -238,6 +238,28 @@
             color: #c58af9; /* Lighter hover purple */
         }
 
+        /* YouTube Channel Section */
+        #youtube-channel .video-container {
+            background-color: #11111f;
+            width: 100%;
+            max-width: 720px; /* Increased max-width for a bigger video */
+            margin: 20px auto; /* Ensures centering */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        #youtube-channel .video-container video {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        #youtube-channel .channel-link-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+
         /* Blog Section - uses .projects-grid and .project-card styling */
         #blog .blog-grid {
             display: grid;
@@ -353,6 +375,9 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            nav ul li {
+                 margin-left: 10px; /* Reduced margin for smaller screens */
+            }
             nav {
                 flex-direction: column;
                 align-items: center;
@@ -366,7 +391,7 @@
                 width: 100%;
             }
             nav ul li {
-                margin: 5px 0;
+                margin: 5px 0; /* Stack them vertically */
                 width: 100%;
                 text-align: center;
             }
@@ -384,6 +409,11 @@
                 flex-direction: column;
             }
         }
+         @media (max-width: 480px) {
+            nav ul li {
+                 margin-left: 0; /* Remove left margin for very small screens if items wrap too much */
+            }
+         }
     </style>
 </head>
 <body>
@@ -396,7 +426,7 @@
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About Me</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#youtube-channel">Channel</a></li> <li><a href="#blog">Blog</a></li>
+                    <li><a href="#youtube-channel">Channel</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -485,14 +515,7 @@
                     Check out my channel for tutorials, project showcases, and insights into the world of data!
                 </p>
                 <div class="video-container">
-                    <!--
-                        Replace 'intro_video.mp4' with the actual filename of your video.
-                        Make sure the video file is in the same directory as this HTML file,
-                        or update the path accordingly (e.g., 'videos/intro_video.mp4').
-                        Supported formats typically include MP4, WebM, and Ogg.
-                        It's good practice to provide multiple sources for broader browser compatibility.
-                    -->
-                    <video controls width="640" poster="0.jpg"> {/* poster attribute shows your profile pic before video loads */}
+                    <video controls width="640" poster="3.png">
                         <source src="intro_video.mp4" type="video/mp4">
                         Your browser does not support the video tag. You can <a href="intro_video.mp4">download the video here</a>.
                     </video>
@@ -507,7 +530,6 @@
                 </div>
             </div>
         </section>
-
         <section id="blog">
             <div class="container">
                 <h2>My Blog</h2>
@@ -517,19 +539,19 @@
                         <h3>My First Steps into Data Science</h3>
                         <p class="post-meta">Published on: May 29, 2025</p>
                         <p class="excerpt">An introduction to why I chose data science, the initial challenges, and the exciting discoveries along the way. Exploring the fundamentals that sparked my passion...</p>
-                        <a href="blog-post-1.html" class="read-more-link">Read More &raquo;</a>
+                        <a href="blog-post-1.html" class="read-more-link">Read More »</a>
                     </div>
                     <div class="project-card">
                         <h3>Understanding Python Loops: A Beginner's Guide</h3>
                         <p class="post-meta">Published on: June 5, 2025</p>
                         <p class="excerpt">Breaking down 'for' and 'while' loops in Python with simple examples. This post aims to help newcomers grasp these essential programming concepts effectively.</p>
-                        <a href="blog-post-2.html" class="read-more-link">Read More &raquo;</a>
+                        <a href="blog-post-2.html" class="read-more-link">Read More »</a>
                     </div>
                     <div class="project-card">
                         <h3>The Importance of Data Visualization</h3>
                         <p class="post-meta">Published on: June 12, 2025</p>
                         <p class="excerpt">Why is visualizing data so crucial? A look into how tools like Matplotlib can transform raw data into meaningful insights and tell compelling stories.</p>
-                        <a href="blog-post-3.html" class="read-more-link">Read More &raquo;</a>
+                        <a href="blog-post-3.html" class="read-more-link">Read More »</a>
                     </div>
                 </div>
             </div>
@@ -574,7 +596,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
             <p>Designed with a professional touch in black and purple.</p>
         </div>
     </footer>
@@ -606,7 +628,7 @@
           let current = 'home';
           sections.forEach((section) => {
             const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 75) {
+            if (pageYOffset >= sectionTop - 75) { // Adjusted offset for better accuracy
               current = section.getAttribute('id');
             }
           });
