@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Steps into Data Science - Musfique Ahmed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px; /* Can be narrower for blog posts for readability */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header { /* You might want a simpler header for blog posts or reuse the main one */
+            background-color: #161625;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between; /* Or center the logo/back button */
+            align-items: center;
+        }
+        nav .logo, nav .back-link { /* Style for logo or a "Back to Portfolio" link */
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #9d4edd;
+            text-decoration: none;
+        }
+        .blog-post-article {
+            background-color: #202035;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .blog-post-article h1 {
+            color: #b39ddb; /* Lighter Purple */
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .blog-post-article .post-meta {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+        .blog-post-article p {
+            margin-bottom: 1.2em;
+            font-size: 1.05em;
+        }
+        .blog-post-article img { /* Style for images within the blog post */
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            background-color: #161625;
+            border-top: 1px solid #2a2a3e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html#blog" class="back-link">&laquo; Back to Blog</a>
+                </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <article class="blog-post-article">
+                <h1>My First Steps into Data Science</h1>
+                <p class="post-meta">Published on: May 29, 2025 by Musfique Ahmed</p>
+
+                <p>This is the full content for "My First Steps into Data Science." An introduction to why I chose data science, the initial challenges, and the exciting discoveries along the way. Exploring the fundamentals that sparked my passion.</p>
+                <p>Delving deeper, I found that the ability to extract meaningful patterns from vast datasets was incredibly empowering. The learning curve was steep, involving statistics, programming, and domain knowledge, but each small success was a huge motivator.</p>
+                <!-- Example of a code block (you'd need a syntax highlighter or style it further):
+                <pre><code>
+    def greet(name):
+        print(f"Hello, {name}!")
+                </code></pre>
+                -->
+                <p>The journey continues, and I'm excited to share more as I learn and grow in this dynamic field.</p>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+        </div>
+    </footer>
+
+</body>
+</html>
