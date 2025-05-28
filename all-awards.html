@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Awards & Achievements - Musfique Ahmed</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #161625;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #9d4edd;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .page-section {
+            padding: 40px 0;
+        }
+        .page-section h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #9d4edd;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .page-section h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: #9d4edd;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .award-item { /* Similar to experience-item but simpler */
+            background-color: #202035;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            border-left: 4px solid #9d4edd;
+        }
+        .award-item h3 {
+            color: #b39ddb;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.4em;
+        }
+        .award-item .awarding-body { /* For the festival name or university */
+             font-size: 1em;
+             color: #a0a0c0;
+             margin-bottom: 10px;
+        }
+        .award-item .details { /* For scholarship details */
+            font-size: 0.95em;
+            color: #c0c0c0;
+        }
+        .award-item .details ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #161625;
+            border-top: 1px solid #2a2a3e;
+            margin-top: 60px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Musfique Ahmed - Portfolio</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <div class="container">
+                <h1>All Awards & Achievements</h1>
+
+                <div class="award-item">
+                    <h3>Champion – Senior Project Display</h3>
+                    <p class="awarding-body">DRMC Intra Science Festival</p>
+                    </div>
+
+                <div class="award-item">
+                    <h3>Champion – Senior Project Display</h3>
+                    <p class="awarding-body">DRMC National Nature Festival</p>
+                </div>
+
+                <div class="award-item">
+                    <h3>University Scholarship Awards</h3>
+                    <p class="awarding-body">United International University</p>
+                    <div class="details">
+                        Recognized for academic excellence with the following scholarships:
+                        <ul>
+                            <li>25% Scholarship (awarded twice)</li>
+                            <li>50% Scholarship (awarded once)</li>
+                            <li>100% Scholarship (awarded twice)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <p><a href="index.html" style="color: #9d4edd; text-decoration:none;">Back to Main Portfolio</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Experiences - Musfique Ahmed</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px; /* Wider for more content */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #161625;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #9d4edd;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .page-section {
+            padding: 40px 0;
+        }
+        .page-section h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #9d4edd;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .page-section h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: #9d4edd;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .experience-item {
+            background-color: #202035;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            border-left: 4px solid #9d4edd;
+        }
+        .experience-item h3 {
+            color: #b39ddb;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.6em;
+        }
+        .experience-item .role-organization {
+             font-size: 1em;
+             color: #a0a0c0;
+             margin-bottom: 5px;
+        }
+        .experience-item .date-range {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 15px;
+        }
+        .experience-item .details-toggle {
+            display: inline-block;
+            background-color: #9d4edd;
+            color: #ffffff;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .experience-item .details-toggle:hover {
+            background-color: #8a3ab3;
+        }
+        .experience-details {
+            margin-top: 15px;
+            padding-left: 10px;
+            border-left: 2px solid #3c3c5a;
+            font-size: 0.95em;
+            max-height: 0; /* For accordion effect */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition */
+        }
+         .experience-details.show {
+            max-height: 1000px; /* Large enough to show all content */
+            padding-top: 10px;
+            padding-bottom: 10px;
+         }
+        .experience-details ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .experience-details ul li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #161625;
+            border-top: 1px solid #2a2a3e;
+            margin-top: 60px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Musfique Ahmed - Portfolio</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <div class="container">
+                <h1>All My Work & Experiences</h1>
+
+                <div class="experience-item">
+                    <h3>Project Coordinator Intern</h3>
+                    <p class="role-organization">IRIIC, United International University</p>
+                    <p class="date-range">September 2024 – Present</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Helped to coordinate multiple projects and events, ensuring timely execution and quality outcomes.</li>
+                            <li>Prepared professional presentation slides for strategic meetings and project updates.</li>
+                            <li>Assisted in organizing events with external stakeholders, including government and international organizations.</li>
+                            <li>Developed content planning strategies for IRIIC's official social media pages, enhancing engagement and visibility.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Instructor - Programming with Python</h3>
+                    <p class="role-organization">Songjog Foundation & Internet Society Foundation</p>
+                    <p class="date-range">November 2024 – March 2025</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Conducted a 3-month Python Programming course for junior students, covering fundamental and advanced concepts.</li>
+                            <li>Designed quizzes and assignments to assess learning outcomes and improve engagement.</li>
+                            <li>Provided one-on-one mentorship and career guidance to students.</li>
+                            <li>Supported junior students in mastering programming concepts as part of a structured curriculum.</li>
+                            <li>Prepared course materials and awarded completion certificates to students.</li>
+                            <li>Taught core and advanced Python topics, including data types, loops, functions, and file handling.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Teaching Assistant</h3>
+                    <p class="role-organization">Department of Data Science, UIU</p>
+                    <p class="date-range">February 2025 – Present</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Assist faculty with Python and Data Science courses.</li>
+                            <li>Support students through academic advising and coursework assistance.</li>
+                            <li>Facilitate lab sessions and help students with practical implementations.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>President</h3>
+                    <p class="role-organization">UIU Data Science Club</p>
+                    <p class="date-range">February 2025 – Present</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Established the UIU Data Science Club from the ground up, leading its kickstart and official formation.</li>
+                            <li>Designed and implemented the club’s full organizational structure, defining executive roles and responsibilities.</li>
+                            <li>Led the recruitment and onboarding of executive and core team members.</li>
+                            <li>Organized workshops, seminars, and hands-on events to engage students in data science, AI, and programming.</li>
+                            <li>Collaborated with faculty, external mentors, fellow students, other university clubs, and tech companies to build a dynamic and inclusive data science community.</li>
+                            <li>Developed long-term strategies to ensure the club’s growth, outreach, and sustainability.</li>
+                            <li>Mentored junior members and guided the executive team to maintain continuity and high-impact leadership.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Head of Data Science</h3>
+                    <p class="role-organization">UIU APP Forum</p>
+                    <p class="date-range">September 2023 – February 2025</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Led data-driven initiatives.</li>
+                            <li>Provided mentorship to junior members.</li>
+                            <li>Organized workshops on Python for data science applications.</li>
+                            <li>Conducted Python-focused workshops for junior learners.</li>
+                            <li>Mentored new members and coordinated training sessions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Senior Executive (R&D)</h3>
+                    <p class="role-organization">UIU EDF (Entrepreneurship Development Forum)</p>
+                    <p class="date-range">September 2023 – February 2025</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Coordinated R&D activities.</li>
+                            <li>Collaborated with teams to develop projects, ensuring adherence to deadlines and objectives.</li>
+                            <li>Organized innovation-based sessions and contributed to R&D events.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Event Coordinator</h3>
+                    <p class="role-organization">Data Science Dept., UIU</p>
+                    <p class="date-range">September 2023 – Present</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Organized BSDS events (Football Tournament 2023, BSDS Picnic 2024, BSDS Iftar Mahfil 2024, and BSDS 1 Year Anniversary demonstrating leadership and communication skills).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Mentor</h3>
+                    <p class="role-organization">UIU CSE & Data Science Dept.</p>
+                    <p class="date-range">September 2023 – Present</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Worked as a mentor, guiding students on project displays and presentations during UIU CSE Project Show Fall 2024 helping them improve their technical and presentation skills.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <h3>Co-founder/Owner</h3>
+                    <p class="role-organization">Campus Desserts & Nikah Nama</p>
+                    <button class="details-toggle" onclick="toggleDetails(this)">View Details</button>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Led content creation, branding, and customer engagement.</li>
+                            <li>Managed operations, team coordination, and business promotion.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+            <p><a href="index.html" style="color: #9d4edd; text-decoration:none;">Back to Main Portfolio</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function toggleDetails(buttonElement) {
+            const detailsDiv = buttonElement.nextElementSibling; // The div with class 'experience-details'
+            if (detailsDiv.classList.contains('show')) {
+                detailsDiv.classList.remove('show');
+                buttonElement.textContent = 'View Details';
+            } else {
+                // Close any other open details sections
+                document.querySelectorAll('.experience-details.show').forEach(openDetail => {
+                    if (openDetail !== detailsDiv) {
+                        openDetail.classList.remove('show');
+                        openDetail.previousElementSibling.textContent = 'View Details';
+                    }
+                });
+                detailsDiv.classList.add('show');
+                buttonElement.textContent = 'Hide Details';
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -52,14 +52,14 @@
             flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
         nav ul li {
-            margin-left: 20px; /* Default for larger screens */
+            margin-left: 15px; /* Adjusted for more nav items */
         }
         nav ul li a {
             color: #e0e0e0;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
-            padding: 5px 10px;
+            padding: 5px 8px; /* Adjusted for more nav items */
             border-radius: 4px;
         }
         nav ul li a:hover, nav ul li a.active {
@@ -167,7 +167,7 @@
         }
         #about .about-image-container img {
             width: 100%;
-            max-width: 300px;
+            max-width: 350px; /* Increased size */
             border-radius: 10px;
             border: 3px solid #3c3c5a;
         }
@@ -177,31 +177,84 @@
             margin-top: 20px;
             margin-bottom: 10px;
         }
-        #about ul {
+        #about ul { /* For education list */
             list-style: none;
             padding-left: 0;
         }
-        #about ul li {
-            background-color: #202035; /* Darker element background */
+        #about ul li { /* General li styling for education and skills */
+            background-color: #202035;
             margin-bottom: 8px;
             padding: 10px 15px;
             border-radius: 5px;
-            border-left: 3px solid #9d4edd; /* Purple accent */
+            border-left: 3px solid #9d4edd;
+            display: flex; /* For aligning skill icons */
+            align-items: center; /* For aligning skill icons */
         }
         #about .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted for icons */
             gap: 10px;
         }
+        #about .skills-grid ul { /* Reset padding for ul inside grid */
+            padding-left: 0;
+        }
+        #about .skills-grid ul li { /* Specific for skills li */
+             font-size: 0.95em;
+        }
+        .skill-icon {
+            width: 20px; /* Size of skill icons */
+            height: 20px; /* Size of skill icons */
+            margin-right: 10px;
+        }
+
+        /* Languages Section Styling */
+        .languages-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* Spacing between language items */
+            padding-left: 0; /* Remove default ul padding */
+            list-style: none; /* Remove default list bullets */
+        }
+        .languages-list li {
+            display: flex;
+            align-items: center;
+            background-color: #202035;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            border-left: 3px solid #9d4edd;
+        }
+        .languages-list .flag-icon {
+            width: 24px; /* Adjust size as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 8px;
+            border-radius: 3px; /* Optional: slightly rounded corners for flags */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Optional: subtle shadow */
+        }
 
 
-        /* Portfolio Section */
-        #portfolio .projects-grid {
+        /* Portfolio Section Updated */
+        #portfolio .experience-grid, #awards .awards-grid { /* Shared grid style */
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
             gap: 25px;
         }
-        .project-card { /* Also used for blog post cards */
+         @media (min-width: 600px) and (max-width: 900px) { /* Example: 2 columns for medium screens */
+            #portfolio .experience-grid, #awards .awards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+         @media (min-width: 901px) { /* Example: 3 columns for awards, 2 for experience on larger screens */
+            #awards .awards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+             #portfolio .experience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        .project-card { /* Also used for blog post cards and experience cards */
             background-color: #202035; /* Darker element background */
             padding: 25px;
             border-radius: 8px;
@@ -210,28 +263,39 @@
             border-left: 4px solid #9d4edd;
             display: flex;
             flex-direction: column;
+            min-height: 180px; /* Ensure cards have some minimum height */
         }
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3);
         }
-        .project-card h3 {
+        .project-card h3 { /* Title for experience/project/blog/award */
             color: #b39ddb; /* Lighter Purple */
             margin-top: 0;
             margin-bottom: 10px;
-            font-size: 1.4em;
+            font-size: 1.3em; /* Slightly smaller for more content */
         }
-        .project-card .excerpt { /* Class for blog excerpt */
-            font-size: 0.95em;
+        .project-card .role-organization { /* For sub-title like 'Instructor at XYZ' or Festival Name */
+             font-size: 0.9em;
+             color: #a0a0c0; /* Slightly different color for role/org */
+             margin-bottom: 10px;
+        }
+        .project-card .date-range { /* For dates */
+            font-size: 0.8em;
+            color: #888;
             margin-bottom: 15px;
-            flex-grow: 1; /* Allows excerpt to take available space before link */
         }
-        .project-card .tech-used, .project-card .post-meta { /* .post-meta for blog */
+        .project-card .excerpt { /* Short summary for project/blog/award */
+            font-size: 0.9em; /* Slightly smaller for award cards */
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .project-card .tech-used, .project-card .post-meta { /* For tech stack or blog meta */
             font-size: 0.85em;
             color: #aaa;
             margin-bottom: 15px;
         }
-        .project-card .project-link, .project-card .read-more-link { /* .read-more-link for blog */
+        .project-card .project-link, .project-card .read-more-link { /* Links */
             display: inline-block;
             color: #9d4edd;
             text-decoration: none;
@@ -265,7 +329,7 @@
         }
 
 
-        /* Blog Section - uses .projects-grid and .project-card styling */
+        /* Blog Section - uses .projects-grid (now .blog-grid) and .project-card styling */
         #blog .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default for larger screens */
@@ -443,7 +507,7 @@
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About Me</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#youtube-channel">Channel</a></li>
+                    <li><a href="#awards">Awards</a></li> <li><a href="#youtube-channel">Channel</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -483,12 +547,39 @@
                         </ul>
                         <h3>Key Skills</h3>
                         <div class="skills-grid">
-                            <ul><li>Python</li><li>HTML</li><li>Pandas</li><li>NumPy</li></ul>
-                            <ul><li>Matplotlib</li><li>Streamlit</li><li>Data Analysis</li><li>Data Visualization</li></ul>
-                            <ul><li>MS Excel</li><li>Jupyter Notebooks</li><li>VS Code</li><li>Communication</li></ul>
-                            <ul><li>Teaching</li><li>Mentoring</li><li>Problem-Solving</li><li>Event Coordination</li></ul>
+                            <ul>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23306998' d='M16 0A16 16 0 000 16a16 16 0 0016 16a16 16 0 0016-16A16 16 0 0016 0zm0 30a14 14 0 01-14-14A14 14 0 0116 2a14 14 0 0114 14a14 14 0 01-14 14z'/%3E%3Cpath fill='%23FFD43B' d='M16 4a12 12 0 00-12 12h10v-2a2 2 0 012-2h4a2 2 0 012 2v2h-2a2 2 0 00-2 2v10a12 12 0 0012-12A12 12 0 0016 4zm-2 14v-2h4v2zm0 4v-2h4v2z'/%3E%3Cpath fill='%23306998' d='M16 28a12 12 0 0012-12H18v2a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2h2a2 2 0 002-2V6A12 12 0 004 16a12 12 0 0012 12zm2-14v2h-4v-2zm0-4v2h-4V8z'/%3E%3C/svg%3E" alt="Python Icon" class="skill-icon">Python</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23E34F26' d='M71.313 460.313L32 0h448l-39.25 460.25L255.75 512z'/%3E%3Cpath fill='%23F16529' d='M256 474.375l180.438-48.5L440.75 32H256z'/%3E%3Cpath fill='%23EBEBEB' d='M256 64v109.313h88.625l-8.625 96.813H256v87.875l92.375-24.875 12.188-136.312.062.063H256V64z'/%3E%3Cpath fill='%23FFF' d='M256 173.313V64H120.688l.062.063L133 173.313h123zm0 184.688v-87.875H137.25l-8.563 96.313 127.313 34.375z'/%3E%3C/svg%3E" alt="HTML5 Icon" class="skill-icon">HTML</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M6 18h12v2H6zm0-5h12v2H6zm0-5h12v2H6zm0-5h12v2H6z'/%3E%3C/svg%3E" alt="Pandas Icon" class="skill-icon">Pandas</li> <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M20 6h-2.18c.11-.31.18-.65.18-1a3 3 0 00-3-3H9a3 3 0 00-3 3c0 .35.07.69.18 1H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zm-5-1.9c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9zm-6 0c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9zm11 13.9H4V8h16v10z'/%3E%3C/svg%3E" alt="NumPy Icon" class="skill-icon">NumPy</li> </ul>
+                            <ul>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M4 2h16v2H4zm0 4h16v12H4zm2 2v8h12V8H6zm2 2h2v4H8zm4 0h2v4h-2zm4 0h2v4h-2z'/%3E%3C/svg%3E" alt="Matplotlib Icon" class="skill-icon">Matplotlib</li> <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23FF4B4B' d='M128 24a104 104 0 10104 104A104.118 104.118 0 00128 24zm40 148.008a12 12 0 01-12 12h-56a12 12 0 01-12-12v-56a12 12 0 0112-12h56a12 12 0 0112 12z'/%3E%3Cpath fill='%23fff' d='M100 116h56v56h-56z'/%3E%3C/svg%3E" alt="Streamlit Icon" class="skill-icon">Streamlit</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M10 4H4c-1.11 0-2 .89-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z'/%3E%3C/svg%3E" alt="Folder Icon" class="skill-icon">Data Analysis</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-4h2v4zm4 0h-2v-7h2v7zm4 0h-2V7h2v10z'/%3E%3C/svg%3E" alt="Chart Icon" class="skill-icon">Data Visualization</li>
+                            </ul>
+                             <ul>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23217346' d='M21.41 3.41L19 1H5C3.9 1 3 1.9 3 3v18c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5.83l-3.59-2.42zM12 18c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H9v2h6V8z'/%3E%3Cpath fill='%23107C41' d='M13 2.5V6h2.5L13 2.5z'/%3E%3C/svg%3E" alt="Excel Icon" class="skill-icon">MS Excel</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23F37626'/%3E%3Cpath fill='%23F37626' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt="Jupyter Icon" class="skill-icon">Jupyter Notebooks</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23007ACC' d='M17.12 2.25L21.5 6.75l-4.38 4.5-4.37-4.5L17.12 2.25M24 6.75L19.62 11.25l-2.5-2.5L24 6.75M4.88 2.25L.5 6.75l4.38 4.5 4.37-4.5L4.88 2.25M0 6.75l4.38 4.5-2.5-2.5L0 6.75m7.5 6l-4.38 4.5L7.5 21.75l4.38-4.5-4.38-4.5M12 15.25l-2.5 2.5L12 20.25l2.5-2.5-2.5-2.5z'/%3E%3C/svg%3E" alt="VS Code Icon" class="skill-icon">VS Code</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/%3E%3C/svg%3E" alt="Communication Icon" class="skill-icon">Communication</li>
+                             </ul>
+                             <ul>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Teaching Icon" class="skill-icon">Teaching</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M16.5 12c1.38 0 2.5-1.12 2.5-2.5S17.88 7 16.5 7 14 8.12 14 9.5s1.12 2.5 2.5 2.5zM9 11c1.66 0 2.99-1.34 2.99-3S10.66 5 9 5C7.34 5 6 6.34 6 8s1.34 3 3 3zm7.5 3c-1.83 0-5.5.92-5.5 2.75V19h11v-2.25c0-1.83-3.67-2.75-5.5-2.75zM9 13c-2.33 0-7 1.17-7 3.5V19h7v-2.25c0-.85.33-2.34 2.37-3.47C10.5 13.1 9.66 13 9 13z'/%3E%3C/svg%3E" alt="Mentoring Icon" class="skill-icon">Mentoring</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5A6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" alt="Problem Solving Icon" class="skill-icon">Problem-Solving</li>
+                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z'/%3E%3C/svg%3E" alt="Event Coordination Icon" class="skill-icon">Event Coordination</li>
+                             </ul>
                         </div>
-                    </div>
+                        <h3>Languages</h3>
+                        <ul class="languages-list">
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Crect width='20' height='12' fill='%23006a4e'/%3E%3Ccircle cx='9' cy='6' r='2.5' fill='%23f42a41'/%3E%3C/svg%3E" alt="Bangladesh Flag" class="flag-icon"> Bangla</li>
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 60 30'%3E%3CclipPath id='a'%3E%3Cpath d='M0 0h60v30H0z'/%3E%3C/clipPath%3E%3CclipPath id='b'%3E%3Cpath d='M30 15h30v15zv15h-30zh-30v-15zv-15h30z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M0 0v30h60V0z' fill='%23012169'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' clip-path='url(%23b)' stroke='%23c8102e' stroke-width='4'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23c8102e' stroke-width='6'/%3E%3C/g%3E%3C/svg%3E" alt="UK Flag" class="flag-icon"> English</li>
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 5 3'%3E%3Crect width='5' height='3' fill='%23FFCE00'/%3E%3Crect width='5' height='2' fill='%23000'/%3E%3Crect width='5' height='1' fill='%23D00'/%3E%3C/svg%3E" alt="Germany Flag" class="flag-icon"> German</li>
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 900 600'%3E%3Crect fill='%23fff' width='900' height='600'/%3E%3Ccircle fill='%23bc002d' cx='450' cy='300' r='180'/%3E%3C/svg%3E" alt="Japan Flag" class="flag-icon"> Japanese</li>
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23fff'/%3E%3Ccircle cx='450' cy='300' r='150' fill='%23CD2E3A'/%3E%3Cpath d='M450 225A75 75 0 00450 375A75 75 0 00450 225M450 243.75A56.25 56.25 0 01450 356.25A56.25 56.25 0 01450 243.75' fill='%230047A0'/%3E%3Cg fill='%23000'%3E%3Cpath d='M225 150h75v75h-75zM225 375h75v75h-75zM600 150h75v75h-75zM600 375h75v75h-75z'/%3E%3C/g%3E%3C/svg%3E" alt="South Korea Flag" class="flag-icon"> Korean</li>
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23007A3D'/%3E%3Ctext x='300' y='260' font-size='120' font-family='sans-serif' fill='%23fff' text-anchor='middle'%3Eلَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله%3C/text%3E%3Cpath d='M100 320 H 500 L 480 300 H 120 Z' fill='%23fff'/%3E%3Cpath d='M120 300 L 100 280 L 120 280 Q 150 280 150 250 L 150 220 L 170 220 L 170 250 Q 170 280 200 280 L 400 280 Q 430 280 430 250 L 430 220 L 450 220 L 450 250 Q 450 280 480 280 L 500 280 L 480 300 Z' fill='%23fff' stroke='%23007A3D' stroke-width='5'/%3E%3C/svg%3E" alt="Saudi Arabia Flag" class="flag-icon"> Arabic</li>
+                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23FF9933'/%3E%3Crect width='900' height='200' y='200' fill='%23FFF'/%3E%3Crect width='900' height='200' y='400' fill='%23138808'/%3E%3Ccircle cx='450' cy='300' r='70' fill='%23000080'/%3E%3Ccircle cx='450' cy='300' r='65' fill='%23FFF'/%3E%3Cpath d='M450 240 L450 360 M390 300 L510 300 M402.426 252.426 L497.574 347.574 M402.426 347.574 L497.574 252.426 M420 244.641 L480 355.359 M480 244.641 L420 355.359 M394.641 270 L505.359 330 M394.641 330 L505.359 270' stroke='%23000080' stroke-width='10'/%3E%3C/svg%3E" alt="India Flag" class="flag-icon"> Hindi</li>
+                        </ul>
+                        </div>
                     <div class="about-image-container">
                         <img src="2.jpg" alt="Musfique Ahmed" onerror="this.onerror=null; this.src='https://placehold.co/300x400/1A1A2E/9D4EDD?text=Profile';">
                     </div>
@@ -498,33 +589,67 @@
 
         <section id="portfolio">
             <div class="container">
-                <h2>Portfolio & Experience</h2>
-                <p style="text-align:center; margin-bottom: 30px;">Here are some of the projects I've worked on and experiences I've gained.</p>
-                <div class="projects-grid">
+                <h2>Portfolio & Experience Highlights</h2>
+                <p style="text-align:center; margin-bottom: 30px;">A snapshot of my key roles and experiences. Click "See More Works" for a comprehensive list and details.</p>
+                <div class="experience-grid"> <div class="project-card">
+                        <h3>President</h3>
+                        <p class="role-organization">UIU Data Science Club</p>
+                        <p class="date-range">Feb 2025 – Present</p>
+                        <p class="excerpt">Leading the digital and academic growth of the club, planning and managing workshops, and spearheading outreach campaigns related to Python and data science.</p>
+                    </div>
+
                     <div class="project-card">
                         <h3>Instructor - Programming with Python</h3>
-                        <p class="excerpt">Conducted a structured 3-month Python course for Songjog Foundation & Internet Society Foundation. Delivered online training, prepared course materials, and taught core/advanced Python topics.</p>
-                        <p class="tech-used">Python, Online Teaching Platforms</p>
+                        <p class="role-organization">Songjog Foundation & Internet Society Foundation</p>
+                        <p class="date-range">Nov 2024 – Mar 2025</p>
+                        <p class="excerpt">Conducted a 3-month Python course for junior students, covering fundamentals to advanced topics, including designing engaging learning materials.</p>
                     </div>
+
                     <div class="project-card">
-                        <h3>Data Analysis Dashboards</h3>
-                        <p class="excerpt">Built data analysis dashboards and visualizations as part of academic work, applying Python for problem-solving and data-driven storytelling.</p>
-                        <p class="tech-used">Python, Pandas, Matplotlib</p>
+                        <h3>Teaching Assistant</h3>
+                        <p class="role-organization">Department of Data Science, UIU</p>
+                        <p class="date-range">Feb 2025 – Present</p>
+                        <p class="excerpt">Assisting faculty with Python and Data Science courses, supporting students through academic advising, and facilitating lab sessions.</p>
                     </div>
+
                     <div class="project-card">
-                        <h3>President - UIU Data Science Club</h3>
-                        <p class="excerpt">Led the digital and academic growth of the club. Planned and managed workshops and outreach campaigns related to Python and data science.</p>
-                        <p class="tech-used">Leadership, Event Management, Python, Data Science</p>
+                        <h3>Project Coordinator Intern</h3>
+                        <p class="role-organization">IRIIC, United International University</p>
+                        <p class="date-range">September 2024 – Present</p>
+                        <p class="excerpt">Coordinating projects and events, preparing presentation slides, assisting with stakeholder engagement, and developing social media content strategies.</p>
                     </div>
-                    <div class="project-card">
-                        <h3>Co-founder/Owner - Campus Desserts & Nikah Nama</h3>
-                        <p class="excerpt">Led content creation, branding, and customer engagement. Managed operations, team coordination, and business promotion for entrepreneurial ventures.</p>
-                        <p class="tech-used">Entrepreneurship, Branding, Team Management</p>
-                    </div>
+                </div>
+                <div class="view-all-button-container">
+                    <a href="all-experiences.html" class="cta-button">See More Works</a>
                 </div>
             </div>
         </section>
 
+        <section id="awards">
+            <div class="container">
+                <h2>Awards & Achievements Highlights</h2>
+                <p style="text-align:center; margin-bottom: 30px;">A few of my notable recognitions.</p>
+                <div class="awards-grid"> <div class="project-card">
+                        <h3>Champion – Senior Project Display</h3>
+                        <p class="role-organization">DRMC Intra Science Festival</p>
+                        <p class="excerpt">Recognized for an outstanding senior project display.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Champion – Senior Project Display</h3>
+                        <p class="role-organization">DRMC National Nature Festival</p>
+                        <p class="excerpt">Achieved championship in a national-level project competition.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>University Scholarship Awards</h3>
+                        <p class="role-organization">United International University</p>
+                        <p class="excerpt">Awarded multiple scholarships (25% twice, 50% once, 100% twice) for academic excellence.</p>
+                    </div>
+                </div>
+                <div class="view-all-button-container">
+                    <a href="all-awards.html" class="cta-button">Show All Awards</a>
+                </div>
+            </div>
+        </section>
         <section id="youtube-channel">
             <div class="container">
                 <h2>My Channel: Data Science with Musfique</h2>
@@ -569,7 +694,7 @@
                         <p class="excerpt">Breaking down 'for' and 'while' loops in Python with simple examples. This post aims to help newcomers grasp these essential concepts...</p>
                         <a href="blog-post-2.html" class="read-more-link">Read More »</a>
                     </div>
-                    </div>
+                </div>
                 <div class="view-all-button-container">
                     <a href="all-blogs.html" class="cta-button">View All Posts</a>
                 </div>
@@ -695,208 +820,6 @@
         form.addEventListener("submit", handleSubmit);
 
     </script>
-
-</body>
-</html>
-```
-
-**Summary of Changes in `index.html`:**
-
-1.  **Blog Section (`<section id="blog">`):**
-    * The title is now "My Recent Blog Posts" and the descriptive paragraph is updated.
-    * The `div` with class `blog-grid` now only contains the cards for your three most recent blog posts (Post 4, Post 3, and Post 2). The card for "My First Steps into Data Science" (Post 1) has been removed from this direct display.
-    * A new `div` with class `view-all-button-container` has been added below the `blog-grid`.
-    * Inside this container, there's a new button: `<a href="all-blogs.html" class="cta-button">View All Posts</a>`.
-
-Now, you'll need the `all-blogs.html` page. Here is the code for it:
-
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Blog Posts - Musfique Ahmed</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Inter Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e; /* Dark blue-black */
-            color: #e0e0e0; /* Light grey for text */
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header { /* Simplified header for this page */
-            background-color: #161625;
-            padding: 1.5rem 0; /* Slightly more padding */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            text-align: center;
-        }
-        nav .logo { /* Re-using logo style */
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #9d4edd; /* Purple */
-            text-decoration: none;
-            display: inline-block;
-        }
-        /* General Section Styling */
-        .page-section {
-            padding: 40px 0; /* Reduced padding compared to main page sections */
-        }
-        .page-section h1 { /* Changed from h2 for main page title */
-            text-align: center;
-            font-size: 2.5em; /* Slightly larger for page title */
-            color: #9d4edd; /* Purple */
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .page-section h1::after {
-            content: '';
-            display: block;
-            width: 70px; /* Slightly wider underline */
-            height: 3px;
-            background-color: #9d4edd; /* Purple */
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Blog Grid (copied from index.html styles) */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .project-card {
-            background-color: #202035;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid #9d4edd;
-            display: flex;
-            flex-direction: column;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3);
-        }
-        .project-card h3 {
-            color: #b39ddb;
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.4em;
-        }
-        .project-card .excerpt {
-            font-size: 0.95em;
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-        .project-card .post-meta {
-            font-size: 0.85em;
-            color: #aaa;
-            margin-bottom: 15px;
-        }
-        .project-card .read-more-link {
-            display: inline-block;
-            color: #9d4edd;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-            margin-top: auto;
-        }
-        .project-card .read-more-link:hover {
-            color: #c58af9;
-        }
-
-        /* Footer (copied from index.html styles) */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background-color: #161625;
-            border-top: 1px solid #2a2a3e;
-            margin-top: 60px; /* Ensure space before footer */
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-        }
-         /* Responsive adjustments for blog grid */
-        @media (max-width: 992px) and (min-width: 600px) {
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 599px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">Musfique Ahmed</a>
-                </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="page-section">
-            <div class="container">
-                <h1>All Blog Posts</h1>
-                <div class="blog-grid">
-                    <div class="project-card">
-                        <h3>One Link to Rule Them All: Conquering Survey Chaos</h3>
-                        <p class="post-meta">Published on: June 20, 2025</p>
-                        <p class="excerpt">Ever been neck-deep in a project, hit a seemingly insurmountable logistical wall, and then had that "aha!" moment that makes you feel like a coding wizard...? </p>
-                        <a href="blog-post-4.html" class="read-more-link">Read More »</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>The Importance of Data Visualization</h3>
-                        <p class="post-meta">Published on: June 12, 2025</p>
-                        <p class="excerpt">Why is visualizing data so crucial? A look into how tools like Matplotlib can transform raw data into meaningful insights...</p>
-                        <a href="blog-post-3.html" class="read-more-link">Read More »</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>Understanding Python Loops: A Beginner's Guide</h3>
-                        <p class="post-meta">Published on: June 5, 2025</p>
-                        <p class="excerpt">Breaking down 'for' and 'while' loops in Python with simple examples. This post aims to help newcomers grasp these essential concepts...</p>
-                        <a href="blog-post-2.html" class="read-more-link">Read More »</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>My First Steps into Data Science</h3>
-                        <p class="post-meta">Published on: May 29, 2025</p>
-                        <p class="excerpt">An introduction to why I chose data science, the initial challenges, and the exciting discoveries along the way. Exploring the fundamentals that sparked my passion...</p>
-                        <a href="blog-post-1.html" class="read-more-link">Read More »</a>
-                    </div>
-                    </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
-            <p><a href="index.html" style="color: #9d4edd; text-decoration:none;">Back to Main Portfolio</a></p>
-            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-        </div>
-    </footer>
 
 </body>
 </html>
