@@ -203,11 +203,11 @@
                                 <ul>
                                     <li>Read the list of all form links and their current "Times Generated" counts directly from the "BD Forms" sheet.</li>
                                     <li>Filter out any forms that had already reached our desired response limit (e.g., 3-5 responses).</li>
-                                    <li>Randomly select a <code>formNumber</code> (an ID or row number that corresponds to a form) from the pool of still available forms.</li>
+                                    <li>Randomly select a <code>formNumber</code> from the pool of still available forms.</li>
                                 </ul>
                             </li>
                             <li>Retrieve the Specific Form URL: Once a <code>formNumber</code> was selected, the script would fetch the actual Google Form link from the "BD Forms" sheet corresponding to that selection.</li>
-                            <li>Log the Assignment: Before sending the user to the form, the script would quickly add a new row to the "Records" sheet, logging details like the timestamp, the user's email, and the <code>formNumber</code> (or form URL) that was just assigned. This action is what instantly updated the "Times Generated" count on the "BD Forms" sheet, thanks to our ArrayFormula.</li>
+                            <li>Log the Assignment: Before sending the user to the form, the script would quickly add a new row to the "Records" sheet, logging details like the timestamp, the user's email, and the <code>formNumber</code> that was just assigned. This action is what instantly updated the "Times Generated" count on the "BD Forms" sheet, thanks to our ArrayFormula.</li>
                             <li>Return the Unique Form URL to the Web Page: Finally, the script would send this unique, randomly selected form URL back to the user's browser.</li>
                         </ul>
                     </li>
@@ -221,7 +221,7 @@
                     <figcaption>The user-friendly web page participants used to get their unique survey link.</figcaption>
                 </figure>
 
-                <p>My page, which was for a project titled "Hate Speech Reasoning Survey," (You can, of course, adjust this to be more general if you prefer, or state your specific project title as I have here as an example based on your image) clearly laid out:</p>
+                <p>My page, which was for a project titled "Hate Speech Reasoning Survey," clearly laid out:</p>
                 <ul>
                     <li>The Purpose: A brief welcome and explanation of the survey's aim.</li>
                     <li>Key Features: Highlighting benefits like receiving personalized questions and a unique link.</li>
@@ -230,9 +230,9 @@
                 <p>The interaction was designed to be incredibly simple:</p>
                 <ul>
                     <li>Participants would click a prominent button, something like "GENERATE SURVEY FORM."</li>
-                    <li>This click was the trigger that called my <code>lookForm()</code> (or a similar named function) in the Apps Script running in the background.</li>
+                    <li>This click was the trigger that called my <code>lookForm()</code> in the Apps Script running in the background.</li>
                     <li>The script did its work – selecting an available form and logging it.</li>
-                    <li>Once complete, the webpage would then update (often by revealing a new button or link) to show something like "Your Survey form is ready! Go to Survey Form."</li>
+                    <li>Once complete, the webpage would then update by revealing a new button or link to show something like "Your Survey form is ready! Go to Survey Form."</li>
                     <li>Clicking this second button would then navigate them directly to their randomly assigned Google Form.</li>
                 </ul>
                 <p>This two-step process (Generate -> Go to Form) ensured a smooth experience. It gave the script a moment to perform its necessary background tasks without the user noticing any delay, presenting them with their form link only when it was truly ready.</p>
