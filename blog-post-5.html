@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Building a Discord To-Do List Bot That Actually Fits My Brain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Base styling tuned to your existing blog theme -->
+  <style>
+    :root {
+      --bg-main: #050515;
+      --bg-card: #111122;
+      --accent: #b34dff;
+      --accent-soft: #7c3aed;
+      --text-main: #f5f3ff;
+      --text-muted: #c4b5fd;
+      --border-subtle: #272747;
+      --max-width: 900px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+      --radius-lg: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1b1037 0, #050515 55%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: 1100px;
+      padding: 40px 20px 60px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link span {
+      font-size: 1rem;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-2px);
+      text-decoration: none;
+    }
+
+    .post-card {
+      background: linear-gradient(145deg, #0b0717, #16172a);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 118, 255, 0.18);
+      padding: 32px 26px 38px;
+    }
+
+    @media (min-width: 768px) {
+      .post-card {
+        padding: 40px 42px 48px;
+      }
+    }
+
+    .post-title {
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      font-weight: 650;
+      color: #e9d5ff;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .post-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .post-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .post-meta span {
+      color: var(--accent-soft);
+      font-weight: 500;
+    }
+
+    hr.post-divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 18px 0 28px;
+    }
+
+    .post-section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #e9d5ff;
+      margin: 24px 0 10px;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 14px;
+      color: var(--text-main);
+      font-size: 0.98rem;
+    }
+
+    .emphasis {
+      color: var(--accent-soft);
+      font-weight: 500;
+    }
+
+    ul, ol {
+      margin: 10px 0 16px 22px;
+      color: var(--text-main);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    li + li {
+      margin-top: 4px;
+    }
+
+    code {
+      background: rgba(15, 23, 42, 0.85);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #facc15;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    pre {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 65%);
+      border-radius: 10px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      margin: 12px 0 18px;
+    }
+
+    pre code {
+      background: transparent;
+      border: none;
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
+
+    .inline-heading {
+      font-weight: 600;
+      color: #e9d5ff;
+    }
+
+    .section-highlight {
+      background: radial-gradient(circle at top left, #1f1b3d 0, #050816 55%);
+      border-radius: 12px;
+      padding: 14px 16px 14px;
+      border: 1px solid rgba(148, 118, 255, 0.32);
+      margin: 18px 0 20px;
+    }
+
+    .section-highlight p {
+      margin-bottom: 8px;
+    }
+
+    .callout-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <a href="all-blogs.html" class="back-link">
+      <span>«</span> <span>Back to Blog</span>
+    </a>
+
+    <article class="post-card">
+      <header>
+        <h1 class="post-title">
+          Building a Discord To‑Do List Bot That Actually Fits My Brain
+        </h1>
+        <p class="post-subtitle">
+          Why I stopped hunting for the perfect productivity bot and built my own instead.
+        </p>
+        <p class="post-meta">
+          Published on: <span>November 25, 2025</span> · by Musfique Ahmed
+        </p>
+      </header>
+
+      <hr class="post-divider" />
+
+      <section>
+        <p>
+          I didn’t start this project because I desperately wanted to write a Discord bot.
+          I started it because I wanted something much simpler:
+          a <span class="emphasis">clean, reliable to‑do list that lived inside Discord</span>.
+          No extra apps, no new tabs, no new logins — just a lightweight way to track tasks
+          in the same place where the conversations happen.
+        </p>
+        <p>
+          Naturally, I did what most of us would do: I went searching for an existing bot.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">The Problem: Existing Bots Weren’t It</h2>
+        <p>
+          Typing “to‑do bot” into Discord bot directories should have solved my problem.
+          Instead, it created a new one.
+        </p>
+        <ul>
+          <li>Several bots looked promising, but many were <span class="emphasis">old and unmaintained</span>.</li>
+          <li>Some had broken slash commands or just didn’t respond at all.</li>
+          <li>
+            One bot was actually pretty good — but it was
+            <span class="emphasis">way more complex</span> than what I needed and still didn’t work
+            exactly how I wanted.
+          </li>
+        </ul>
+        <p>
+          At some point I realised I was spending more time evaluating bots than it would
+          probably take to build something small and opinionated
+          that matched how I personally think about tasks.
+        </p>
+        <p>
+          So instead of trying to bend my workflow to fit someone else’s bot,
+          I decided to <span class="emphasis">build my own</span>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">Defining the Bot I Actually Wanted</h2>
+        <p>
+          Before I wrote any code, I wrote down some constraints.
+          This wasn’t meant to be a “productivity super‑app”.
+          It just had to do a few things <em>really</em> well:
+        </p>
+        <ul>
+          <li>
+            <span class="inline-heading">Simple mental model:</span>
+            one server → multiple named lists → each list contains tasks.
+          </li>
+          <li>
+            <span class="inline-heading">Slash commands only:</span>
+            I didn’t want to remember prefixes or weird syntaxes.
+            Everything should live under a single <code>/todo</code> command group.
+          </li>
+          <li>
+            <span class="inline-heading">Per‑server state:</span>
+            each Discord server keeps its own lists; nothing leaks across servers.
+          </li>
+          <li>
+            <span class="inline-heading">Persistent storage:</span>
+            if the bot restarts, I don’t want my tasks disappearing.
+          </li>
+          <li>
+            <span class="inline-heading">Bulk addition:</span>
+            I often plan in batches, so I wanted something like
+            <code>/todo add-bulk "Task 1; Task 2; Task 3"</code>.
+          </li>
+        </ul>
+        <p>
+          And there was one more requirement that heavily influenced the design:
+          <span class="emphasis">future‑me should be able to understand the code.</span>
+          That ruled out a lot of over‑engineered architectures and heavy abstractions.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">Tech Stack: Choosing Simple Over Fancy</h2>
+        <p>
+          In the repo you’ll see a small <code>index.js</code> using
+          <code>discord.js</code>, but the real heart of the bot lives in
+          <code>todo_bot.py</code>.
+        </p>
+        <p>Here’s the stack I ended up with:</p>
+        <ul>
+          <li><span class="inline-heading">Language:</span> Python</li>
+          <li><span class="inline-heading">Discord library:</span> <code>discord.py</code> with <code>app_commands</code> for slash commands</li>
+          <li><span class="inline-heading">Storage:</span> a simple JSON file named <code>todo_data.json</code></li>
+          <li><span class="inline-heading">Config:</span> a <code>.env</code> file containing <code>DISCORD_TOKEN</code></li>
+        </ul>
+        <p>
+          Instead of spinning up a full database like Postgres or MongoDB, I went with
+          plain JSON. For a to‑do bot that only needs to remember lists and tasks,
+          this is more than enough — and it keeps the project extremely portable.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">How the Data Model Works</h2>
+        <p>
+          All of the bot’s state lives in one file: <code>todo_data.json</code>.
+          The structure is intentionally simple. At the top level, each key is a
+          Discord guild (server) ID:
+        </p>
+        <pre><code>{
+  "1306311474913873920": {
+    "current_list": "default",
+    "lists": {
+      "default": []
+    }
+  }
+}</code></pre>
+        <p>
+          For every server, I store two things:
+        </p>
+        <ul>
+          <li><code>current_list</code> – the name of the active list (starts as <code>"default"</code>).</li>
+          <li><code>lists</code> – a mapping from list name to an array of task objects.</li>
+        </ul>
+        <p>
+          Each task is a small object like:
+          <code>{"task": "Write blog post", "done": false}</code>.
+        </p>
+
+        <div class="section-highlight">
+          <div class="callout-label">Helper Function</div>
+          <p>
+            In <code>todo_bot.py</code>, I wrapped this with a small convenience
+            function called <code>ensure_server</code>. Any time a command
+            runs, it:
+          </p>
+          <ul>
+            <li>converts the guild ID to a string,</li>
+            <li>creates an entry with a <code>default</code> list if it doesn’t exist,</li>
+            <li>and then returns the server’s data structure.</li>
+          </ul>
+          <p>
+            That means all command handlers can safely assume the basic shape
+            of the data is already there.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">Wiring Up the Discord Bot</h2>
+        <p>
+          With the data model in place, the next step was wiring up the Discord client.
+          The flow is fairly standard:
+        </p>
+        <ul>
+          <li>Load environment variables from <code>.env</code>.</li>
+          <li>Create a <code>commands.Bot</code> instance with default intents.</li>
+          <li>Register a slash command group called <code>todo</code>.</li>
+          <li>Sync the commands once the bot is ready.</li>
+        </ul>
+        <p>
+          Even though I set a traditional text prefix (<code>!</code>), the real UX
+          lives inside slash commands. Users never have to remember a prefix; they just
+          type <code>/todo</code> and let Discord’s UI guide them.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">Designing the <code>/todo</code> Command Group</h2>
+        <p>
+          All of the bot’s features live under a single slash command group:
+          <code>/todo</code>. Under that, I added subcommands that mirror the
+          way I naturally manage tasks.
+        </p>
+
+        <h3 class="post-section-title" style="font-size:1.1rem;">Adding Tasks (Including in Bulk)</h3>
+        <p>
+          The most basic action is adding a single task to the current list:
+        </p>
+        <pre><code>/todo add "Write blog post"</code></pre>
+        <p>
+          That command appends a new object to the server’s current list and sends a
+          confirmation like:
+          <code>✅ Added task: &quot;Write blog post&quot; to list &quot;default&quot;</code>.
+        </p>
+        <p>
+          But my favourite command might be:
+        </p>
+        <pre><code>/todo add-bulk "Task 1; Task 2; Task 3"</code></pre>
+        <p>
+          The bot splits the string by semicolons, trims each piece, filters out
+          empties, and adds them as individual tasks. One command, multiple items —
+          perfect for sprint planning or brain‑dumping a backlog.
+        </p>
+
+        <h3 class="post-section-title" style="font-size:1.1rem;">Viewing the Current List</h3>
+        <p>
+          To see what’s on a list, I added:
+        </p>
+        <pre><code>/todo list</code></pre>
+        <p>
+          The response is intentionally minimal and readable:
+        </p>
+        <ul>
+          <li>Each task is numbered starting from 1.</li>
+          <li>A checkmark (✔️) or cross (❌) shows whether it’s done.</li>
+          <li>The list name appears at the top as a title.</li>
+        </ul>
+        <p>
+          This numbered format becomes important for the next set of commands.
+        </p>
+
+        <h3 class="post-section-title" style="font-size:1.1rem;">Marking Tasks Done or Not Done</h3>
+        <p>
+          Instead of editing task text, I focused on a simple “done/not done” toggle:
+        </p>
+        <ul>
+          <li><code>/todo check &lt;task_number&gt;</code> – marks a task as complete.</li>
+          <li><code>/todo uncheck &lt;task_number&gt;</code> – marks it as not done.</li>
+        </ul>
+        <p>
+          Both commands use the index shown in <code>/todo list</code>, which keeps the
+          workflow natural: list → pick a number → check/uncheck.
+        </p>
+
+        <h3 class="post-section-title" style="font-size:1.1rem;">Clearing a List</h3>
+        <p>
+          When a project or sprint finishes, I usually want a clean slate. For that:
+        </p>
+        <pre><code>/todo clear</code></pre>
+        <p>
+          This simply resets the current list to an empty array and persists the
+          change to <code>todo_data.json</code>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">Supporting Multiple Lists Per Server</h2>
+        <p>
+          A single list is fine for quick notes, but most servers have different
+          contexts: ideas, bugs, content, chores, and so on.
+          I wanted the bot to reflect that without being overwhelming.
+        </p>
+        <p>
+          So each server can have multiple named lists, managed with a few
+          simple commands:
+        </p>
+        <ul>
+          <li><code>/todo create-list &lt;name&gt;</code> – create a new empty list.</li>
+          <li><code>/todo switch &lt;name&gt;</code> – change the active list.</li>
+          <li><code>/todo delete-list &lt;name&gt;</code> – remove a list you no longer need.</li>
+        </ul>
+        <p>
+          The bot also protects you from shooting yourself in the foot by:
+        </p>
+        <ul>
+          <li>preventing deletion of the special <code>default</code> list, and</li>
+          <li>automatically switching back to <code>default</code> if you delete the currently active list.</li>
+        </ul>
+        <p>
+          With just these commands, a server can maintain separate lists for
+          “Sprint”, “Ideas”, “Backlog”, or whatever naming scheme works for the team.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">Running and Deploying the Bot</h2>
+        <p>
+          To make the bot easy to reuse (for myself and others), I documented
+          the setup in <code>DEPLOYMENT.md</code>.
+          Running it locally is straightforward:
+        </p>
+        <ol>
+          <li>Install dependencies with <code>pip install -r requirements.txt</code>.</li>
+          <li>Create a <code>.env</code> file containing <code>DISCORD_TOKEN=your_token_here</code>.</li>
+          <li>Run <code>python todo_bot.py</code>.</li>
+        </ol>
+        <p>
+          For 24/7 uptime, I listed several deployment options:
+        </p>
+        <ul>
+          <li><span class="inline-heading">Railway:</span> simple, with a free tier and GitHub autodeploy.</li>
+          <li><span class="inline-heading">Render:</span> a background worker with a predictable paid tier.</li>
+          <li><span class="inline-heading">Heroku:</span> classic choice, though no longer free.</li>
+          <li><span class="inline-heading">VPS:</span> full control using <code>systemd</code> to keep the bot running.</li>
+          <li><span class="inline-heading">PythonAnywhere:</span> an option for lighter setups with some limitations.</li>
+        </ul>
+        <p>
+          I also added a small security checklist (keep tokens out of Git, regenerate if
+          exposed) and troubleshooting tips, because I know future‑me will eventually
+          forget something obvious.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">How I Use It Day to Day</h2>
+        <p>
+          Here’s what a typical session with the bot looks like in a server:
+        </p>
+        <ul>
+          <li>Create a focused list for the week: <code>/todo create-list "Sprint"</code></li>
+          <li>Switch to it: <code>/todo switch "Sprint"</code></li>
+          <li>
+            Dump tasks in bulk:
+            <code>/todo add-bulk "Fix bug A; Write docs; Refactor X"</code>
+          </li>
+          <li>Check progress with <code>/todo list</code>.</li>
+          <li>Mark finished work: <code>/todo check 2</code> (for example).</li>
+          <li>Wipe the slate at the end: <code>/todo clear</code>.</li>
+        </ul>
+        <p>
+          All of this happens without ever leaving Discord.
+          No juggling between apps, no syncing issues — just a tiny bot
+          that quietly supports the way I already work.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="post-section-title">What I Learned From Building This</h2>
+        <p>
+          This project started as “I just want a to‑do list”,
+          but it left me with a few useful reminders:
+        </p>
+        <ul>
+          <li>
+            <span class="inline-heading">Simple can be powerful.</span>
+            A JSON file and a few helper functions were enough to solve my real problem.
+          </li>
+          <li>
+            <span class="inline-heading">Design from the UX backwards.</span>
+            Thinking in terms of “What command do I wish I could type?”
+            naturally led to <code>/todo add-bulk</code>, <code>/todo switch</code>,
+            and the rest.
+          </li>
+          <li>
+            <span class="inline-heading">Per‑server isolation matters.</span>
+            Storing everything under each guild ID keeps data clean and predictable.
+          </li>
+          <li>
+            <span class="inline-heading">Documentation isn’t optional.</span>
+            <code>README.md</code> and <code>DEPLOYMENT.md</code> make it much easier for
+            future‑me (and anyone else) to get the bot running in minutes, not hours.
+          </li>
+        </ul>
+        <p>
+          Most importantly, I ended up with exactly what I wanted at the beginning:
+          a <span class="emphasis">maintainable, modern, slash‑command‑based Discord to‑do bot</span>
+          that fits my brain instead of forcing me to adapt to it.
+        </p>
+      </section>
+
+      <footer class="footer-note">
+        If you’re curious about the implementation, you can explore the source
+        code and deployment files in the project repository — and, of course,
+        feel free to adapt the bot to match the way <em>you</em> like to work.
+      </footer>
+    </article>
+  </div>
+</body>
+</html>
