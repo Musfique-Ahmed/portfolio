@@ -1,157 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Awards & Achievements - Musfique Ahmed</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <title>All Awards & Achievements | Musfique Ahmed</title>
+    <meta name="description" content="Full list of awards, scholarships, and achievements of Musfique Ahmed.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#0f172a', // Slate 900
+                        secondary: '#1e293b', // Slate 800
+                        accent: '#2dd4bf', // Teal 400
+                        textMain: '#f8fafc', // Slate 50
+                        textMuted: '#94a3b8', // Slate 400
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
         }
-        header {
-            background-color: #161625;
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            text-align: center;
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
         }
-        nav .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #9d4edd;
-            text-decoration: none;
-            display: inline-block;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
         }
-        .page-section {
-            padding: 40px 0;
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse 10s infinite;
         }
-        .page-section h1 {
-            text-align: center;
-            font-size: 2.5em;
-            color: #9d4edd;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        .page-section h1::after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 3px;
-            background-color: #9d4edd;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .award-item { /* Similar to experience-item but simpler */
-            background-color: #202035;
-            padding: 20px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-            border-left: 4px solid #9d4edd;
-        }
-        .award-item h3 {
-            color: #b39ddb;
-            margin-top: 0;
-            margin-bottom: 5px;
-            font-size: 1.4em;
-        }
-        .award-item .awarding-body { /* For the festival name or university */
-             font-size: 1em;
-             color: #a0a0c0;
-             margin-bottom: 10px;
-        }
-        .award-item .details { /* For scholarship details */
-            font-size: 0.95em;
-            color: #c0c0c0;
-        }
-        .award-item .details ul {
-            list-style: disc;
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-
-
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background-color: #161625;
-            border-top: 1px solid #2a2a3e;
-            margin-top: 60px;
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
-<body>
+<body class="bg-primary text-textMain font-sans antialiased selection:bg-accent selection:text-primary relative overflow-x-hidden">
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">Musfique Ahmed - Portfolio</a>
-            </nav>
+    <!-- Decorative Background Blobs -->
+    <div class="blob bg-indigo-900 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="blob bg-teal-900 w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/2 translate-y-1/2"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-primary/90 backdrop-blur-sm border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="font-mono text-xl font-bold text-accent">&lt;MA /&gt;</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="index.html#experience" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
+                        <a href="index.html#projects" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
+                        <a href="index.html#contact" class="px-4 py-2 border border-accent text-accent hover:bg-accent/10 rounded font-mono text-sm transition-colors">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </header>
 
-    <main>
-        <section class="page-section">
-            <div class="container">
-                <h1>All Awards & Achievements</h1>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-secondary border-b border-white/10" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="index.html#experience" class="hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="index.html#projects" class="hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+            </div>
+        </div>
+    </nav>
 
-                <div class="award-item">
-                    <h3>Champion – Senior Project Display</h3>
-                    <p class="awarding-body">DRMC Intra Science Festival</p>
-                    <p class="excerpt">Recognized for an outstanding senior project display.</p>
+    <!-- Header Section -->
+    <section class="pt-32 pb-12 text-center px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Awards & Achievements</h1>
+        <p class="text-textMuted text-lg max-w-2xl mx-auto">
+            A comprehensive list of academic honors, competition wins, and recognitions.
+        </p>
+    </section>
+
+    <!-- Awards Content -->
+    <section class="py-12 pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-6">
+
+                <!-- Award Item 1 -->
+                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 group">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-primary/50 p-3 rounded text-yellow-400 text-2xl">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:text-accent transition-colors">Champion – Senior Project Display</h3>
+                            <p class="text-accent font-mono text-sm mb-2">DRMC Intra Science Festival</p>
+                            <p class="text-textMuted">Recognized for an outstanding senior project display.</p>
+                        </div>
                     </div>
-
-                <div class="award-item">
-                    <h3>Champion – Senior Project Display</h3>
-                    <p class="awarding-body">DRMC National Nature Festival</p>
-                    <p class="excerpt">Achieved championship in a national-level project competition.</p>
                 </div>
 
-                <div class="award-item">
-                    <h3>University Scholarship Awards</h3>
-                    <p class="awarding-body">United International University</p>
-                    <div class="details">
-                        Recognized for academic excellence with the following scholarships:
-                        <ul>
-                            <li>25% Scholarship (awarded twice)</li>
-                            <li>50% Scholarship (awarded once)</li>
-                            <li>100% Scholarship (awarded twice)</li>
-                        </ul>
+                <!-- Award Item 2 -->
+                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 group">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-primary/50 p-3 rounded text-yellow-400 text-2xl">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:text-accent transition-colors">Champion – Senior Project Display</h3>
+                            <p class="text-accent font-mono text-sm mb-2">DRMC National Nature Festival</p>
+                            <p class="text-textMuted">Achieved championship in a national-level project competition.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="award-item">
-                    <h3>Publication – Research Paper</h3>
-                    <p class="awarding-body">Published in: 2024 27th International Conference on Computer and Information Technology (ICCIT)</p>
-                    <p class="excerpt">Co-authored a research paper on machine learning applications, showcasing dedication to academic research and innovation.</p>
+
+                <!-- Award Item 3 -->
+                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 group">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-primary/50 p-3 rounded text-blue-400 text-2xl">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:text-accent transition-colors">University Scholarship Awards</h3>
+                            <p class="text-accent font-mono text-sm mb-2">United International University</p>
+                            <p class="text-textMuted mb-3">Recognized for academic excellence with the following scholarships:</p>
+                            <ul class="list-disc list-inside text-textMuted text-sm font-mono space-y-1">
+                                <li>25% Scholarship (awarded twice)</li>
+                                <li>50% Scholarship (awarded once)</li>
+                                <li>100% Scholarship (awarded twice)</li>
+                            </ul>
+                        </div>
                     </div>
-
                 </div>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
-            <p><a href="index.html" style="color: #9d4edd; text-decoration:none;">Back to Main Portfolio</a></p>
+                <!-- Award Item 4 -->
+                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 group">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-primary/50 p-3 rounded text-green-400 text-2xl">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold group-hover:text-accent transition-colors">Publication – Research Paper</h3>
+                            <p class="text-accent font-mono text-sm mb-2">2024 27th International Conference on Computer and Information Technology (ICCIT)</p>
+                            <p class="text-textMuted">Co-authored a research paper on machine learning applications, showcasing dedication to academic research and innovation.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="index.html" class="inline-flex items-center text-accent hover:text-white font-mono transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Main Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-primary border-t border-white/10 text-center">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="text-textMuted text-sm">
+                &copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.
+            </p>
         </div>
     </footer>
 
