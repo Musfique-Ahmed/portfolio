@@ -838,7 +838,8 @@ textarea {
 }
 
 .contact-photo {
-  margin: 0 0 0.95rem;
+  margin: 0 auto 0.95rem;
+  width: min(92%, 360px);
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid rgba(143, 163, 189, 0.26);

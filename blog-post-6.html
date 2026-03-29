@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B850M D3HP Dual GPU Analysis | Musfique Ahmed</title>
+    <meta name="description" content="Technical feasibility analysis of running two GPUs on the Gigabyte B850M D3HP, covering physical fit, PCIe bandwidth, and practical workload outcomes.">
+    <meta name="theme-color" content="#050b14">
+    <meta property="og:title" content="B850M D3HP Dual GPU Analysis">
+    <meta property="og:description" content="A practical hardware analysis of dual-GPU fit, lane distribution, and workload viability on the B850M D3HP.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://musfique-ahmed.github.io/portfolio/blog-post-6.html">
+    <meta property="og:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="B850M D3HP Dual GPU Analysis">
+    <meta name="twitter:description" content="A practical hardware analysis of dual-GPU fit, lane distribution, and workload viability on the B850M D3HP.">
+    <meta name="twitter:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+    <link rel="canonical" href="https://musfique-ahmed.github.io/portfolio/blog-post-6.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .analysis-grid {
+            display: grid;
+            gap: 0.95rem;
+        }
+
+        .analysis-block {
+            border: 1px solid rgba(143, 163, 189, 0.23);
+            border-radius: var(--radius-md);
+            background: rgba(23, 44, 73, 0.46);
+            padding: 0.95rem;
+        }
+
+        .analysis-block h3 {
+            font-size: 1.08rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-height: 380px;
+        }
+
+        .slot-map {
+            position: relative;
+            border: 1px solid rgba(143, 163, 189, 0.22);
+            border-radius: var(--radius-sm);
+            background: rgba(10, 19, 32, 0.72);
+            padding: 0.85rem;
+            overflow: hidden;
+        }
+
+        .slot-head {
+            color: var(--text-2);
+            font-family: "JetBrains Mono", "Consolas", monospace;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border-bottom: 1px solid rgba(143, 163, 189, 0.2);
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.35rem;
+        }
+
+        .slot-row {
+            margin-bottom: 0.7rem;
+        }
+
+        .slot-label {
+            color: var(--text-2);
+            font-size: 0.74rem;
+            margin-bottom: 0.2rem;
+            font-family: "JetBrains Mono", "Consolas", monospace;
+        }
+
+        .slot-bar {
+            display: flex;
+            align-items: center;
+            min-height: 24px;
+            border-radius: 6px;
+            padding: 0.25rem 0.65rem;
+            background: rgba(143, 163, 189, 0.24);
+            border-left: 4px solid #22d3ee;
+            font-size: 0.75rem;
+            color: var(--text-0);
+            font-family: "JetBrains Mono", "Consolas", monospace;
+            font-weight: 700;
+        }
+
+        .slot-bar.secondary {
+            min-height: 16px;
+            width: 35%;
+            border-left-color: #e81cff;
+            font-size: 0.68rem;
+            font-weight: 600;
+        }
+
+        .slot-bar.bottom {
+            border-left-color: #e81cff;
+        }
+
+        .gpu-overlay {
+            position: absolute;
+            left: 0.8rem;
+            right: 0.8rem;
+            top: 4.9rem;
+            height: 126px;
+            border-radius: 8px;
+            border: 2px dashed #22d3ee;
+            background: rgba(34, 211, 238, 0.15);
+            color: #22d3ee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .gpu-overlay strong {
+            font-size: 1.18rem;
+            line-height: 1.1;
+        }
+
+        .gpu-overlay span {
+            font-size: 0.84rem;
+            opacity: 0.9;
+        }
+
+        .warning-text {
+            margin-top: 0.65rem;
+            color: #fb7185;
+            font-size: 0.83rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .verdict-list {
+            display: grid;
+            gap: 0.7rem;
+            margin-top: 0.25rem;
+        }
+
+        .verdict-item {
+            border: 1px solid rgba(143, 163, 189, 0.2);
+            border-radius: var(--radius-sm);
+            background: rgba(10, 19, 32, 0.56);
+            padding: 0.72rem;
+        }
+
+        .verdict-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 0.92rem;
+        }
+
+        .verdict-score {
+            font-family: "JetBrains Mono", "Consolas", monospace;
+            font-size: 0.78rem;
+            margin-top: 0.2rem;
+        }
+
+        .score-low {
+            color: #fb7185;
+        }
+
+        .score-mid {
+            color: #fbbf24;
+        }
+
+        .score-high {
+            color: #34d399;
+        }
+
+        @media (min-width: 900px) {
+            .analysis-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "B850M D3HP Dual GPU Analysis",
+        "description": "Technical feasibility analysis of running two GPUs on the Gigabyte B850M D3HP, including fit constraints and PCIe bandwidth implications.",
+        "datePublished": "2026-03-30",
+        "dateModified": "2026-03-30",
+        "mainEntityOfPage": "https://musfique-ahmed.github.io/portfolio/blog-post-6.html",
+        "author": {
+            "@type": "Person",
+            "name": "Musfique Ahmed",
+            "url": "https://musfique-ahmed.github.io/portfolio/"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Musfique Ahmed"
+        }
+    }
+    </script>
+</head>
+<body data-page="writing">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="site-shell nav-wrap">
+            <a class="brand" href="index.html">ma//datascience</a>
+            <nav class="desktop-nav" aria-label="Primary">
+                <a class="nav-link" data-nav="home" href="index.html">Home</a>
+                <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+                <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+                <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+                <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+                <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+                <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+            </nav>
+            <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+                <span aria-hidden="true">Menu</span>
+            </button>
+        </div>
+        <div id="mobile-menu" class="mobile-panel" data-mobile-panel>
+            <div class="site-shell">
+                <nav class="mobile-nav" aria-label="Mobile primary">
+                    <a class="nav-link" data-nav="home" href="index.html">Home</a>
+                    <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+                    <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+                    <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+                    <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+                    <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+                    <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="site-shell">
+                <span class="kicker">Featured Hardware Analysis</span>
+                <h1 class="page-title" data-animate>Can the B850M D3HP Fit Two GPUs?</h1>
+                <p class="page-lead" data-animate>
+                    A technical analysis of physical slot constraints, PCIe lane behavior, and workload-specific viability for dual-GPU setups on a Micro ATX board.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 1rem;">
+            <div class="site-shell grid" style="gap: 1rem;">
+                <article class="panel article-layout" data-animate>
+                    <header class="article-head">
+                        <div class="article-meta">
+                            <span>Published 2026-03-30</span>
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>Hardware deep dive</span>
+                            <span class="dot" aria-hidden="true"></span>
+                            <span class="tag">PCIe</span>
+                            <span class="tag">Dual GPU</span>
+                            <span class="tag">AM5</span>
+                        </div>
+                        <p class="article-subtitle">This post remaps the dual-GPU question into measurable constraints: fit, lane allocation, bandwidth, and realistic workloads.</p>
+                    </header>
+
+                    <div class="article-content">
+                        <h2 id="overview">Quick Summary</h2>
+                        <p>
+                            The short answer is technically yes, but with strict constraints. On the B850M D3HP, modern GPU thickness and the secondary slot's reduced electrical bandwidth make standard two-GPU usage difficult.
+                        </p>
+
+                        <div class="grid grid-3">
+                            <article class="card">
+                                <h3>The practical answer</h3>
+                                <p>Dual-GPU fit is possible only with careful card sizing and case clearance planning.</p>
+                            </article>
+                            <article class="card">
+                                <h3>Form factor pressure</h3>
+                                <p>Micro ATX spacing heavily punishes three-slot primary GPUs.</p>
+                            </article>
+                            <article class="card">
+                                <h3>Lane asymmetry</h3>
+                                <p>Primary slot is fast; lower slot bandwidth is the real limiter for heavier tasks.</p>
+                            </article>
+                        </div>
+
+                        <h2 id="physical">1. Physical Constraints and Slot Spacing</h2>
+                        <p>
+                            Most modern high-end cards are now 2.5 to 3.5 slots thick, which quickly blocks usable expansion area on Micro ATX layouts.
+                        </p>
+
+                        <div class="analysis-grid">
+                            <section class="analysis-block">
+                                <h3>Simulated Micro ATX slot spacing</h3>
+                                <div class="slot-map">
+                                    <div class="slot-head">CPU socket area</div>
+                                    <div class="gpu-overlay">
+                                        <strong>Modern 3-slot GPU</strong>
+                                        <span>Blocks slots 1, 2, and 3</span>
+                                    </div>
+
+                                    <div class="slot-row">
+                                        <div class="slot-label">Slot 1</div>
+                                        <div class="slot-bar">PCIe 5.0 x16 (Primary)</div>
+                                    </div>
+                                    <div class="slot-row">
+                                        <div class="slot-label">Slot 2</div>
+                                        <div class="slot-bar secondary">PCIe x1</div>
+                                    </div>
+                                    <div class="slot-row">
+                                        <div class="slot-label">Slot 3</div>
+                                        <div class="slot-bar secondary">PCIe x1</div>
+                                    </div>
+                                    <div class="slot-row" style="margin-top: 1.45rem;">
+                                        <div class="slot-label">Slot 4</div>
+                                        <div class="slot-bar bottom">PCIe 4.0 x16 (Electrical x4)</div>
+                                    </div>
+                                </div>
+                                <p class="warning-text">Slot 4 is effectively blocked if the top card exceeds 2.5 slots.</p>
+                            </section>
+
+                            <section class="analysis-block">
+                                <h3>Average GPU thickness evolution</h3>
+                                <p style="margin-bottom: 0.5rem;">Visualizing cooler growth across recent generations.</p>
+                                <div class="chart-container">
+                                    <canvas id="gpuThicknessChart" aria-label="Average GPU thickness over time"></canvas>
+                                </div>
+                                <p style="margin-top: 0.75rem;">
+                                    Key takeaway: when the primary card is 3 slots, the lower full-length connector becomes mechanically impractical for a second large GPU.
+                                </p>
+                            </section>
+                        </div>
+
+                        <h2 id="bandwidth">2. Bandwidth Analysis</h2>
+                        <p>
+                            Even if fit is solved, the electrical path still matters. The lower full-length slot is lane-limited and behaves very differently from the primary slot for heavy GPU workloads.
+                        </p>
+
+                        <div class="analysis-grid">
+                            <section class="analysis-block">
+                                <h3>Available bandwidth by slot role</h3>
+                                <div class="chart-container">
+                                    <canvas id="bandwidthChart" aria-label="Bandwidth comparison between top and bottom slots"></canvas>
+                                </div>
+                            </section>
+
+                            <section class="analysis-block">
+                                <h3>What this means in practice</h3>
+                                <ul>
+                                    <li>Top slot: direct CPU path, best for main rendering and gaming load.</li>
+                                    <li>Lower slot: chipset-limited path with much lower throughput budget.</li>
+                                    <li>Compute workflows that keep data resident in VRAM suffer less than workloads with constant host memory transfers.</li>
+                                </ul>
+                            </section>
+                        </div>
+
+                        <h2 id="usecases">3. Use-Case Viability</h2>
+                        <p>
+                            Dual-GPU value depends on workload characteristics. Not every scenario benefits equally from the second card on this platform.
+                        </p>
+
+                        <div class="analysis-grid">
+                            <section class="analysis-block">
+                                <h3>Workload viability radar</h3>
+                                <div class="chart-container">
+                                    <canvas id="useCaseChart" aria-label="Viability score by workload"></canvas>
+                                </div>
+                            </section>
+
+                            <section class="analysis-block">
+                                <h3>Verdict by workload type</h3>
+                                <div class="verdict-list">
+                                    <article class="verdict-item">
+                                        <strong>Gaming with classic multi-GPU</strong>
+                                        <p>Low value on modern APIs and driver ecosystems.</p>
+                                        <p class="verdict-score score-low">Score: 5 / 100</p>
+                                    </article>
+                                    <article class="verdict-item">
+                                        <strong>3D rendering and offline compute</strong>
+                                        <p>Can scale well when workloads are partitioned effectively across devices.</p>
+                                        <p class="verdict-score score-high">Score: 90 / 100</p>
+                                    </article>
+                                    <article class="verdict-item">
+                                        <strong>Local AI inference</strong>
+                                        <p>Usable with careful model placement and memory planning.</p>
+                                        <p class="verdict-score score-mid">Score: 75 / 100</p>
+                                    </article>
+                                    <article class="verdict-item">
+                                        <strong>Extra displays or dedicated encode tasks</strong>
+                                        <p>Very practical if the secondary card is compact and power-efficient.</p>
+                                        <p class="verdict-score score-high">Score: 95 / 100</p>
+                                    </article>
+                                </div>
+                            </section>
+                        </div>
+
+                        <h2>Final Verdict</h2>
+                        <blockquote>
+                            The B850M D3HP can host two GPUs in specialized setups, but it is not a balanced dual-GPU platform for general gaming or unrestricted high-throughput workloads.
+                        </blockquote>
+                        <ul>
+                            <li>Physical fit is the first hard constraint in most builds.</li>
+                            <li>Secondary-slot bandwidth defines performance ceiling.</li>
+                            <li>Best results come from targeted workflows, not broad dual-GPU expectations.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <nav class="article-nav" aria-label="Article navigation" data-animate>
+                    <a class="article-nav-link" href="blog-post-5.html">
+                        <small>Previous</small>
+                        <strong>Discord To-Do Bot Engineering Notes</strong>
+                    </a>
+                    <a class="article-nav-link" href="all-blogs.html">
+                        <small>Next</small>
+                        <strong>Back to writing archive</strong>
+                    </a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-shell footer-row">
+            <span>Musfique Ahmed | Article | <span data-year></span></span>
+            <div class="footer-links">
+                <a href="all-blogs.html">Writing archive</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            if (typeof Chart === "undefined") {
+                return;
+            }
+
+            function wrapLabel(label) {
+                if (label.length <= 22) {
+                    return label;
+                }
+
+                var words = label.split(" ");
+                var lines = [];
+                var currentLine = words[0];
+
+                for (var i = 1; i < words.length; i++) {
+                    if (currentLine.length + words[i].length + 1 <= 22) {
+                        currentLine += " " + words[i];
+                    } else {
+                        lines.push(currentLine);
+                        currentLine = words[i];
+                    }
+                }
+
+                lines.push(currentLine);
+                return lines;
+            }
+
+            var commonTooltipConfig = {
+                callbacks: {
+                    title: function (tooltipItems) {
+                        var item = tooltipItems[0];
+                        var label = item.chart.data.labels[item.dataIndex];
+                        return Array.isArray(label) ? label.join(" ") : label;
+                    },
+                },
+            };
+
+            Chart.defaults.color = "#cbd5e1";
+            Chart.defaults.font.family = "'Manrope', 'Segoe UI', sans-serif";
+
+            var thicknessCanvas = document.getElementById("gpuThicknessChart");
+            if (thicknessCanvas) {
+                new Chart(thicknessCanvas.getContext("2d"), {
+                    type: "line",
+                    data: {
+                        labels: [
+                            "2016 (GTX 1080)",
+                            "2018 (RTX 2080)",
+                            "2020 (RTX 3080)",
+                            "2022 (RTX 4080)",
+                            "2024 (RTX 5080 Est.)",
+                        ].map(wrapLabel),
+                        datasets: [
+                            {
+                                label: "Average high-end GPU slot thickness",
+                                data: [2.0, 2.0, 2.5, 3.2, 3.5],
+                                borderColor: "#22d3ee",
+                                backgroundColor: "rgba(34, 211, 238, 0.2)",
+                                borderWidth: 3,
+                                pointBackgroundColor: "#ffffff",
+                                pointRadius: 4,
+                                fill: true,
+                                tension: 0.3,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: commonTooltipConfig,
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 1.5,
+                                max: 4.0,
+                                title: {
+                                    display: true,
+                                    text: "Slot thickness",
+                                    color: "#94a3b8",
+                                },
+                                grid: {
+                                    color: "rgba(255, 255, 255, 0.06)",
+                                },
+                            },
+                            x: {
+                                grid: {
+                                    display: false,
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+
+            var bandwidthCanvas = document.getElementById("bandwidthChart");
+            if (bandwidthCanvas) {
+                new Chart(bandwidthCanvas.getContext("2d"), {
+                    type: "bar",
+                    data: {
+                        labels: [
+                            "Top slot: PCIe 5.0 x16 (direct to CPU)",
+                            "Bottom slot: PCIe x4 (chipset path)",
+                        ].map(wrapLabel),
+                        datasets: [
+                            {
+                                label: "Theoretical max bandwidth (GB/s)",
+                                data: [64.0, 8.0],
+                                backgroundColor: ["#22d3ee", "#e81cff"],
+                                borderRadius: 6,
+                                barThickness: 34,
+                            },
+                        ],
+                    },
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: commonTooltipConfig,
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: "Gigabytes per second",
+                                    color: "#94a3b8",
+                                },
+                                grid: {
+                                    color: "rgba(255, 255, 255, 0.06)",
+                                },
+                            },
+                            y: {
+                                grid: {
+                                    display: false,
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 11,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+
+            var useCaseCanvas = document.getElementById("useCaseChart");
+            if (useCaseCanvas) {
+                new Chart(useCaseCanvas.getContext("2d"), {
+                    type: "radar",
+                    data: {
+                        labels: [
+                            "Gaming (classic multi-GPU)",
+                            "3D rendering compute",
+                            "Local AI inference",
+                            "Dedicated video encoding",
+                            "Multi-monitor expansion",
+                        ].map(wrapLabel),
+                        datasets: [
+                            {
+                                label: "Viability score",
+                                data: [5, 90, 75, 95, 100],
+                                backgroundColor: "rgba(253, 224, 71, 0.2)",
+                                borderColor: "#fde047",
+                                pointBackgroundColor: "#e81cff",
+                                pointBorderColor: "#ffffff",
+                                pointHoverBackgroundColor: "#ffffff",
+                                pointHoverBorderColor: "#e81cff",
+                                borderWidth: 2,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: commonTooltipConfig,
+                        },
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    color: "rgba(255, 255, 255, 0.12)",
+                                },
+                                grid: {
+                                    color: "rgba(255, 255, 255, 0.12)",
+                                },
+                                pointLabels: {
+                                    color: "#cbd5e1",
+                                    font: {
+                                        size: 11,
+                                    },
+                                },
+                                ticks: {
+                                    display: false,
+                                    min: 0,
+                                    max: 100,
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
