@@ -266,33 +266,139 @@
                             <span class="tag">Dual GPU</span>
                             <span class="tag">AM5</span>
                         </div>
-                        <p class="article-subtitle">This post remaps the dual-GPU question into measurable constraints: fit, lane allocation, bandwidth, and realistic workloads.</p>
+                        <p class="article-subtitle">A detailed architectural and mechanical analysis of whether two GPUs can be deployed on the Gigabyte B850M D3HP without compromising platform stability, bandwidth, or practical usability.</p>
                     </header>
 
                     <div class="article-content">
-                        <h2 id="overview">Quick Summary</h2>
+                        <h2 id="overview">Executive Summary</h2>
                         <p>
-                            The short answer is technically yes, but with strict constraints. On the B850M D3HP, modern GPU thickness and the secondary slot's reduced electrical bandwidth make standard two-GPU usage difficult.
+                            The Gigabyte B850M D3HP can technically run two GPUs, but only under strict physical and electrical constraints. The board is mechanically compact (Micro ATX, 24.4 cm x 24.4 cm), electrically asymmetrical (CPU-linked primary slot and chipset-linked secondary slot), and sensitive to card thickness, cable routing, and case floor clearance.
                         </p>
+                        <blockquote>
+                            Practical conclusion: dual-GPU on this board is a specialized configuration for niche workloads, not a balanced mainstream dual-GPU platform.
+                        </blockquote>
 
                         <div class="grid grid-3">
                             <article class="card">
-                                <h3>The practical answer</h3>
-                                <p>Dual-GPU fit is possible only with careful card sizing and case clearance planning.</p>
+                                <h3>Mechanical limit</h3>
+                                <p>Bottom-slot clearance and motherboard header interference are the first hard blockers.</p>
                             </article>
                             <article class="card">
-                                <h3>Form factor pressure</h3>
-                                <p>Micro ATX spacing heavily punishes three-slot primary GPUs.</p>
+                                <h3>Electrical limit</h3>
+                                <p>The lower full-length slot is electrically constrained, limiting throughput-heavy workloads.</p>
                             </article>
                             <article class="card">
-                                <h3>Lane asymmetry</h3>
-                                <p>Primary slot is fast; lower slot bandwidth is the real limiter for heavier tasks.</p>
+                                <h3>Best-fit workloads</h3>
+                                <p>AI inference, encode offload, and display expansion benefit more than traditional gaming.</p>
                             </article>
                         </div>
 
-                        <h2 id="physical">1. Physical Constraints and Slot Spacing</h2>
+                        <h2>Architectural Foundations: AMD B850 and AM5</h2>
                         <p>
-                            Most modern high-end cards are now 2.5 to 3.5 slots thick, which quickly blocks usable expansion area on Micro ATX layouts.
+                            The B850 platform extends AM5 into a value-oriented tier while retaining modern high-speed interfaces. On this board, the chipset and socket design must be understood together: the CPU delivers direct high-bandwidth connectivity for the primary graphics path, while the chipset handles lower-priority expansion through reduced lanes.
+                        </p>
+                        <p>
+                            The board deploys a Digital 5+2+2 or 8+2+2 VRM configuration (revision dependent) with up to 60 A DrMOS stages. In dual-card scenarios, slot power draw and local thermal buildup around the lower PCB edge can influence VRM thermal behavior and sustained stability.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Specification</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chipset</td>
+                                        <td>AMD B850</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Socket</td>
+                                        <td>AMD AM5 (LGA 1718)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Form Factor</td>
+                                        <td>Micro ATX (24.4 cm x 24.4 cm)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Memory</td>
+                                        <td>4 x DDR5 DIMM, up to 256 GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum DDR5 (OC)</td>
+                                        <td>Up to DDR5-8200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VRM</td>
+                                        <td>Digital 5+2+2 or 8+2+2 with 60 A DrMOS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Expansion</td>
+                                        <td>1 x CPU-linked x16 slot + 1 x chipset-linked full-length slot at x4 electrical</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Storage</td>
+                                        <td>2 x M.2 + 4 x SATA 6 Gb/s</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2 id="physical">Expansion Slot Topology and Electrical Logic</h2>
+                        <p>
+                            The motherboard exposes two full-length connectors, but they are not equivalent paths. The top connector is CPU-direct and intended for the primary GPU. The bottom connector is chipset-managed and lane-limited.
+                        </p>
+
+                        <h3>Primary slot (PCIEX16)</h3>
+                        <p>
+                            With Ryzen 9000/7000 CPUs, the primary slot can operate as PCIe 5.0 x16. With Ryzen 8000 family APUs, practical lane behavior can drop to PCIe 4.0 x8 or PCIe 4.0 x4 depending on the silicon class.
+                        </p>
+                        <ul>
+                            <li>Ryzen 9000/7000 path: PCIe 5.0 x16, approximately 63 GB/s one-way equivalent class bandwidth.</li>
+                            <li>Ryzen 8000 (Phoenix 1): typically PCIe 4.0 x8 behavior.</li>
+                            <li>Ryzen 8000 (Phoenix 2): can operate as low as PCIe 4.0 x4.</li>
+                        </ul>
+
+                        <h3>Secondary slot (PCIEX4)</h3>
+                        <p>
+                            The lower full-length connector is mechanical x16 but electrical x4 through the chipset path. For a second GPU, this means reduced throughput and greater sensitivity to workloads that frequently cross the PCIe boundary.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Slot</th>
+                                        <th>Managed By</th>
+                                        <th>Physical</th>
+                                        <th>Electrical</th>
+                                        <th>Typical Maximum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Primary (Top)</td>
+                                        <td>CPU</td>
+                                        <td>x16</td>
+                                        <td>x16</td>
+                                        <td>PCIe 5.0 (with Ryzen 9000/7000)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Secondary (Bottom)</td>
+                                        <td>Chipset</td>
+                                        <td>x16</td>
+                                        <td>x4</td>
+                                        <td>PCIe 3.0 class bandwidth</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2>Physical Fit and Mechanical Interference</h2>
+                        <p>
+                            Even before bandwidth limitations, mechanical integration is the dominant constraint in most cases. Modern 2.5-slot to 3.5-slot cards can consume nearly all practical spacing on mATX slot stacks.
                         </p>
 
                         <div class="analysis-grid">
@@ -319,50 +425,162 @@
                                     </div>
                                     <div class="slot-row" style="margin-top: 1.45rem;">
                                         <div class="slot-label">Slot 4</div>
-                                        <div class="slot-bar bottom">PCIe 4.0 x16 (Electrical x4)</div>
+                                        <div class="slot-bar bottom">PCIe x16 (Electrical x4)</div>
                                     </div>
                                 </div>
-                                <p class="warning-text">Slot 4 is effectively blocked if the top card exceeds 2.5 slots.</p>
+                                <p class="warning-text">If the top card exceeds roughly 2.5 slots, secondary-slot viability drops sharply.</p>
                             </section>
 
                             <section class="analysis-block">
                                 <h3>Average GPU thickness evolution</h3>
-                                <p style="margin-bottom: 0.5rem;">Visualizing cooler growth across recent generations.</p>
+                                <p style="margin-bottom: 0.5rem;">Cooler mass has increased significantly in recent generations.</p>
                                 <div class="chart-container">
                                     <canvas id="gpuThicknessChart" aria-label="Average GPU thickness over time"></canvas>
                                 </div>
                                 <p style="margin-top: 0.75rem;">
-                                    Key takeaway: when the primary card is 3 slots, the lower full-length connector becomes mechanically impractical for a second large GPU.
+                                    Three-slot primaries are now common, leaving limited practical room for any meaningful second card in many mATX cases.
                                 </p>
                             </section>
                         </div>
 
-                        <h2 id="bandwidth">2. Bandwidth Analysis</h2>
+                        <h3>Header and case conflicts</h3>
                         <p>
-                            Even if fit is solved, the electrical path still matters. The lower full-length slot is lane-limited and behaves very differently from the primary slot for heavy GPU workloads.
+                            The lower slot sits near the motherboard edge where key internal headers are located. A secondary GPU can block front-audio, internal USB headers, and front-panel button header access. On compact cases, card thickness can also collide with the PSU shroud or case floor.
+                        </p>
+                        <ul>
+                            <li>Front-audio header can become inaccessible.</li>
+                            <li>USB 2.0 internal headers may be blocked for AIO/RGB controllers.</li>
+                            <li>F_PANEL cable routing may require low-profile adapters.</li>
+                            <li>Bottom-slot dual-slot cards may exceed physical floor clearance.</li>
+                        </ul>
+
+                        <h2>Storage Interface and SATA Port Access</h2>
+                        <p>
+                            Secondary-GPU placement can also interfere with storage cabling. On boards with upward-facing SATA connectors near the lower-right area, a long second card can obstruct cable insertion or force awkward low-profile routing.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Connector</th>
+                                        <th>Interface</th>
+                                        <th>Lane Source</th>
+                                        <th>Mechanical Conflict Risk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>M2A_CPU</td>
+                                        <td>NVMe PCIe 5.0 x4</td>
+                                        <td>CPU-direct</td>
+                                        <td>Low</td>
+                                    </tr>
+                                    <tr>
+                                        <td>M2B_CPU</td>
+                                        <td>NVMe PCIe 4.0 x4</td>
+                                        <td>CPU-direct</td>
+                                        <td>Thermal coupling under large primary GPU</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SATA3 0-3</td>
+                                        <td>SATA 6 Gb/s</td>
+                                        <td>Chipset</td>
+                                        <td>Medium to high when long secondary GPU is installed</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2 id="bandwidth">Electrical and Performance Implications</h2>
+                        <p>
+                            Running a second GPU at chipset-linked x4 changes workload behavior substantially. Transfer-heavy pipelines (gaming frame data movement, high-end effects work, VRAM overflow scenarios) can degrade hard under this bandwidth ceiling.
                         </p>
 
                         <div class="analysis-grid">
                             <section class="analysis-block">
-                                <h3>Available bandwidth by slot role</h3>
+                                <h3>Bandwidth by slot role</h3>
                                 <div class="chart-container">
                                     <canvas id="bandwidthChart" aria-label="Bandwidth comparison between top and bottom slots"></canvas>
                                 </div>
                             </section>
 
                             <section class="analysis-block">
-                                <h3>What this means in practice</h3>
+                                <h3>Practical behavior under load</h3>
                                 <ul>
-                                    <li>Top slot: direct CPU path, best for main rendering and gaming load.</li>
-                                    <li>Lower slot: chipset-limited path with much lower throughput budget.</li>
-                                    <li>Compute workflows that keep data resident in VRAM suffer less than workloads with constant host memory transfers.</li>
+                                    <li>Top slot remains the correct location for the primary high-throughput GPU.</li>
+                                    <li>Bottom slot is useful for lighter compute, encode, or display duties.</li>
+                                    <li>When VRAM overflows, PCIe traffic can become a major bottleneck on the lower slot.</li>
+                                    <li>Throughput-sensitive production workloads can show substantial regression.</li>
                                 </ul>
                             </section>
                         </div>
 
-                        <h2 id="usecases">3. Use-Case Viability</h2>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>PCIe Link</th>
+                                        <th>Bi-directional Class Bandwidth</th>
+                                        <th>Typical Outcome</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PCIe 5.0 x16</td>
+                                        <td>~128 GB/s theoretical class</td>
+                                        <td>Baseline high-end behavior</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCIe 4.0 x16</td>
+                                        <td>~64 GB/s</td>
+                                        <td>Near-baseline for most current GPUs</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCIe 4.0 x8</td>
+                                        <td>~32 GB/s</td>
+                                        <td>Moderate reduction in some content workflows</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCIe 3.0 x16</td>
+                                        <td>~32 GB/s</td>
+                                        <td>Comparable to PCIe 4.0 x8 class behavior</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PCIe 3.0 x4</td>
+                                        <td>~8 GB/s</td>
+                                        <td>Can become a severe limiter in demanding workloads</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2>AI-Enhanced Signal Integrity and PCB Engineering</h2>
                         <p>
-                            Dual-GPU value depends on workload characteristics. Not every scenario benefits equally from the second card on this platform.
+                            A notable platform strength is Gigabyte's signal-integrity work around the high-speed lanes and memory channels. This does not remove the secondary slot bottleneck, but it helps preserve stability on the primary path in mixed-load conditions.
+                        </p>
+                        <ul>
+                            <li>AI-guided via optimization for high-frequency lane behavior.</li>
+                            <li>Shielded memory routing to reduce crosstalk near expansion zones.</li>
+                            <li>Impedance-matching strategy for cleaner high-speed signaling.</li>
+                        </ul>
+
+                        <h2>Thermal Management and Power Delivery Dynamics</h2>
+                        <p>
+                            Dual cards in mATX increase thermal density. The upper GPU often draws pre-heated air from the lower card, reducing sustained boost potential. In addition, nearby M.2 zones can see higher temperatures under prolonged mixed GPU load.
+                        </p>
+                        <p>
+                            Power-wise, each slot may supply up to 75 W by specification, so motherboard trace and PSU planning matter. Stable dual-GPU builds require adequate PSU overhead and dedicated external GPU power cabling, not splitter-heavy wiring.
+                        </p>
+
+                        <h2>BIOS Features: X3D Turbo Mode and AI Snatch</h2>
+                        <p>
+                            Platform-level optimizations like X3D Turbo Mode and memory tuning workflows can improve primary-system responsiveness and gaming behavior. These features optimize the CPU-memory side of the equation, but they do not fundamentally alter the lane budget of the chipset-linked secondary slot.
+                        </p>
+
+                        <h2 id="usecases">Use Cases Where Dual-GPU Still Makes Sense</h2>
+                        <p>
+                            Although traditional SLI/CrossFire-style gaming is largely obsolete, the board can still support role-separation GPU designs in targeted workflows.
                         </p>
 
                         <div class="analysis-grid">
@@ -374,41 +592,104 @@
                             </section>
 
                             <section class="analysis-block">
-                                <h3>Verdict by workload type</h3>
+                                <h3>Workload-level interpretation</h3>
                                 <div class="verdict-list">
                                     <article class="verdict-item">
                                         <strong>Gaming with classic multi-GPU</strong>
-                                        <p>Low value on modern APIs and driver ecosystems.</p>
+                                        <p>Driver ecosystem and API support are weak for modern two-card gaming scaling.</p>
                                         <p class="verdict-score score-low">Score: 5 / 100</p>
                                     </article>
                                     <article class="verdict-item">
                                         <strong>3D rendering and offline compute</strong>
-                                        <p>Can scale well when workloads are partitioned effectively across devices.</p>
+                                        <p>Still viable when scenes are partitioned efficiently and VRAM residency is controlled.</p>
                                         <p class="verdict-score score-high">Score: 90 / 100</p>
                                     </article>
                                     <article class="verdict-item">
-                                        <strong>Local AI inference</strong>
-                                        <p>Usable with careful model placement and memory planning.</p>
+                                        <strong>Local AI inference / LLM work</strong>
+                                        <p>Extra VRAM capacity can outweigh lane limitations in certain local inference pipelines.</p>
                                         <p class="verdict-score score-mid">Score: 75 / 100</p>
                                     </article>
                                     <article class="verdict-item">
-                                        <strong>Extra displays or dedicated encode tasks</strong>
-                                        <p>Very practical if the secondary card is compact and power-efficient.</p>
+                                        <strong>Display and encode offload</strong>
+                                        <p>Excellent fit for low-profile secondary GPU roles such as AV1 encoding or extra outputs.</p>
                                         <p class="verdict-score score-high">Score: 95 / 100</p>
                                     </article>
                                 </div>
                             </section>
                         </div>
 
-                        <h2>Final Verdict</h2>
-                        <blockquote>
-                            The B850M D3HP can host two GPUs in specialized setups, but it is not a balanced dual-GPU platform for general gaming or unrestricted high-throughput workloads.
-                        </blockquote>
+                        <h2>Comparative Positioning in the 800-Series Stack</h2>
+                        <p>
+                            Users needing true dual high-throughput GPU behavior should look at boards with CPU lane splitting (x8/x8) instead of chipset-only x4 secondary paths.
+                        </p>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Chipset</th>
+                                        <th>Expansion Behavior</th>
+                                        <th>Best Fit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>B850M D3HP</td>
+                                        <td>B850</td>
+                                        <td>x16 primary + x4 secondary</td>
+                                        <td>Mainstream value systems</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B850 AI TOP</td>
+                                        <td>B850</td>
+                                        <td>Dual high-speed GPU-oriented lane design</td>
+                                        <td>AI/workstation training nodes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B850 AORUS Elite</td>
+                                        <td>B850</td>
+                                        <td>Stronger premium platform balance</td>
+                                        <td>High-end gaming + productivity</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B840M Gaming Plus</td>
+                                        <td>B840</td>
+                                        <td>Entry-level dual-slot behavior</td>
+                                        <td>Budget gaming platforms</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2>Technical Synthesis and Final Verdict</h2>
+                        <p>
+                            From a systems perspective, the board is excellent as a modern single-GPU AM5 platform and acceptable for highly specific two-card builds. It is not, however, an ideal foundation for balanced dual-GPU rendering or gaming where both cards require symmetrical high bandwidth and unrestricted mechanical clearance.
+                        </p>
                         <ul>
-                            <li>Physical fit is the first hard constraint in most builds.</li>
-                            <li>Secondary-slot bandwidth defines performance ceiling.</li>
-                            <li>Best results come from targeted workflows, not broad dual-GPU expectations.</li>
+                            <li><strong>Physical fit:</strong> feasible mostly with short or single-slot secondary cards plus careful low-profile cabling.</li>
+                            <li><strong>Electrical fit:</strong> secondary card is lane-constrained and can bottleneck quickly under transfer-heavy workloads.</li>
+                            <li><strong>CPU compatibility fit:</strong> best primary-slot behavior with Ryzen 9000/7000; some Ryzen 8000 variants further reduce available primary lane width.</li>
                         </ul>
+                        <blockquote>
+                            Final recommendation: choose B850M D3HP for strong single-GPU builds or narrow dual-role configurations. For true dual high-performance GPU scaling, step up to a board designed for CPU lane bifurcation.
+                        </blockquote>
+
+                        <h2>Works Cited</h2>
+                        <ol>
+                            <li><a class="inline-link" href="https://www.gigabyte.com/Motherboard/B850M-D3HP-rev-10/sp" target="_blank" rel="noopener">GIGABYTE B850M D3HP specification page</a></li>
+                            <li><a class="inline-link" href="https://www.gigabyte.com/Motherboard/B850M-D3HP-rev-10" target="_blank" rel="noopener">GIGABYTE B850M D3HP product page</a></li>
+                            <li><a class="inline-link" href="https://download.gigabyte.com/FileList/Manual/mb_manual_b850m-d3hp_1001_e.pdf" target="_blank" rel="noopener">B850M D3HP official manual</a></li>
+                            <li><a class="inline-link" href="https://www.gigabyte.com/Press/News/2245" target="_blank" rel="noopener">GIGABYTE CES motherboard announcement</a></li>
+                            <li><a class="inline-link" href="https://www.pugetsystems.com/labs/articles/impact-of-gpu-pci-e-bandwidth-on-content-creation-performance/" target="_blank" rel="noopener">Puget Systems PCIe bandwidth analysis</a></li>
+                            <li><a class="inline-link" href="https://www.techspot.com/review/3004-nvidia-rtx-5060-ti-pcie-benchmark/" target="_blank" rel="noopener">TechSpot PCIe generation benchmark</a></li>
+                            <li><a class="inline-link" href="https://www.xda-developers.com/gpu-pcie-gen-performance-with-low-vram/" target="_blank" rel="noopener">XDA PCIe and low-VRAM behavior analysis</a></li>
+                            <li><a class="inline-link" href="https://www.cgdirector.com/gpu-clearance-explained/" target="_blank" rel="noopener">CGDirector GPU clearance guide</a></li>
+                            <li><a class="inline-link" href="https://box.co.uk/blog/gpu-case-length-helper" target="_blank" rel="noopener">Box case clearance reference</a></li>
+                            <li><a class="inline-link" href="https://manuals.plus/m/59c9ea02101464533db4d85ed56e7e013e70171797ff78aec90f21c733ea67ae" target="_blank" rel="noopener">Manuals.plus installation documentation</a></li>
+                            <li><a class="inline-link" href="https://www.hardwarezone.com.sg/entertainment/gaming/feature-gigabyte-aorus-b850-and-b860-motherboard-ai-top-board-ces-2025" target="_blank" rel="noopener">HardwareZone B850 lineup coverage</a></li>
+                            <li><a class="inline-link" href="https://www.lrnic.com/blog-detail/id-124.html" target="_blank" rel="noopener">PCIe bifurcation technical background</a></li>
+                        </ol>
                     </div>
                 </article>
 
