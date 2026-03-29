@@ -1,154 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Importance of Data Visualization - Musfique Ahmed</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Inter Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #161625;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav .back-link {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #9d4edd;
-            text-decoration: none;
-        }
-        .blog-post-article {
-            background-color: #202035;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .blog-post-article h1 {
-            color: #b39ddb; /* Lighter Purple */
-            font-size: 2.2em;
-            margin-bottom: 10px;
-        }
-        .blog-post-article .post-meta {
-            font-size: 0.9em;
-            color: #aaa;
-            margin-bottom: 25px;
-        }
-        .blog-post-article p, .blog-post-article ul li {
-            margin-bottom: 1.2em;
-            font-size: 1.05em;
-        }
-         .blog-post-article ul {
-            list-style: disc;
-            padding-left: 20px;
-        }
-        .blog-post-article img { /* Style for images within the blog post */
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 20px 0;
-            display: block; /* Center images if they are narrower than container */
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #fff; /* Add a white background for better chart visibility */
-            padding: 10px; /* Add some padding around the chart */
-            border: 1px solid #3c3c5a; /* Optional border */
-        }
-        .blog-post-article figcaption {
-            text-align: center;
-            font-size: 0.9em;
-            color: #aaa;
-            margin-top: -0px; /* Adjusted from -10px */
-            margin-bottom: 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            background-color: #161625;
-            border-top: 1px solid #2a2a3e;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Importance of Data Visualization | Musfique Ahmed</title>
+  <meta name="description" content="A practical note on why data visualization improves communication, decision making, and analytical storytelling.">
+  <meta name="theme-color" content="#050b14">
+  <meta property="og:title" content="The Importance of Data Visualization">
+  <meta property="og:description" content="How data visuals reveal patterns and improve decisions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://musfique-ahmed.github.io/portfolio/blog-post-3.html">
+  <meta property="og:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Importance of Data Visualization">
+  <meta name="twitter:description" content="How data visuals reveal patterns and improve decisions.">
+  <meta name="twitter:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <link rel="canonical" href="https://musfique-ahmed.github.io/portfolio/blog-post-3.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "The Importance of Data Visualization",
+    "description": "A practical guide to using visual design for better analytical communication and decision making.",
+    "datePublished": "2025-06-12",
+    "dateModified": "2025-06-12",
+    "mainEntityOfPage": "https://musfique-ahmed.github.io/portfolio/blog-post-3.html",
+    "author": {
+      "@type": "Person",
+      "name": "Musfique Ahmed",
+      "url": "https://musfique-ahmed.github.io/portfolio/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Musfique Ahmed"
+    }
+  }
+  </script>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html#blog" class="back-link">&laquo; Back to Blog</a>
-            </nav>
-        </div>
-    </header>
+<body data-page="writing">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <main>
-        <div class="container">
-            <article class="blog-post-article">
-                <h1>The Importance of Data Visualization</h1>
-                <p class="post-meta">Published on: June 12, 2025 by Musfique Ahmed</p>
+  <header class="site-header">
+    <div class="site-shell nav-wrap">
+      <a class="brand" href="index.html">ma//datascience</a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a class="nav-link" data-nav="home" href="index.html">Home</a>
+        <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+        <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+        <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+        <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+        <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+        <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <span aria-hidden="true">Menu</span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-panel" data-mobile-panel>
+      <div class="site-shell">
+        <nav class="mobile-nav" aria-label="Mobile primary">
+          <a class="nav-link" data-nav="home" href="index.html">Home</a>
+          <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+          <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+          <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+          <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+          <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+          <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-                <p>In the world of data science, collecting, processing, and analyzing data are crucial steps. However, the journey doesn't end there. Communicating the findings effectively is just as important, and this is where data visualization shines. So, why is visualizing data so crucial? Let's explore how tools like Matplotlib can transform raw data into meaningful insights and tell compelling stories.</p>
+  <main id="main">
+    <section class="page-hero">
+      <div class="site-shell">
+        <span class="kicker">Archive Note</span>
+        <h1 class="page-title" data-animate>The Importance of Data Visualization</h1>
+        <p class="page-lead" data-animate>
+          Visualization turns complex data into usable insight. Good charts reduce confusion, reveal structure, and accelerate decisions.
+        </p>
+      </div>
+    </section>
 
-                <h2>Why Visualize Data?</h2>
-                <p>Humans are inherently visual creatures. We can process and understand visual information much faster and more effectively than raw numbers or text. A well-designed chart or graph can:</p>
-                <ul>
-                    <li><strong>Reveal Patterns and Trends:</strong> Visualizations can quickly highlight trends, correlations, and outliers that might be hidden in spreadsheets or tables.</li>
-                    <li><strong>Simplify Complexity:</strong> Complex datasets can be simplified and made more understandable through visual representation.</li>
-                    <li><strong>Facilitate Better Decision-Making:</strong> Clear insights derived from visualizations lead to more informed and data-driven decisions.</li>
-                    <li><strong>Enhance Storytelling:</strong> Visuals can make your data narrative more engaging and persuasive, helping to communicate your message to a wider audience, including non-technical stakeholders.</li>
-                </ul>
+    <section class="section" style="padding-top: 1rem;">
+      <div class="site-shell grid" style="gap: 1rem;">
+        <article class="panel article-layout" data-animate>
+          <header class="article-head">
+            <div class="article-meta">
+              <span>Published 2025-06-12</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span>5 min read</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="tag tag-archive">Archive</span>
+            </div>
+            <p class="article-subtitle">An early visualization note that still captures core principles for clear analytical communication.</p>
+          </header>
 
-                <h2>Tools of the Trade: Matplotlib and Beyond</h2>
-                <p>Python offers several powerful libraries for data visualization. <a href="https://matplotlib.org/" target="_blank" style="color: #9d4edd;">Matplotlib</a> is one of the most fundamental and widely used plotting libraries. It provides a flexible platform for creating a wide variety of static, animated, and interactive visualizations.</p>
-                <p>With Matplotlib, you can create:</p>
-                <ul>
-                    <li>Line plots to show trends over time.</li>
-                    <li>Bar charts to compare quantities across different categories.</li>
-                    <li>Histograms and box plots to understand distributions.</li>
-                    <li>Scatter plots to explore relationships between variables.</li>
-                    <li>And much more!</li>
-                </ul>
-                <p>While Matplotlib is a great starting point, other libraries like <a href="https://seaborn.pydata.org/" target="_blank" style="color: #9d4edd;">Seaborn</a> (built on top of Matplotlib for more attractive statistical plots), <a href="https://plotly.com/python/" target="_blank" style="color: #9d4edd;">Plotly</a>, and <a href="https://bokeh.org/" target="_blank" style="color: #9d4edd;">Bokeh</a> (for interactive web-based visualizations) offer even more advanced capabilities.</p>
+          <div class="article-content">
+            <p>
+              Tables are useful for exact values, but they are poor at pattern recognition. Visuals solve that problem by making change, contrast, and distribution visible in seconds.
+            </p>
 
-                <figure>
-                     <img src="https://image-charts.com/chart?cht=bvg&chs=600x350&chd=t:30,55,70,40,65&chl=Jan|Feb|Mar|Apr|May&chtt=Monthly+Activity&chco=9d4edd&chxt=x,y&chbh=a&chds=0,100" alt="Example of a simple bar chart showing monthly activity">
-                    <figcaption>An example bar chart illustrating monthly activity, generated dynamically.</figcaption>
-                </figure>
+            <h2>Why visualization matters in data work</h2>
+            <ul>
+              <li>It exposes trends and outliers that are hard to catch in raw rows.</li>
+              <li>It shortens explanation time for non-technical stakeholders.</li>
+              <li>It improves decision quality because people can compare options quickly.</li>
+              <li>It creates a narrative path from problem to evidence to action.</li>
+            </ul>
 
-                <h2>Telling a Story with Your Data</h2>
-                <p>Effective data visualization is not just about creating pretty pictures; it's about telling a clear and accurate story. Consider your audience, the message you want to convey, and choose the right type of visualization that best supports your narrative. Keep your charts clean, label axes clearly, use colors thoughtfully, and always provide context.</p>
-                <p>By mastering the art of data visualization, you can unlock the full potential of your data and make a significant impact with your findings.</p>
-            </article>
-        </div>
-    </main>
+            <h2>Choosing the right visual form</h2>
+            <p>
+              Chart type should match the question. Line charts track change over time. Bar charts compare categories. Histograms show distribution shape. Scatter plots reveal relationships.
+            </p>
 
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
-            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-        </div>
-    </footer>
+            <h2>Common mistakes to avoid</h2>
+            <ol>
+              <li>Using too many colors without semantic meaning.</li>
+              <li>Hiding scales or axis labels.</li>
+              <li>Mixing unrelated metrics in a single chart.</li>
+              <li>Designing visuals for style instead of decision support.</li>
+            </ol>
 
+            <h2>Tools and workflow</h2>
+            <p>
+              Python tools such as <code>matplotlib</code>, <code>seaborn</code>, and <code>plotly</code> provide strong coverage from static reporting to interactive dashboards. The key is not the library itself, but consistency in visual logic.
+            </p>
+
+            <blockquote>
+              A good chart does not only look clean. It answers a clear question with minimal cognitive load.
+            </blockquote>
+          </div>
+        </article>
+
+        <nav class="article-nav" aria-label="Article navigation" data-animate>
+          <a class="article-nav-link" href="blog-post-2.html">
+            <small>Previous</small>
+            <strong>Understanding Python Loops</strong>
+          </a>
+          <a class="article-nav-link" href="blog-post-4.html">
+            <small>Next</small>
+            <strong>One Link to Rule Them All</strong>
+          </a>
+        </nav>
+
+        <section class="grid grid-3" data-animate aria-label="Related posts">
+          <article class="card">
+            <h3>One Link to Rule Them All</h3>
+            <p>A complete automation case study built in Google Workspace.</p>
+            <a class="project-link" href="blog-post-4.html">Read post</a>
+          </article>
+          <article class="card">
+            <h3>Discord To-Do Bot</h3>
+            <p>Building a slash-command bot with durable JSON storage.</p>
+            <a class="project-link" href="blog-post-5.html">Read post</a>
+          </article>
+          <article class="card">
+            <h3>Projects portfolio</h3>
+            <p>See practical analytics and machine learning outcomes.</p>
+            <a class="project-link" href="projects.html">Open projects</a>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell footer-row">
+      <span>Musfique Ahmed | Article | <span data-year></span></span>
+      <div class="footer-links">
+        <a href="all-blogs.html">Writing archive</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

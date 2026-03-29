@@ -1,186 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding Python Loops: A Beginner's Guide - Musfique Ahmed</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Inter Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #161625;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav .back-link {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #9d4edd;
-            text-decoration: none;
-        }
-        .blog-post-article {
-            background-color: #202035;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .blog-post-article h1 {
-            color: #b39ddb; /* Lighter Purple */
-            font-size: 2.2em;
-            margin-bottom: 10px;
-        }
-        .blog-post-article .post-meta {
-            font-size: 0.9em;
-            color: #aaa;
-            margin-bottom: 25px;
-        }
-        .blog-post-article p, .blog-post-article ul li {
-            margin-bottom: 1.2em;
-            font-size: 1.05em;
-        }
-        .blog-post-article ul {
-            list-style: disc;
-            padding-left: 20px;
-        }
-        .blog-post-article pre {
-            background-color: #161625;
-            color: #d0d0d0;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95em;
-        }
-        .blog-post-article code {
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .blog-post-article img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            background-color: #161625;
-            border-top: 1px solid #2a2a3e;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding Python Loops | Musfique Ahmed</title>
+  <meta name="description" content="A practical beginner guide to Python loops, including for loops, while loops, and common loop control patterns.">
+  <meta name="theme-color" content="#050b14">
+  <meta property="og:title" content="Understanding Python Loops">
+  <meta property="og:description" content="A concise Python loop guide with examples for beginners.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://musfique-ahmed.github.io/portfolio/blog-post-2.html">
+  <meta property="og:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Understanding Python Loops">
+  <meta name="twitter:description" content="A concise Python loop guide with examples for beginners.">
+  <meta name="twitter:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <link rel="canonical" href="https://musfique-ahmed.github.io/portfolio/blog-post-2.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Understanding Python Loops",
+    "description": "A practical beginner guide to for loops, while loops, and loop control in Python.",
+    "datePublished": "2025-06-05",
+    "dateModified": "2025-06-05",
+    "mainEntityOfPage": "https://musfique-ahmed.github.io/portfolio/blog-post-2.html",
+    "author": {
+      "@type": "Person",
+      "name": "Musfique Ahmed",
+      "url": "https://musfique-ahmed.github.io/portfolio/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Musfique Ahmed"
+    }
+  }
+  </script>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html#blog" class="back-link">&laquo; Back to Blog</a>
-            </nav>
-        </div>
-    </header>
+<body data-page="writing">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <main>
-        <div class="container">
-            <article class="blog-post-article">
-                <h1>Understanding Python Loops: A Beginner's Guide</h1>
-                <p class="post-meta">Published on: June 5, 2025 by Musfique Ahmed</p>
+  <header class="site-header">
+    <div class="site-shell nav-wrap">
+      <a class="brand" href="index.html">ma//datascience</a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a class="nav-link" data-nav="home" href="index.html">Home</a>
+        <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+        <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+        <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+        <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+        <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+        <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <span aria-hidden="true">Menu</span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-panel" data-mobile-panel>
+      <div class="site-shell">
+        <nav class="mobile-nav" aria-label="Mobile primary">
+          <a class="nav-link" data-nav="home" href="index.html">Home</a>
+          <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+          <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+          <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+          <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+          <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+          <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-                <p>Loops are fundamental constructs in almost every programming language, and Python is no exception. They allow you to execute a block of code repeatedly, saving you from writing the same lines of code multiple times. This post aims to break down the two main types of loops in Python – <code>for</code> loops and <code>while</code> loops – with simple examples to help newcomers grasp these essential concepts.</p>
+  <main id="main">
+    <section class="page-hero">
+      <div class="site-shell">
+        <span class="kicker">Archive Note</span>
+        <h1 class="page-title" data-animate>Understanding Python Loops: A Beginner Guide</h1>
+        <p class="page-lead" data-animate>
+          A practical starter reference for <code>for</code> loops, <code>while</code> loops, and loop control statements.
+        </p>
+      </div>
+    </section>
 
-                <h2>The 'for' Loop</h2>
-                <p>A <code>for</code> loop in Python is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string) or other iterable objects. With the <code>for</code> loop, we can execute a set of statements, once for each item in a list, tuple, set etc.</p>
-                <p><strong>Example: Iterating over a list</strong></p>
-                <pre><code>
-# A list of fruits
-fruits = ["apple", "banana", "cherry"]
+    <section class="section" style="padding-top: 1rem;">
+      <div class="site-shell grid" style="gap: 1rem;">
+        <article class="panel article-layout" data-animate>
+          <header class="article-head">
+            <div class="article-meta">
+              <span>Published 2025-06-05</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span>6 min read</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="tag tag-archive">Archive</span>
+            </div>
+            <p class="article-subtitle">This archived learning post is still useful for beginners who want short examples before moving into full project code.</p>
+          </header>
+
+          <div class="article-content">
+            <p>
+              Loops are one of the first concepts that make code powerful. Instead of repeating lines manually, you write a repeat rule and let Python handle the iteration.
+            </p>
+
+            <h2>The <code>for</code> loop</h2>
+            <p>
+              Use a <code>for</code> loop when you already know the sequence you want to iterate over, such as a list, tuple, string, or range.
+            </p>
+            <pre><code>fruits = ["apple", "banana", "cherry"]
 
 for fruit in fruits:
-  print(fruit)
-                </code></pre>
-                <p>Output:</p>
-                <pre><code>
-apple
-banana
-cherry
-                </code></pre>
-                <p>You can also use the <code>range()</code> function with a <code>for</code> loop to iterate a specific number of times:</p>
-                <pre><code>
-for i in range(5):  # This will loop from 0 to 4
-  print(f"Current number is: {i}")
-                </code></pre>
-                 <p>Output:</p>
-                <pre><code>
-Current number is: 0
-Current number is: 1
-Current number is: 2
-Current number is: 3
-Current number is: 4
-                </code></pre>
+    print(fruit)</code></pre>
+            <p>
+              For index-style iteration, <code>range()</code> is the usual choice:
+            </p>
+            <pre><code>for i in range(5):
+    print(i)</code></pre>
 
-                <h2>The 'while' Loop</h2>
-                <p>A <code>while</code> loop in Python is used to execute a block of statements as long as a given condition is true. The condition is checked before each iteration. Once the condition becomes false, the loop terminates.</p>
-                <p><strong>Example: Counting up to a number</strong></p>
-                <pre><code>
-count = 1
+            <h2>The <code>while</code> loop</h2>
+            <p>
+              Use <code>while</code> when repetition depends on a condition that may change during execution.
+            </p>
+            <pre><code>count = 1
 while count <= 5:
-  print(f"Count is: {count}")
-  count += 1  # Important: Increment the counter, or you'll have an infinite loop!
+    print(count)
+    count += 1</code></pre>
+            <p>
+              A <code>while</code> loop can become infinite if the condition never changes. Always ensure state updates are explicit.
+            </p>
 
-print("Loop finished!")
-                </code></pre>
-                <p>Output:</p>
-                <pre><code>
-Count is: 1
-Count is: 2
-Count is: 3
-Count is: 4
-Count is: 5
-Loop finished!
-                </code></pre>
-                <p>It's crucial to ensure that the condition in a <code>while</code> loop will eventually become false; otherwise, you'll create an infinite loop that can freeze your program.</p>
+            <h2>Loop control tools</h2>
+            <ul>
+              <li><code>break</code>: stop the loop immediately.</li>
+              <li><code>continue</code>: skip the current iteration and move to the next.</li>
+              <li><code>pass</code>: placeholder used where syntax requires a statement.</li>
+            </ul>
 
-                <h2>Loop Control Statements</h2>
-                <p>Python provides a few statements to control the flow of loops:</p>
-                <ul>
-                    <li><strong><code>break</code>:</strong> Terminates the loop prematurely, regardless of the loop's condition.</li>
-                    <li><strong><code>continue</code>:</strong> Skips the rest of the code inside the loop for the current iteration and proceeds to the next iteration.</li>
-                    <li><strong><code>pass</code>:</strong> Acts as a placeholder. When the <code>pass</code> statement is executed, nothing happens. It's useful when a statement is required syntactically but you do not want any command or code to execute.</li>
-                </ul>
+            <h2>Practical advice for beginners</h2>
+            <ol>
+              <li>Print intermediate values while learning loop behavior.</li>
+              <li>Start with short sequences before handling large datasets.</li>
+              <li>Use descriptive variable names so loop intent is obvious.</li>
+            </ol>
 
-                <p>Understanding loops is a critical step in becoming proficient in Python. They are used everywhere, from simple iteration tasks to complex algorithms. Practice with these examples, try modifying them, and soon you'll be looping like a pro!</p>
-            </article>
-        </div>
-    </main>
+            <blockquote>
+              Most loop mistakes are not syntax issues. They are logic issues around condition design and state updates.
+            </blockquote>
+          </div>
+        </article>
 
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
-            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-        </div>
-    </footer>
+        <nav class="article-nav" aria-label="Article navigation" data-animate>
+          <a class="article-nav-link" href="blog-post-1.html">
+            <small>Previous</small>
+            <strong>My First Steps into Data Science</strong>
+          </a>
+          <a class="article-nav-link" href="blog-post-3.html">
+            <small>Next</small>
+            <strong>The Importance of Data Visualization</strong>
+          </a>
+        </nav>
 
+        <section class="grid grid-3" data-animate aria-label="Related posts">
+          <article class="card">
+            <h3>The Importance of Data Visualization</h3>
+            <p>Core principles for clear analytical storytelling.</p>
+            <a class="project-link" href="blog-post-3.html">Read post</a>
+          </article>
+          <article class="card">
+            <h3>One Link to Rule Them All</h3>
+            <p>Automation workflow for randomized survey assignment.</p>
+            <a class="project-link" href="blog-post-4.html">Read post</a>
+          </article>
+          <article class="card">
+            <h3>Discord To-Do Bot</h3>
+            <p>Engineering notes on slash commands and persistence.</p>
+            <a class="project-link" href="blog-post-5.html">Read post</a>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell footer-row">
+      <span>Musfique Ahmed | Article | <span data-year></span></span>
+      <div class="footer-links">
+        <a href="all-blogs.html">Writing archive</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

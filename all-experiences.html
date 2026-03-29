@@ -1,442 +1,336 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Experiences | Musfique Ahmed</title>
-    <meta name="description" content="Comprehensive list of professional and academic experiences of Musfique Ahmed.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        primary: '#0f172a', // Slate 900
-                        secondary: '#1e293b', // Slate 800
-                        accent: '#2dd4bf', // Teal 400
-                        textMain: '#f8fafc', // Slate 50
-                        textMuted: '#94a3b8', // Slate 400
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569; 
-        }
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.4;
-            animation: pulse 10s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        /* Accordion transition styles */
-        .experience-details {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, margin-top 0.2s ease;
-        }
-        .experience-details.show {
-            max-height: 1000px; /* Large value to accommodate content */
-            opacity: 1;
-            margin-top: 1rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience | Musfique Ahmed</title>
+  <meta name="description" content="Detailed professional and leadership experience timeline of Musfique Ahmed.">
+  <meta property="og:title" content="Experience | Musfique Ahmed">
+  <meta property="og:description" content="Teaching, leadership, operations, and project delivery timeline.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://musfique-ahmed.github.io/portfolio/all-experiences.html">
+  <meta property="og:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Experience | Musfique Ahmed">
+  <meta name="twitter:description" content="Teaching, leadership, operations, and project delivery timeline.">
+  <meta name="twitter:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <meta name="theme-color" content="#050b14">
+  <link rel="canonical" href="https://musfique-ahmed.github.io/portfolio/all-experiences.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Experience Timeline",
+    "url": "https://musfique-ahmed.github.io/portfolio/all-experiences.html",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Musfique Ahmed"
+    }
+  }
+  </script>
 </head>
-<body class="bg-primary text-textMain font-sans antialiased selection:bg-accent selection:text-primary relative overflow-x-hidden">
+<body data-page="experience">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Decorative Background Blobs -->
-    <div class="blob bg-indigo-900 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="blob bg-teal-900 w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/2 translate-y-1/2"></div>
+  <header class="site-header">
+    <div class="site-shell nav-wrap">
+      <a class="brand" href="index.html">ma//datascience</a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a class="nav-link" data-nav="home" href="index.html">Home</a>
+        <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+        <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+        <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+        <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+        <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+        <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+      </nav>
+      <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <span aria-hidden="true">Menu</span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-panel" data-mobile-panel>
+      <div class="site-shell">
+        <nav class="mobile-nav" aria-label="Mobile primary">
+          <a class="nav-link" data-nav="home" href="index.html">Home</a>
+          <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+          <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+          <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+          <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+          <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+          <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-primary/90 backdrop-blur-sm border-b border-white/10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <a href="index.html" class="font-mono text-xl font-bold text-accent">&lt;MA /&gt;</a>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="index.html" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
-                        <a href="index.html#experience" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
-                        <a href="index.html#projects" class="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
-                        <a href="index.html#contact" class="px-4 py-2 border border-accent text-accent hover:bg-accent/10 rounded font-mono text-sm transition-colors">Contact</a>
-                    </div>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
-                        <span class="sr-only">Open main menu</span>
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-secondary border-b border-white/10" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="index.html" class="hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="index.html#experience" class="hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="index.html#projects" class="hover:text-accent block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Header Section -->
-    <section class="pt-32 pb-12 text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Work & Experiences</h1>
-        <p class="text-textMuted text-lg max-w-2xl mx-auto">
-            A detailed timeline of my professional journey, roles, and contributions.
+  <main id="main">
+    <section class="page-hero">
+      <div class="site-shell">
+        <span class="kicker">Experience Timeline</span>
+        <h1 class="page-title" data-animate>Teaching, leadership, operations, and project delivery</h1>
+        <p class="page-lead" data-animate>
+          This timeline groups roles by impact type so recruiters can quickly understand instructional depth, leadership scope,
+          and hands-on execution across technical and operational settings.
         </p>
+        <div class="chip-row" data-animate>
+          <span class="chip">Teaching</span>
+          <span class="chip">Community Leadership</span>
+          <span class="chip">Operations</span>
+          <span class="chip">Research Support</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Experiences Content -->
-    <section class="py-12 pb-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="space-y-6">
+    <section class="section" style="padding-top: 1rem;">
+      <div class="site-shell grid grid-2">
+        <aside class="panel" style="padding: 1rem;" data-animate>
+          <h2 class="section-title" style="font-size: 1.2rem; margin-bottom: 0.8rem;">Experience overview</h2>
+          <div class="stats-strip">
+            <article class="card">
+              <span class="value">9</span>
+              <span class="label">Major role entries</span>
+            </article>
+            <article class="card">
+              <span class="value">3+</span>
+              <span class="label">Direct teaching roles</span>
+            </article>
+            <article class="card">
+              <span class="value">2023</span>
+              <span class="label">Leadership track started</span>
+            </article>
+            <article class="card">
+              <span class="value">Current</span>
+              <span class="label">Active in multiple roles</span>
+            </article>
+          </div>
 
-                <!-- Experience Item: BYD Apprenticeship -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">BYD Youth Apprentice</h3>
-                            <p class="text-accent font-mono text-sm">BYD Bangladesh</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Nov 2025 – Dec 2025</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Selected for the BYD Youth Apprenticeship 2025 program, gaining specialized training in New Energy Vehicles (NEV).</li>
-                            <li>Acquired technical knowledge of EV Architecture, Core Technology, Powertrain (DM-i System), Battery Safety, and Charging infrastructure.</li>
-                            <li>Received hands-on insights into NEV Maintenance, Service protocols, and Infotainment Operating Systems.</li>
-                            <li>Gained exposure to business operations including Marketing, Management, and Supply Chain Operations within the EV industry.</li>
-                            <li>Successfully completed the program with final presentations and earned certification.</li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="note" style="margin-top: 0.9rem;">
+            Most roles include both technical and communication components, enabling strong cross-functional collaboration in data teams.
+          </div>
 
-                <!-- Experience Item 1 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Project Coordinator Intern</h3>
-                            <p class="text-accent font-mono text-sm">IRIIC, United International University</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Sep 2024 – Present</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Coordinating multiple institutional projects and events, ensuring timely execution and successful outcomes.</li>
-                            <li>Preparing professional presentation slides for strategic meetings, project updates, and stakeholder presentations.</li>
-                            <li>Assisting in organizing high-profile events with external stakeholders, including government agencies, NGOs, and international organizations.</li>
-                            <li>Developing and implementing content planning strategies for IRIIC's official social media channels to enhance visibility and engagement.</li>
-                            <li>Managing event logistics, participant communications, and documentation for various institutional initiatives.</li>
-                            <li>Collaborating with cross-functional teams to streamline project workflows and improve coordination efficiency.</li>
-                            <li>Supporting research initiatives and administrative tasks related to international partnerships and collaborations.</li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="btn-row" style="margin-top: 0.9rem;">
+            <a class="btn btn-secondary" href="projects.html">Pair with project evidence</a>
+            <a class="btn btn-muted" href="resume.html">Resume view</a>
+          </div>
+        </aside>
 
-                <!-- Experience Item 2 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Instructor - Programming with Python</h3>
-                            <p class="text-accent font-mono text-sm">Songjog Foundation & Internet Society Foundation</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Nov 2024 – Mar 2025</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Conducted a comprehensive 3-month Python Programming course for junior students, covering fundamentals to advanced topics.</li>
-                            <li>Designed and delivered engaging lesson plans on Python data types, control structures, loops, functions, OOP, and file handling.</li>
-                            <li>Created interactive quizzes, assignments, and coding challenges to assess learning outcomes and reinforce concepts.</li>
-                            <li>Provided personalized one-on-one mentorship to students, addressing individual learning challenges and questions.</li>
-                            <li>Offered career guidance and advice on pursuing technical education and professional development in programming.</li>
-                            <li>Prepared comprehensive course materials, including code examples, exercises, and reference documentation.</li>
-                            <li>Awarded certificates of completion to students who successfully finished the program.</li>
-                            <li>Maintained a supportive and inclusive learning environment that encouraged curiosity and experimentation.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 3 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Teaching Assistant</h3>
-                            <p class="text-accent font-mono text-sm">Department of Data Science, UIU</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Feb 2025 – Present</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Assisting faculty members with Python programming and Data Science courses, ensuring smooth course delivery.</li>
-                            <li>Providing academic advising and one-on-one support to students struggling with coursework and programming concepts.</li>
-                            <li>Facilitating lab sessions and practical workshops, helping students implement theoretical concepts in real projects.</li>
-                            <li>Grading assignments, providing constructive feedback, and tracking student progress throughout the semester.</li>
-                            <li>Answering student queries, debugging code, and explaining complex data science concepts in accessible ways.</li>
-                            <li>Supporting the development of course materials, including lab exercises and practice problems.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 4 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">President</h3>
-                            <p class="text-accent font-mono text-sm">UIU Data Science Club</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Feb 2025 – Present</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Established the UIU Data Science Club from the ground up, leading its kickstart and official formation.</li>
-                            <li>Designed and implemented the club’s full organizational structure, defining executive roles and responsibilities.</li>
-                            <li>Led the recruitment and onboarding of executive and core team members.</li>
-                            <li>Organized workshops, seminars, and hands-on events to engage students in data science, AI, and programming.</li>
-                            <li>Collaborated with faculty, external mentors, fellow students, other university clubs, and tech companies to build a dynamic and inclusive data science community.</li>
-                            <li>Developed long-term strategies to ensure the club’s growth, outreach, and sustainability.</li>
-                            <li>Mentored junior members and guided the executive team to maintain continuity and high-impact leadership.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 5 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Head of Data Science</h3>
-                            <p class="text-accent font-mono text-sm">UIU APP Forum</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Sep 2023 – Feb 2025</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Led data-driven initiatives and projects within the forum, applying analytical skills to solve real-world problems.</li>
-                            <li>Organized and conducted Python workshops focused on data science applications, libraries, and practical implementations.</li>
-                            <li>Provided mentorship and technical guidance to junior members interested in data science and analytics.</li>
-                            <li>Coordinated training sessions on data analysis tools including Pandas, NumPy, Matplotlib, and data visualization techniques.</li>
-                            <li>Developed learning materials and resources to help members build foundational and advanced data science skills.</li>
-                            <li>Collaborated with other forum leaders to integrate data science perspectives into various projects and events.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 6 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Senior Executive (R&D)</h3>
-                            <p class="text-accent font-mono text-sm">UIU EDF (Entrepreneurship Development Forum)</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Sep 2023 – Feb 2025</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Coordinated research and development activities, exploring innovative solutions and entrepreneurial projects.</li>
-                            <li>Collaborated with cross-functional teams to develop projects from concept to execution, ensuring adherence to timelines and quality standards.</li>
-                            <li>Organized innovation-based sessions, brainstorming workshops, and ideation events to foster creative thinking.</li>
-                            <li>Contributed to organizing R&D-focused events that promoted entrepreneurship and technological innovation among students.</li>
-                            <li>Conducted research on emerging trends in technology and business to inform forum activities and initiatives.</li>
-                            <li>Supported team members in project planning, resource allocation, and problem-solving throughout development cycles.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 7 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Event Coordinator</h3>
-                            <p class="text-accent font-mono text-sm">Data Science Dept., UIU</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Sep 2023 – Present</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Successfully organized and coordinated major BSDS (Bachelor of Data Science) department events including:</li>
-                            <li><strong>BSDS Football Tournament 2023:</strong> Managed team registrations, schedules, and logistics for inter-batch sports competition.</li>
-                            <li><strong>BSDS Picnic 2024:</strong> Coordinated transportation, venue arrangements, and recreational activities for department-wide gathering.</li>
-                            <li><strong>BSDS Iftar Mahfil 2024:</strong> Organized cultural and religious celebration event with food arrangements and program coordination.</li>
-                            <li><strong>BSDS 1 Year Anniversary:</strong> Led planning and execution of department milestone celebration, showcasing achievements and fostering community spirit.</li>
-                            <li>Demonstrated strong leadership, communication, and organizational skills across diverse event types and participant groups.</li>
-                            <li>Managed budgets, vendor relationships, and participant communications for all coordinated events.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 8 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Mentor</h3>
-                            <p class="text-accent font-mono text-sm">UIU CSE & Data Science Dept.</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">Sep 2023 – Present</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Served as a mentor during UIU CSE Project Show Fall 2024, guiding students through project development and presentation phases.</li>
-                            <li>Provided constructive feedback on project displays, helping students improve technical implementation and documentation.</li>
-                            <li>Coached students on effective presentation techniques, helping them articulate technical concepts clearly and confidently.</li>
-                            <li>Assisted students in refining their projects by suggesting improvements in code quality, user interface, and functionality.</li>
-                            <li>Helped students develop both technical and soft skills essential for academic and professional success.</li>
-                            <li>Facilitated knowledge sharing between senior and junior students, fostering a collaborative learning environment.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Experience Item 9 -->
-                <div class="bg-secondary p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">Co-founder/Owner</h3>
-                            <p class="text-accent font-mono text-sm">Campus Desserts & Nikah Nama</p>
-                        </div>
-                        <span class="text-textMuted text-sm font-mono mt-2 md:mt-0 bg-primary/50 px-3 py-1 rounded">2023 – Present</span>
-                    </div>
-                    
-                    <button class="text-accent text-sm font-mono hover:text-white transition-colors focus:outline-none flex items-center gap-2" onclick="toggleDetails(this)">
-                        <span>View Details</span> <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
-                    </button>
-                    
-                    <div class="experience-details border-l-2 border-accent/20 pl-4 ml-1">
-                        <ul class="list-disc list-outside ml-4 text-textMuted text-sm space-y-2 pt-2">
-                            <li>Co-founded and managed two successful small businesses, demonstrating entrepreneurial initiative and leadership.</li>
-                            <li>Led content creation, branding strategy, and visual identity development for both ventures.</li>
-                            <li>Managed day-to-day operations including inventory, customer service, and quality control.</li>
-                            <li>Coordinated team activities and delegated responsibilities to ensure efficient business operations.</li>
-                            <li>Developed and executed marketing campaigns and promotional strategies to increase customer engagement and sales.</li>
-                            <li>Built strong customer relationships through excellent service and responsive communication.</li>
-                            <li>Gained practical experience in business management, marketing, finance, and customer relationship management.</li>
-                        </ul>
-                    </div>
-                </div>
-
+        <div data-animate>
+          <article class="panel" style="padding: 1rem;">
+            <div class="section-header" style="margin-bottom: 0.8rem;">
+              <div>
+                <span class="kicker">Track 1</span>
+                <h2 class="section-title" style="font-size: 1.2rem;">Teaching and mentorship</h2>
+              </div>
             </div>
-            
-            <div class="mt-12 text-center">
-                <a href="index.html" class="inline-flex items-center text-accent hover:text-white font-mono transition-colors">
-                    <i class="fas fa-arrow-left mr-2"></i> Back to Main Portfolio
-                </a>
+
+            <details class="role" open>
+              <summary>
+                <div class="role-head">
+                  <h3>Teaching Assistant</h3>
+                  <p class="role-meta">Department of Data Science, UIU | Feb 2025 - Present</p>
+                </div>
+                <span class="tag">Current</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Assist faculty with Python and data science course delivery and lab execution.</li>
+                  <li>Support students through one-to-one debugging and concept clarification.</li>
+                  <li>Help evaluate assignments and provide structured, actionable feedback.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>Instructor, Programming with Python</h3>
+                  <p class="role-meta">Songjog Foundation and ISF | Nov 2024 - Mar 2025</p>
+                </div>
+                <span class="tag">Completed</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Delivered a 3-month Python program from fundamentals to project implementation.</li>
+                  <li>Designed assignments, quizzes, and coding practice aligned with real datasets.</li>
+                  <li>Mentored students on problem decomposition and data-oriented thinking.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>Mentor</h3>
+                  <p class="role-meta">UIU CSE and Data Science Department | Sep 2023 - Present</p>
+                </div>
+                <span class="tag">Current</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Guided teams in project show preparation and technical presentation quality.</li>
+                  <li>Provided constructive feedback on code quality, product framing, and delivery.</li>
+                  <li>Supported junior learners with technical confidence and communication skills.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="panel" style="padding: 1rem; margin-top: 1rem;">
+            <div class="section-header" style="margin-bottom: 0.8rem;">
+              <div>
+                <span class="kicker">Track 2</span>
+                <h2 class="section-title" style="font-size: 1.2rem;">Leadership and community building</h2>
+              </div>
             </div>
+
+            <details class="role" open>
+              <summary>
+                <div class="role-head">
+                  <h3>President</h3>
+                  <p class="role-meta">UIU Data Science Club | Feb 2025 - Present</p>
+                </div>
+                <span class="tag">Current</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Established club structure, onboarding process, and operating rhythm from scratch.</li>
+                  <li>Led executive recruitment and coordinated technical event planning.</li>
+                  <li>Collaborated with faculty and external contributors to scale community impact.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>Head of Data Science</h3>
+                  <p class="role-meta">UIU APP Forum | Sep 2023 - Feb 2025</p>
+                </div>
+                <span class="tag">Completed</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Led internal data projects and Python workshop tracks for forum members.</li>
+                  <li>Mentored juniors on Pandas, NumPy, visualization, and analytical workflows.</li>
+                  <li>Prepared learning resources to improve practical readiness.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>Senior Executive, Research and Development</h3>
+                  <p class="role-meta">UIU EDF | Sep 2023 - Feb 2025</p>
+                </div>
+                <span class="tag">Completed</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Coordinated innovation sessions and concept-to-execution planning routines.</li>
+                  <li>Researched technology and business trends to inform strategic initiatives.</li>
+                  <li>Supported teams in project design, sequencing, and execution discipline.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="panel" style="padding: 1rem; margin-top: 1rem;">
+            <div class="section-header" style="margin-bottom: 0.8rem;">
+              <div>
+                <span class="kicker">Track 3</span>
+                <h2 class="section-title" style="font-size: 1.2rem;">Operations and field execution</h2>
+              </div>
+            </div>
+
+            <details class="role" open>
+              <summary>
+                <div class="role-head">
+                  <h3>Project Coordinator Intern</h3>
+                  <p class="role-meta">IRIIC, UIU | Sep 2024 - Present</p>
+                </div>
+                <span class="tag">Current</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Managed multi-party programs and institutional event delivery timelines.</li>
+                  <li>Prepared stakeholder-ready reporting and presentation artifacts.</li>
+                  <li>Supported cross-functional coordination and communication logistics.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>Event Coordinator</h3>
+                  <p class="role-meta">Data Science Department, UIU | Sep 2023 - Present</p>
+                </div>
+                <span class="tag">Current</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Led planning and logistics for tournaments, picnics, and milestone events.</li>
+                  <li>Handled budget, vendor, and schedule coordination responsibilities.</li>
+                  <li>Maintained execution quality across large student participation events.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>Co-founder and Owner</h3>
+                  <p class="role-meta">Campus Desserts and Nikah Nama | 2023 - Present</p>
+                </div>
+                <span class="tag">Entrepreneurship</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Built two small ventures with active responsibility for operations and branding.</li>
+                  <li>Managed inventory, customer communication, and campaign execution.</li>
+                  <li>Applied CRM and process discipline to improve business continuity.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="role">
+              <summary>
+                <div class="role-head">
+                  <h3>BYD Youth Apprentice</h3>
+                  <p class="role-meta">BYD Bangladesh | Nov 2025 - Dec 2025</p>
+                </div>
+                <span class="tag tag-warn">Apprenticeship</span>
+              </summary>
+              <div class="role-body">
+                <ul>
+                  <li>Completed program modules on EV architecture, safety, and charging systems.</li>
+                  <li>Learned service-side operational flow and ecosystem support models.</li>
+                  <li>Delivered closing presentation and earned completion certification.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="py-8 bg-primary border-t border-white/10 text-center">
-        <div class="max-w-6xl mx-auto px-4">
-            <p class="text-textMuted text-sm">
-                &copy; <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        function toggleDetails(buttonElement) {
-            const detailsDiv = buttonElement.nextElementSibling;
-            const icon = buttonElement.querySelector('i');
-            
-            if (detailsDiv.classList.contains('show')) {
-                detailsDiv.classList.remove('show');
-                buttonElement.querySelector('span').textContent = 'View Details';
-                if(icon) icon.style.transform = 'rotate(0deg)';
-            } else {
-                // Close any other open details sections (optional - cleaner UX)
-                // document.querySelectorAll('.experience-details.show').forEach(openDetail => {
-                //    if (openDetail !== detailsDiv) {
-                //        openDetail.classList.remove('show');
-                //        const btn = openDetail.previousElementSibling;
-                //        btn.querySelector('span').textContent = 'View Details';
-                //        btn.querySelector('i').style.transform = 'rotate(0deg)';
-                //    }
-                // });
-
-                detailsDiv.classList.add('show');
-                buttonElement.querySelector('span').textContent = 'Hide Details';
-                if(icon) icon.style.transform = 'rotate(180deg)';
-            }
-        }
-    </script>
-
+  <footer class="site-footer">
+    <div class="site-shell footer-row">
+      <span>Musfique Ahmed | Experience | <span data-year></span></span>
+      <div class="footer-links">
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
+

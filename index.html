@@ -1,836 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musfique Ahmed - Portfolio</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='60' font-family='Arial, sans-serif' font-weight='bold' fill='%239d4edd'%3EM%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Inter Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e; /* Dark blue-black */
-            color: #e0e0e0; /* Light grey for text */
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: #161625; /* Slightly lighter dark blue */
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        }
-        nav .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #9d4edd; /* Purple */
-            text-decoration: none;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-        }
-        nav ul li {
-            margin-left: 15px; /* Adjusted for more nav items */
-        }
-        nav ul li a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 5px 8px; /* Adjusted for more nav items */
-            border-radius: 4px;
-        }
-        nav ul li a:hover, nav ul li a.active {
-            color: #ffffff;
-            background-color: #9d4edd; /* Purple */
-        }
-
-        /* Hero Section */
-        #home {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.95)), url('https://placehold.co/1200x800/10101F/3F3F7F?text=Tech+Background') no-repeat center center/cover; /* Placeholder background */
-        }
-        .hero-content {
-            max-width: 700px;
-        }
-        .hero-content img.profile-pic {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid #9d4edd; /* Purple border */
-            margin-bottom: 25px;
-            object-fit: cover;
-        }
-        .hero-content h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-        .hero-content .subtitle {
-            font-size: 1.4em;
-            color: #c0c0c0; /* Lighter grey */
-            margin-bottom: 20px;
-        }
-        .hero-content .short-bio {
-            font-size: 1.1em;
-            color: #b0b0b0;
-            margin-bottom: 30px;
-        }
-        .cta-button { /* General CTA button style */
-            display: inline-block;
-            background-color: #9d4edd; /* Purple */
-            color: #ffffff;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
-        }
-        .cta-button:hover {
-            background-color: #8a3ab3; /* Darker Purple */
-            transform: translateY(-2px);
-        }
-         .view-all-button-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-
-        /* General Section Styling */
-        section {
-            padding: 60px 0;
-            border-bottom: 1px solid #2a2a3e; /* Separator */
-        }
-        section:last-of-type {
-            border-bottom: none;
-        }
-        section h2 {
-            text-align: center;
-            font-size: 2.2em;
-            color: #9d4edd; /* Purple */
-            margin-bottom: 40px;
-            position: relative;
-        }
-         section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: #9d4edd; /* Purple */
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        #about .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: flex-start;
-        }
-        #about .about-text {
-            flex: 2;
-            min-width: 300px;
-        }
-        #about .about-image-container {
-            flex: 1;
-            min-width: 250px;
-            text-align: center;
-        }
-        #about .about-image-container img {
-            width: 100%;
-            max-width: 465px; /* Increased size */
-            border-radius: 10px;
-            border: 3px solid #3c3c5a;
-        }
-         #about h3 {
-            color: #b39ddb; /* Lighter Purple */
-            font-size: 1.5em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        #about ul { /* For education list */
-            list-style: none;
-            padding-left: 0;
-        }
-        #about ul li { /* General li styling for education and skills */
-            background-color: #202035;
-            margin-bottom: 8px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border-left: 3px solid #9d4edd;
-            display: flex; /* For aligning skill icons */
-            align-items: center; /* For aligning skill icons */
-        }
-        #about .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted for icons */
-            gap: 10px;
-        }
-        #about .skills-grid ul { /* Reset padding for ul inside grid */
-            padding-left: 0;
-        }
-        #about .skills-grid ul li { /* Specific for skills li */
-             font-size: 0.95em;
-        }
-        .skill-icon {
-            width: 20px; /* Size of skill icons */
-            height: 20px; /* Size of skill icons */
-            margin-right: 10px;
-        }
-
-        /* Languages Section Styling */
-        .languages-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px; /* Spacing between language items */
-            padding-left: 0; /* Remove default ul padding */
-            list-style: none; /* Remove default list bullets */
-        }
-        .languages-list li {
-            display: flex;
-            align-items: center;
-            background-color: #202035;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            border-left: 3px solid #9d4edd;
-        }
-        .languages-list .flag-icon {
-            width: 24px; /* Adjust size as needed */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 8px;
-            border-radius: 3px; /* Optional: slightly rounded corners for flags */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Optional: subtle shadow */
-        }
-
-
-        /* Portfolio Section Updated */
-        #portfolio .experience-grid, #awards .awards-grid { /* Shared grid style */
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-            gap: 25px;
-        }
-         @media (min-width: 600px) and (max-width: 900px) { /* Example: 2 columns for medium screens */
-            #portfolio .experience-grid, #awards .awards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-         @media (min-width: 901px) { /* Example: 3 columns for awards, 2 for experience on larger screens */
-            #awards .awards-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-             #portfolio .experience-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-
-        .project-card { /* Also used for blog post cards and experience cards */
-            background-color: #202035; /* Darker element background */
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid #9d4edd;
-            display: flex;
-            flex-direction: column;
-            min-height: 180px; /* Ensure cards have some minimum height */
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3);
-        }
-        .project-card h3 { /* Title for experience/project/blog/award */
-            color: #b39ddb; /* Lighter Purple */
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.3em; /* Slightly smaller for more content */
-        }
-        .project-card .role-organization { /* For sub-title like 'Instructor at XYZ' or Festival Name */
-             font-size: 0.9em;
-             color: #a0a0c0; /* Slightly different color for role/org */
-             margin-bottom: 10px;
-        }
-        .project-card .date-range { /* For dates */
-            font-size: 0.8em;
-            color: #888;
-            margin-bottom: 15px;
-        }
-        .project-card .excerpt { /* Short summary for project/blog/award */
-            font-size: 0.9em; /* Slightly smaller for award cards */
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-        .project-card .tech-used, .project-card .post-meta { /* For tech stack or blog meta */
-            font-size: 0.85em;
-            color: #aaa;
-            margin-bottom: 15px;
-        }
-        .project-card .project-link, .project-card .read-more-link { /* Links */
-            display: inline-block;
-            color: #9d4edd;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-            margin-top: auto; /* Pushes link to bottom of card */
-        }
-        .project-card .project-link:hover, .project-card .read-more-link:hover {
-            color: #c58af9; /* Lighter hover purple */
-        }
-
-        /* YouTube Channel Section */
-        #youtube-channel .video-container {
-            background-color: #11111f;
-            width: 100%;
-            max-width: 1080px;
-            margin: 20px auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
-        #youtube-channel .video-container video {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        #youtube-channel .channel-link-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-
-        /* Blog Section - uses .projects-grid (now .blog-grid) and .project-card styling */
-        #blog .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default for larger screens */
-            gap: 25px;
-        }
-        /* Adjust grid for medium screens if needed, e.g., 2 columns */
-        @media (max-width: 992px) and (min-width: 600px) {
-            #blog .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        /* Single column for smaller screens */
-        @media (max-width: 599px) {
-            #blog .blog-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-        /* Contact Section */
-        #contact .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        #contact .contact-info, #contact .contact-form-container {
-            flex: 1;
-            min-width: 300px;
-        }
-        #contact .contact-info h3 {
-            color: #b39ddb;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-        #contact .contact-info p {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        #contact .contact-info p svg {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            fill: #9d4edd;
-        }
-        #contact .contact-info a {
-            color: #c0c0c0;
-            text-decoration: none;
-        }
-        #contact .contact-info a:hover {
-            color: #9d4edd;
-        }
-        #contact .social-links a {
-            margin-right: 15px;
-            display: inline-block;
-        }
-        #contact .social-links svg {
-            width: 28px;
-            height: 28px;
-            fill: #9d4edd;
-            transition: fill 0.3s ease, transform 0.2s ease;
-        }
-        #contact .social-links a:hover svg {
-            fill: #c58af9;
-            transform: scale(1.1);
-        }
-        /* Contact Form Styling */
-        .contact-form-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        .contact-form-container input[type="text"],
-        .contact-form-container input[type="email"],
-        .contact-form-container textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #3c3c5a;
-            background-color: #2a2a3e;
-            color: #e0e0e0;
-            margin-bottom: 15px;
-            box-sizing: border-box; /* Important for padding and width */
-            transition: border-color 0.3s ease;
-        }
-        .contact-form-container input[type="text"]:focus,
-        .contact-form-container input[type="email"]:focus,
-        .contact-form-container textarea:focus {
-            border-color: #9d4edd;
-            outline: none;
-        }
-        .contact-form-container button[type="submit"] {
-            /* Uses .cta-button styling, can add specifics if needed */
-            width: auto; /* Or 100% if you want full width */
-            cursor: pointer;
-        }
-        #form-status { /* For success/error messages */
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        #form-status.success {
-            background-color: #38A169; /* Green */
-            color: white;
-        }
-        #form-status.error {
-            background-color: #E53E3E; /* Red */
-            color: white;
-        }
-
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background-color: #161625;
-            border-top: 1px solid #2a2a3e;
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            nav ul li {
-                 margin-left: 10px; /* Reduced margin for smaller screens */
-            }
-            nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            nav .logo {
-                margin-bottom: 10px;
-            }
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            nav ul li {
-                margin: 5px 0; /* Stack them vertically */
-                width: 100%;
-                text-align: center;
-            }
-            nav ul li a {
-                display: block;
-                padding: 10px;
-            }
-            .hero-content h1 {
-                font-size: 2.2em;
-            }
-            .hero-content .subtitle {
-                font-size: 1.2em;
-            }
-            #about .about-content {
-                flex-direction: column;
-            }
-        }
-         @media (max-width: 480px) {
-            nav ul li {
-                 margin-left: 0; /* Remove left margin for very small screens if items wrap too much */
-            }
-         }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musfique Ahmed | Data Scientist Portfolio</title>
+  <meta name="description" content="Musfique Ahmed is a data scientist and educator focused on machine learning, analytics, and practical automation.">
+  <meta property="og:title" content="Musfique Ahmed | Data Scientist Portfolio">
+  <meta property="og:description" content="Recruiter-first portfolio with data projects, measurable impact, and practical case studies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://musfique-ahmed.github.io/portfolio/">
+  <meta property="og:image" content="3.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Musfique Ahmed | Data Scientist Portfolio">
+  <meta name="twitter:description" content="Recruiter-first portfolio with data projects, measurable impact, and practical case studies.">
+  <meta name="twitter:image" content="https://musfique-ahmed.github.io/portfolio/3.png">
+  <meta name="theme-color" content="#050b14">
+  <link rel="canonical" href="https://musfique-ahmed.github.io/portfolio/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Musfique Ahmed",
+    "url": "https://musfique-ahmed.github.io/portfolio/",
+    "jobTitle": "Data Scientist",
+    "email": "mailto:anikmushfik@gmail.com",
+    "sameAs": [
+      "https://github.com/Musfique-Ahmed",
+      "https://www.linkedin.com/in/musfique-ahmed-3b8b1b1b3/"
+    ]
+  }
+  </script>
 </head>
-<body>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#home" class="logo">Musfique Ahmed</a>
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#awards">Awards</a></li> <li><a href="#youtube-channel">Channel</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+  <header class="site-header">
+    <div class="site-shell nav-wrap">
+      <a class="brand" href="index.html">ma//datascience</a>
+
+      <nav class="desktop-nav" aria-label="Primary">
+        <a class="nav-link" data-nav="home" href="index.html">Home</a>
+        <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+        <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+        <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+        <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+        <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+        <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+      </nav>
+
+      <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+        <span aria-hidden="true">Menu</span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="mobile-panel" data-mobile-panel>
+      <div class="site-shell">
+        <nav class="mobile-nav" aria-label="Mobile primary">
+          <a class="nav-link" data-nav="home" href="index.html">Home</a>
+          <a class="nav-link" data-nav="projects" href="projects.html">Projects</a>
+          <a class="nav-link" data-nav="experience" href="all-experiences.html">Experience</a>
+          <a class="nav-link" data-nav="awards" href="all-awards.html">Awards</a>
+          <a class="nav-link" data-nav="writing" href="all-blogs.html">Writing</a>
+          <a class="nav-link" data-nav="resume" href="resume.html">Resume</a>
+          <a class="nav-link" data-nav="contact" href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="site-shell hero-grid">
+        <div>
+          <span class="kicker">Data Scientist | Educator | Builder</span>
+          <h1 class="hero-title" data-animate>I turn noisy data into decisions people can trust.</h1>
+          <p class="hero-summary" data-animate>
+            I build practical analytics products, teach Python and data science, and lead communities that turn ideas into shipped work.
+            This portfolio highlights measurable outcomes across machine learning, automation, and mentoring.
+          </p>
+
+          <div class="btn-row" style="margin-top: 1.1rem;" data-animate>
+            <a class="btn btn-primary" href="projects.html">View Case Studies</a>
+            <a class="btn btn-secondary" href="resume.html#download">Download Resume</a>
+            <a class="btn btn-muted" href="contact.html">Start a Conversation</a>
+          </div>
+
+          <div class="hero-meta" data-animate>
+            <span class="pill">Machine Learning</span>
+            <span class="pill">Data Product Thinking</span>
+            <span class="pill">NLP and LLM Evaluation</span>
+            <span class="pill">Python Mentorship</span>
+          </div>
         </div>
-    </header>
 
-    <main>
-        <section id="home">
-            <div class="hero-content">
-                <img src="0.jpg" alt="Musfique Ahmed" class="profile-pic" onerror="this.onerror=null; this.src='https://placehold.co/180x180/1A1A2E/9D4EDD?text=MA';">
-                <h1>Musfique Ahmed</h1>
-                <p class="subtitle">President, UIU Data Science Club | Data Science Student | Python Instructor</p>
-                <p class="short-bio">
-                    Passionate Data Science student and educator with a proven track record in teaching, leadership, and project coordination. Committed to fostering academic growth and making technology accessible to all.
-                </p>
-                <a href="#portfolio" class="cta-button">View My Work</a>
+        <aside class="panel hero-board" data-animate aria-label="Impact overview">
+          <div class="hero-board-head">
+            <span>Impact Board</span>
+            <span>Updated 2026</span>
+          </div>
+          <div class="hero-board-grid">
+            <div class="metric">
+              <div class="metric-value">97%</div>
+              <div class="metric-label">Airline model accuracy</div>
+              <div class="metric-trend">Random Forest</div>
             </div>
-        </section>
-
-        <section id="about">
-            <div class="container">
-                <h2>About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            Hello! I'm Musfique Ahmed, President of the UIU Data Science Club and a dedicated Data Science student at United International University (45 credits completed). My journey in tech is driven by a passion for teaching, leadership, and solving real-world problems through data. I've taught Python programming to diverse audiences, from junior students to university peers, and have coordinated multiple successful events and projects.
-                        </p>
-                        <p>
-                            With experience as a Teaching Assistant, Python Instructor at Songjog Foundation, and Project Coordinator at IRIIC, I thrive in collaborative environments where I can mentor others, drive innovation, and create impactful learning experiences. My expertise spans Python development, data analysis, web development, and effective communication—both technical and creative.
-                        </p>
-                        <h3>Education</h3>
-                        <ul>
-                            <li><strong>Bachelor of Data Science:</strong> United International University (45 credits completed)</li>
-                            <li><strong>HSC:</strong> Dhaka Residential Model College (GPA: 5.00)</li>
-                            <li><strong>SSC:</strong> Monipur High School & College (GPA: 5.00)</li>
-                        </ul>
-                        <h3>Key Skills</h3>
-                        <div class="skills-grid">
-                            <ul>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23306998' d='M16 0A16 16 0 000 16a16 16 0 0016 16a16 16 0 0016-16A16 16 0 0016 0zm0 30a14 14 0 01-14-14A14 14 0 0116 2a14 14 0 0114 14a14 14 0 01-14 14z'/%3E%3Cpath fill='%23FFD43B' d='M16 4a12 12 0 00-12 12h10v-2a2 2 0 012-2h4a2 2 0 012 2v2h-2a2 2 0 00-2 2v10a12 12 0 0012-12A12 12 0 0016 4zm-2 14v-2h4v2zm0 4v-2h4v2z'/%3E%3Cpath fill='%23306998' d='M16 28a12 12 0 0012-12H18v2a2 2 0 01-2 2h-4a2 2 0 01-2-2v-2h2a2 2 0 002-2V6A12 12 0 004 16a12 12 0 0012 12zm2-14v2h-4v-2zm0-4v2h-4V8z'/%3E%3C/svg%3E" alt="Python Icon" class="skill-icon">Python</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23E34F26' d='M71.313 460.313L32 0h448l-39.25 460.25L255.75 512z'/%3E%3Cpath fill='%23F16529' d='M256 474.375l180.438-48.5L440.75 32H256z'/%3E%3Cpath fill='%23EBEBEB' d='M256 64v109.313h88.625l-8.625 96.813H256v87.875l92.375-24.875 12.188-136.312.062.063H256V64z'/%3E%3Cpath fill='%23FFF' d='M256 173.313V64H120.688l.062.063L133 173.313h123zm0 184.688v-87.875H137.25l-8.563 96.313 127.313 34.375z'/%3E%3C/svg%3E" alt="HTML5 Icon" class="skill-icon">HTML</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M6 18h12v2H6zm0-5h12v2H6zm0-5h12v2H6zm0-5h12v2H6z'/%3E%3C/svg%3E" alt="Pandas Icon" class="skill-icon">Pandas</li> <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M20 6h-2.18c.11-.31.18-.65.18-1a3 3 0 00-3-3H9a3 3 0 00-3 3c0 .35.07.69.18 1H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zm-5-1.9c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9zm-6 0c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9zm11 13.9H4V8h16v10z'/%3E%3C/svg%3E" alt="NumPy Icon" class="skill-icon">NumPy</li> </ul>
-                            <ul>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M4 2h16v2H4zm0 4h16v12H4zm2 2v8h12V8H6zm2 2h2v4H8zm4 0h2v4h-2zm4 0h2v4h-2z'/%3E%3C/svg%3E" alt="Matplotlib Icon" class="skill-icon">Matplotlib</li> <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23FF4B4B' d='M128 24a104 104 0 10104 104A104.118 104.118 0 00128 24zm40 148.008a12 12 0 01-12 12h-56a12 12 0 01-12-12v-56a12 12 0 0112-12h56a12 12 0 0112 12z'/%3E%3Cpath fill='%23fff' d='M100 116h56v56h-56z'/%3E%3C/svg%3E" alt="Streamlit Icon" class="skill-icon">Streamlit</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M10 4H4c-1.11 0-2 .89-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z'/%3E%3C/svg%3E" alt="Folder Icon" class="skill-icon">Data Analysis</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-4h2v4zm4 0h-2v-7h2v7zm4 0h-2V7h2v10z'/%3E%3C/svg%3E" alt="Chart Icon" class="skill-icon">Data Visualization</li>
-                            </ul>
-                            <ul>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2361DAFB' d='M12 10.11c1.03 0 1.87.84 1.87 1.89 0 1-.84 1.85-1.87 1.85S10.13 13 10.13 12c0-1.05.84-1.89 1.87-1.89M7.37 20c.63.38 2.01-.2 3.6-1.7-.52-.59-1.03-1.23-1.51-1.9a22.7 22.7 0 01-2.4-.36c-.51 2.14-.32 3.61.31 3.96m.71-5.74l-.29-.51c-.11.29-.22.58-.29.86.27.06.57.11.88.16l-.3-.51m6.54-.76l.81-1.5-.81-1.5c-.3-.53-.62-1-.91-1.47C13.17 9 12.6 9 12 9c-.6 0-1.17 0-1.71.03-.29.47-.61.94-.91 1.47L8.57 12l.81 1.5c.3.53.62 1 .91 1.47.54.03 1.11.03 1.71.03.6 0 1.17 0 1.71-.03.29-.47.61-.94.91-1.47M12 6.78c-.19.22-.39.45-.59.72h1.18c-.2-.27-.4-.5-.59-.72m0 10.44c.19-.22.39-.45.59-.72h-1.18c.2.27.4.5.59.72M16.62 4c-.62-.38-2 .2-3.59 1.7.52.59 1.03 1.23 1.51 1.9.82.08 1.63.2 2.4.36.51-2.14.32-3.61-.32-3.96m-.7 5.74l.29.51c.11-.29.22-.58.29-.86-.27-.06-.57-.11-.88-.16l.3.51m1.45-7.05c1.47.84 1.63 3.05 1.01 5.63 2.54.75 4.37 1.99 4.37 3.68s-1.83 2.93-4.37 3.68c.62 2.58.46 4.79-1.01 5.63-1.46.84-3.45-.12-5.37-1.95-1.92 1.83-3.91 2.79-5.38 1.95-1.46-.84-1.62-3.05-1-5.63-2.54-.75-4.37-1.99-4.37-3.68s1.83-2.93 4.37-3.68c-.62-2.58-.46-4.79 1-5.63 1.47-.84 3.46.12 5.38 1.95 1.92-1.83 3.91-2.79 5.37-1.95M17.08 12c.34.75.64 1.5.89 2.26 2.1-.63 3.28-1.53 3.28-2.26s-1.18-1.63-3.28-2.26c-.25.76-.55 1.51-.89 2.26M6.92 12c-.34-.75-.64-1.5-.89-2.26-2.1.63-3.28 1.53-3.28 2.26s1.18 1.63 3.28 2.26c.25-.76.55-1.51.89-2.26m9 2.26l-.3.51c.31-.05.61-.1.88-.16-.07-.28-.18-.57-.29-.86l-.29.51m-2.89 4.04c1.59 1.5 2.97 2.08 3.59 1.7.64-.35.83-1.82.32-3.96-.77.16-1.58.28-2.4.36-.48.67-.99 1.31-1.51 1.9zM8.08 9.74l.3-.51c-.31.05-.61.1-.88.16.07.28.18.57.29.86l.29-.51m2.89-4.04C9.38 4.2 8 3.62 7.37 4c-.63.35-.82 1.82-.31 3.96a22.7 22.7 0 012.4-.36c.48-.67.99-1.31 1.51-1.9z'/%3E%3C/svg%3E" alt="React Icon" class="skill-icon">React</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23009688' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/%3E%3C/svg%3E" alt="FastAPI Icon" class="skill-icon">FastAPI</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234479A1' d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm1-13v6l5 3-1 1.5-6-3.5V7h2z'/%3E%3C/svg%3E" alt="SQL Icon" class="skill-icon">SQL/SQLite</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23181717' d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/%3E%3C/svg%3E" alt="GitHub Icon" class="skill-icon">GitHub/Git</li>
-                            </ul>
-                             <ul>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23217346' d='M21.41 3.41L19 1H5C3.9 1 3 1.9 3 3v18c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5.83l-3.59-2.42zM12 18c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H9v2h6V8z'/%3E%3Cpath fill='%23107C41' d='M13 2.5V6h2.5L13 2.5z'/%3E%3C/svg%3E" alt="Excel Icon" class="skill-icon">MS Excel</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23F37626'/%3E%3Cpath fill='%23F37626' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E" alt="Jupyter Icon" class="skill-icon">Jupyter Notebooks</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23007ACC' d='M17.12 2.25L21.5 6.75l-4.38 4.5-4.37-4.5L17.12 2.25M24 6.75L19.62 11.25l-2.5-2.5L24 6.75M4.88 2.25L.5 6.75l4.38 4.5 4.37-4.5L4.88 2.25M0 6.75l4.38 4.5-2.5-2.5L0 6.75m7.5 6l-4.38 4.5L7.5 21.75l4.38-4.5-4.38-4.5M12 15.25l-2.5 2.5L12 20.25l2.5-2.5-2.5-2.5z'/%3E%3C/svg%3E" alt="VS Code Icon" class="skill-icon">VS Code</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/%3E%3C/svg%3E" alt="Communication Icon" class="skill-icon">Communication</li>
-                             </ul>
-                             <ul>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Teaching Icon" class="skill-icon">Teaching</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M16.5 12c1.38 0 2.5-1.12 2.5-2.5S17.88 7 16.5 7 14 8.12 14 9.5s1.12 2.5 2.5 2.5zM9 11c1.66 0 2.99-1.34 2.99-3S10.66 5 9 5C7.34 5 6 6.34 6 8s1.34 3 3 3zm7.5 3c-1.83 0-5.5.92-5.5 2.75V19h11v-2.25c0-1.83-3.67-2.75-5.5-2.75zM9 13c-2.33 0-7 1.17-7 3.5V19h7v-2.25c0-.85.33-2.34 2.37-3.47C10.5 13.1 9.66 13 9 13z'/%3E%3C/svg%3E" alt="Mentoring Icon" class="skill-icon">Mentoring</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5A6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E" alt="Problem Solving Icon" class="skill-icon">Problem-Solving</li>
-                                <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239d4edd' d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z'/%3E%3C/svg%3E" alt="Event Coordination Icon" class="skill-icon">Event Coordination</li>
-                             </ul>
-                        </div>
-                        <h3>Languages</h3>
-                        <ul class="languages-list">
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Crect width='20' height='12' fill='%23006a4e'/%3E%3Ccircle cx='9' cy='6' r='2.5' fill='%23f42a41'/%3E%3C/svg%3E" alt="Bangladesh Flag" class="flag-icon"> Bangla</li>
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 60 30'%3E%3CclipPath id='a'%3E%3Cpath d='M0 0h60v30H0z'/%3E%3C/clipPath%3E%3CclipPath id='b'%3E%3Cpath d='M30 15h30v15zv15h-30zh-30v-15zv-15h30z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M0 0v30h60V0z' fill='%23012169'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' clip-path='url(%23b)' stroke='%23c8102e' stroke-width='4'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23c8102e' stroke-width='6'/%3E%3C/g%3E%3C/svg%3E" alt="UK Flag" class="flag-icon"> English</li>
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 5 3'%3E%3Crect width='5' height='3' fill='%23FFCE00'/%3E%3Crect width='5' height='2' fill='%23000'/%3E%3Crect width='5' height='1' fill='%23D00'/%3E%3C/svg%3E" alt="Germany Flag" class="flag-icon"> German</li>
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 900 600'%3E%3Crect fill='%23fff' width='900' height='600'/%3E%3Ccircle fill='%23bc002d' cx='450' cy='300' r='180'/%3E%3C/svg%3E" alt="Japan Flag" class="flag-icon"> Japanese</li>
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23fff'/%3E%3Ccircle cx='450' cy='300' r='150' fill='%23CD2E3A'/%3E%3Cpath d='M450 225A75 75 0 00450 375A75 75 0 00450 225M450 243.75A56.25 56.25 0 01450 356.25A56.25 56.25 0 01450 243.75' fill='%230047A0'/%3E%3Cg fill='%23000'%3E%3Cpath d='M225 150h75v75h-75zM225 375h75v75h-75zM600 150h75v75h-75zM600 375h75v75h-75z'/%3E%3C/g%3E%3C/svg%3E" alt="South Korea Flag" class="flag-icon"> Korean</li>
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23007A3D'/%3E%3Ctext x='300' y='260' font-size='120' font-family='sans-serif' fill='%23fff' text-anchor='middle'%3Eلَا إِلٰهَ إِلَّا الله مُحَمَّدٌ رَسُولُ الله%3C/text%3E%3Cpath d='M100 320 H 500 L 480 300 H 120 Z' fill='%23fff'/%3E%3Cpath d='M120 300 L 100 280 L 120 280 Q 150 280 150 250 L 150 220 L 170 220 L 170 250 Q 170 280 200 280 L 400 280 Q 430 280 430 250 L 430 220 L 450 220 L 450 250 Q 450 280 480 280 L 500 280 L 480 300 Z' fill='%23fff' stroke='%23007A3D' stroke-width='5'/%3E%3C/svg%3E" alt="Saudi Arabia Flag" class="flag-icon"> Arabic</li>
-                            <li><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23FF9933'/%3E%3Crect width='900' height='200' y='200' fill='%23FFF'/%3E%3Crect width='900' height='200' y='400' fill='%23138808'/%3E%3Ccircle cx='450' cy='300' r='70' fill='%23000080'/%3E%3Ccircle cx='450' cy='300' r='65' fill='%23FFF'/%3E%3Cpath d='M450 240 L450 360 M390 300 L510 300 M402.426 252.426 L497.574 347.574 M402.426 347.574 L497.574 252.426 M420 244.641 L480 355.359 M480 244.641 L420 355.359 M394.641 270 L505.359 330 M394.641 330 L505.359 270' stroke='%23000080' stroke-width='10'/%3E%3C/svg%3E" alt="India Flag" class="flag-icon"> Hindi</li>
-                        </ul>
-                        </div>
-                    <div class="about-image-container">
-                        <img src="2.jpg" alt="Musfique Ahmed" onerror="this.onerror=null; this.src='https://placehold.co/300x400/1A1A2E/9D4EDD?text=Profile';">
-                    </div>
-                </div>
+            <div class="metric">
+              <div class="metric-value">1,800+</div>
+              <div class="metric-label">Missing values handled</div>
+              <div class="metric-trend">Banglish NLP dataset</div>
             </div>
-        </section>
-
-        <section id="portfolio">
-            <div class="container">
-                <h2>Portfolio & Experience Highlights</h2>
-                <p style="text-align:center; margin-bottom: 30px;">A snapshot of my key roles and experiences. Click "See More Works" for a comprehensive list and details.</p>
-                <div class="experience-grid"> <div class="project-card">
-                        <h3>President</h3>
-                        <p class="role-organization">UIU Data Science Club</p>
-                        <p class="date-range">Feb 2025 – Present</p>
-                        <p class="excerpt">Leading the digital and academic growth of the club, planning and managing workshops, and spearheading outreach campaigns related to Python and data science.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Instructor - Programming with Python</h3>
-                        <p class="role-organization">Songjog Foundation & Internet Society Foundation</p>
-                        <p class="date-range">Nov 2024 – Mar 2025</p>
-                        <p class="excerpt">Conducted a 3-month Python course for junior students, covering fundamentals to advanced topics, including designing engaging learning materials.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Teaching Assistant</h3>
-                        <p class="role-organization">Department of Data Science, UIU</p>
-                        <p class="date-range">Feb 2025 – Present</p>
-                        <p class="excerpt">Assisting faculty with Python and Data Science courses, supporting students through academic advising, and facilitating lab sessions.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <h3>Project Coordinator Intern</h3>
-                        <p class="role-organization">IRIIC, United International University</p>
-                        <p class="date-range">September 2024 – Present</p>
-                        <p class="excerpt">Coordinating projects and events, preparing presentation slides, assisting with stakeholder engagement, and developing social media content strategies.</p>
-                    </div>
-                </div>
-                <div class="view-all-button-container">
-                    <a href="all-experiences.html" class="cta-button">See More Works</a>
-                </div>
+            <div class="metric">
+              <div class="metric-value">20</div>
+              <div class="metric-label">Forms automated</div>
+              <div class="metric-trend">Apps Script workflow</div>
             </div>
-        </section>
+            <div class="metric">
+              <div class="metric-value">3x</div>
+              <div class="metric-label">Scholarship tiers earned</div>
+              <div class="metric-trend">25 to 100 percent</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-        <section id="awards">
-            <div class="container">
-                <h2>Awards & Achievements Highlights</h2>
-                <p style="text-align:center; margin-bottom: 30px;">A few of my notable recognitions.</p>
-                <div class="awards-grid"> <div class="project-card">
-                        <h3>Champion – Senior Project Display</h3>
-                        <p class="role-organization">DRMC Intra Science Festival</p>
-                        <p class="excerpt">Recognized for an outstanding senior project display.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Champion – Senior Project Display</h3>
-                        <p class="role-organization">DRMC National Nature Festival</p>
-                        <p class="excerpt">Achieved championship in a national-level project competition.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>University Scholarship Awards</h3>
-                        <p class="role-organization">United International University</p>
-                        <p class="excerpt">Awarded multiple scholarships (25% twice, 50% once, 100% twice) for outstanding academic performance and maintaining excellent GPA.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Publication – Research Paper</h3>
-                        <p class="role-organization">Academic Conference</p>
-                        <p class="excerpt">Co-authored a research paper on machine learning applications, showcasing dedication to academic research and innovation.</p>
-                    </div>
-                </div>
-                <div class="view-all-button-container">
-                    <a href="all-awards.html" class="cta-button">Show All Awards</a>
-                </div>
-            </div>
-        </section>
-        <section id="youtube-channel">
-            <div class="container">
-                <h2>My Channel: Data Science with Musfique</h2>
-                <p style="text-align:center; margin-bottom: 20px;">
-                    Check out my channel for tutorials, project showcases, and insights into the world of data!
-                </p>
-                <div class="video-container">
-                    <video controls width="640" poster="3.jpg" autoplay unmuted playsinline>
-                        <source src="intro_video.mp4" type="video/mp4">
-                        Your browser does not support the video tag. You can <a href="intro_video.mp4">download the video here</a>.
-                    </video>
-                </div>
-                <div class="channel-link-container">
-                    <a href="https://www.youtube.com/@ds_with_musfique" target="_blank" class="cta-button">
-                        Visit Full Channel
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:1.2em; height:1.2em; display:inline-block; margin-left: 5px; vertical-align: middle;">
-                            <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v3.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75V9A.75.75 0 0010 8.25H5.75V6.25a.75.75 0 00-.75-.75H4.25zm7.496 1.136a.75.75 0 011.06 0l1.938 1.938c.124.123.188.283.188.448s-.064.325-.188.448l-1.938 1.938a.75.75 0 11-1.06-1.06L12.439 10l-1.06-1.061a.75.75 0 010-1.06zM3 10a7 7 0 1114 0 7 7 0 01-14 0z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <section id="blog">
-            <div class="container">
-                <h2>My Recent Blog Posts</h2> <p style="text-align:center; margin-bottom: 30px;">A few of my latest thoughts, tutorials, and updates.</p>
-                <div class="blog-grid">
-                    <div class="project-card">
-                        <h3>One Link to Rule Them All: Conquering Survey Chaos</h3>
-                        <p class="post-meta">Published on: May 29, 2025</p>
-                        <p class="excerpt">Ever been neck-deep in a project, hit a seemingly insurmountable logistical wall, and then had that "aha!" moment that makes you feel like a coding wizard...? </p>
-                        <a href="blog-post-4.html" class="read-more-link">Read More »</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>The Importance of Data Visualization</h3>
-                        <p class="post-meta">Published on: June 12, 2025</p>
-                        <p class="excerpt">Why is visualizing data so crucial? A look into how tools like Matplotlib can transform raw data into meaningful insights...</p>
-                        <a href="blog-post-3.html" class="read-more-link">Read More »</a>
-                    </div>
-                    <div class="project-card">
-                        <h3>Understanding Python Loops: A Beginner's Guide</h3>
-                        <p class="post-meta">Published on: June 5, 2025</p>
-                        <p class="excerpt">Breaking down 'for' and 'while' loops in Python with simple examples. This post aims to help newcomers grasp these essential concepts...</p>
-                        <a href="blog-post-2.html" class="read-more-link">Read More »</a>
-                    </div>
-                </div>
-                <div class="view-all-button-container">
-                    <a href="all-blogs.html" class="cta-button">View All Posts</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2>Get in Touch</h2>
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <h3>Contact Details</h3>
-                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:anikmushfik@gmail.com">anikmushfik@gmail.com</a></p>
-                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><a href="tel:+8801961905838">+880 1961-905838</a></p>
-                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Dhaka, Bangladesh</p>
-                        <h3>Connect with Me</h3>
-                        <div class="social-links">
-                            <a href="https://github.com/Musfique-Ahmed" target="_blank" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-                            <a href="https://www.linkedin.com/in/musfique-ahmed-aa89a5293/" target="_blank" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                            <a href="https://wa.me/8801961905838" target="_blank" title="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-                            <a href="https://www.facebook.com/anik.mushfik" target="_blank" title="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10s-10 4.477-10 10c0 5.013 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.891h2.54v-2.099c0-2.508 1.493-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.459h-1.28c-1.24 0-1.628.772-1.628 1.563v1.778h2.773l-.443 2.891h-2.33v6.987c4.781-.75 8.437-4.865 8.437-9.878z"/></svg></a>
-                        </div>
-                    </div>
-                    <div class="contact-form-container">
-                        <h3>Send a Message</h3>
-                        <form id="contactForm" action="https://formspree.io/f/mrbqnrgd" method="POST">
-                            <div>
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div>
-                                <label for="email">Your Email</label> <input type="email" id="email" name="email" required> </div>
-                            <div>
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="cta-button">Send Message</button>
-                        </form>
-                        <div id="form-status"></div> </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>© <span id="currentYear"></span> Musfique Ahmed. All Rights Reserved.</p>
+    <section class="section">
+      <div class="site-shell">
+        <div class="section-header" data-animate>
+          <div>
+            <span class="kicker">Signal, Not Noise</span>
+            <h2 class="section-title">Quick impact snapshot</h2>
+          </div>
+          <p class="section-subtitle">Designed for recruiters: a fast scan of results, leadership, and evidence-backed execution.</p>
         </div>
-    </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if(targetElement){
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-                document.querySelectorAll('nav a').forEach(navLink => navLink.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
+        <div class="stats-strip" data-animate>
+          <article class="card">
+            <span class="value">ICCIT 2024</span>
+            <span class="label">Published research paper</span>
+          </article>
+          <article class="card">
+            <span class="value">UIU DS Club</span>
+            <span class="label">Founded and led as president</span>
+          </article>
+          <article class="card">
+            <span class="value">3-Month</span>
+            <span class="label">Python course delivered</span>
+          </article>
+          <article class="card">
+            <span class="value">BYD 2025</span>
+            <span class="label">NEV apprenticeship completed</span>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    <section class="section">
+      <div class="site-shell">
+        <div class="section-header" data-animate>
+          <div>
+            <span class="kicker">Featured Work</span>
+            <h2 class="section-title">Case studies with measurable outcomes</h2>
+          </div>
+          <a class="btn btn-secondary" href="projects.html">See all projects</a>
+        </div>
 
-        // Active link highlighting on scroll
-        const sections = document.querySelectorAll('main section');
-        const navLinks = document.querySelectorAll('nav ul li a');
-        window.onscroll = () => {
-          let current = 'home';
-          sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 75) { // Adjusted offset for better accuracy
-              current = section.getAttribute('id');
-            }
-          });
-          navLinks.forEach((a) => {
-            a.classList.remove('active');
-            if (a.getAttribute('href') === `#${current}`) {
-              a.classList.add('active');
-            }
-          });
-        };
+        <div class="grid grid-3">
+          <article class="card" data-animate>
+            <h3>Vizball: FIFA analytics toolkit</h3>
+            <p>Built an interactive Streamlit analytics workflow for player and club analysis across multi-year FIFA data.</p>
+            <div class="card-meta">
+              <span class="tag">Streamlit</span>
+              <span class="tag">Plotly</span>
+              <span class="tag">Pandas</span>
+            </div>
+            <div class="btn-row" style="margin-top: 0.8rem;">
+              <a class="project-link" href="projects.html">Case study</a>
+              <a class="project-link" href="https://github.com/ik0zy/vizball" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
 
-        // Contact Form Submission Handling with Formspree
-        const form = document.getElementById('contactForm');
-        const formStatus = document.getElementById('form-status');
+          <article class="card" data-animate>
+            <h3>Banglish hate speech detection</h3>
+            <p>Compared LLM reasoning approaches and cleaned sparse dataset artifacts to improve evaluation quality.</p>
+            <div class="card-meta">
+              <span class="tag">NLP</span>
+              <span class="tag">LLM Eval</span>
+              <span class="tag">Research</span>
+            </div>
+            <div class="btn-row" style="margin-top: 0.8rem;">
+              <a class="project-link" href="projects.html">Case study</a>
+              <a class="project-link" href="all-awards.html">Publication context</a>
+            </div>
+          </article>
 
-        async function handleSubmit(event) {
-            event.preventDefault();
-            const data = new FormData(event.target);
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    formStatus.innerHTML = "Thanks for your message! I'll get back to you soon.";
-                    formStatus.className = 'success'; // For styling success
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            formStatus.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                        } else {
-                            formStatus.innerHTML = "Oops! There was a problem submitting your form. Please try again.";
-                        }
-                        formStatus.className = 'error'; // For styling error
-                    })
-                }
-            }).catch(error => {
-                formStatus.innerHTML = "Oops! There was a problem submitting your form. Please check your connection.";
-                formStatus.className = 'error'; // For styling error
-            });
-        }
-        form.addEventListener("submit", handleSubmit);
+          <article class="card" data-animate>
+            <h3>Survey automation with one public link</h3>
+            <p>Replaced manual distribution of 20 forms with an automated assignment system using Apps Script and Sheets.</p>
+            <div class="card-meta">
+              <span class="tag">Automation</span>
+              <span class="tag">Apps Script</span>
+              <span class="tag">Ops Efficiency</span>
+            </div>
+            <div class="btn-row" style="margin-top: 0.8rem;">
+              <a class="project-link" href="blog-post-4.html">Read technical write-up</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    </script>
+    <section class="section">
+      <div class="site-shell grid grid-2">
+        <div data-animate>
+          <div class="section-header" style="margin-bottom: 1rem;">
+            <div>
+              <span class="kicker">Experience</span>
+              <h2 class="section-title">Leadership and delivery timeline</h2>
+            </div>
+          </div>
+          <div class="timeline panel" style="padding: 1rem;">
+            <article class="timeline-item">
+              <h3>Teaching Assistant, Data Science Department</h3>
+              <p class="timeline-meta">UIU | Feb 2025 - Present</p>
+              <p>Support Python and analytics labs, coach students, and simplify difficult concepts into practical workflows.</p>
+            </article>
+            <article class="timeline-item">
+              <h3>President, UIU Data Science Club</h3>
+              <p class="timeline-meta">UIU | Feb 2025 - Present</p>
+              <p>Built club structure from scratch, led recruitment, and planned technical sessions and community events.</p>
+            </article>
+            <article class="timeline-item">
+              <h3>Instructor, Programming with Python</h3>
+              <p class="timeline-meta">Songjog Foundation | Nov 2024 - Mar 2025</p>
+              <p>Designed and delivered project-based curriculum over a 3-month instructional cycle.</p>
+            </article>
+            <article class="timeline-item">
+              <h3>Project Coordinator Intern</h3>
+              <p class="timeline-meta">IRIIC, UIU | Sep 2024 - Present</p>
+              <p>Coordinated programs, reporting, and stakeholder communication across multiple initiatives.</p>
+            </article>
+          </div>
+          <div class="btn-row" style="margin-top: 0.9rem;">
+            <a class="btn btn-secondary" href="all-experiences.html">Open full experience record</a>
+          </div>
+        </div>
 
+        <div data-animate>
+          <div class="section-header" style="margin-bottom: 1rem;">
+            <div>
+              <span class="kicker">Writing</span>
+              <h2 class="section-title">Flagship technical posts</h2>
+            </div>
+          </div>
+          <div class="grid">
+            <article class="card">
+              <h3>One Link to Rule Them All</h3>
+              <p>A practical automation case study on handling randomized survey assignment and response balancing at zero cost.</p>
+              <div class="card-meta">
+                <span class="tag">Automation</span>
+                <span class="tag">Google Workspace</span>
+              </div>
+              <div class="btn-row" style="margin-top: 0.8rem;">
+                <a class="project-link" href="blog-post-4.html">Read post</a>
+              </div>
+            </article>
+            <article class="card">
+              <h3>Discord to-do bot engineering notes</h3>
+              <p>A focused breakdown of designing a slash-command productivity bot with maintainable per-server data structures.</p>
+              <div class="card-meta">
+                <span class="tag">Python</span>
+                <span class="tag">Discord API</span>
+              </div>
+              <div class="btn-row" style="margin-top: 0.8rem;">
+                <a class="project-link" href="blog-post-5.html">Read post</a>
+              </div>
+            </article>
+            <article class="note">
+              We are keeping the strongest posts featured while earlier tutorial notes are moved to archive mode for rewrite quality control.
+            </article>
+          </div>
+          <div class="btn-row" style="margin-top: 0.9rem;">
+            <a class="btn btn-secondary" href="all-blogs.html">Browse writing archive</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="site-shell panel" style="padding: 1rem;" data-animate>
+        <div class="section-header" style="margin-bottom: 0.7rem;">
+          <div>
+            <span class="kicker">Open to Opportunities</span>
+            <h2 class="section-title">Data analytics, ML, BI, and education-focused roles</h2>
+          </div>
+        </div>
+        <p class="section-subtitle">If you are hiring for practical data work, mentoring-heavy teams, or research-supported analytics roles, I would love to discuss fit.</p>
+        <div class="btn-row" style="margin-top: 0.9rem;">
+          <a class="btn btn-primary" href="contact.html">Contact me</a>
+          <a class="btn btn-secondary" href="resume.html">Review resume</a>
+          <a class="btn btn-muted" href="projects.html">Evaluate project depth</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell footer-row">
+      <span>Musfique Ahmed | Data Scientist Portfolio | <span data-year></span></span>
+      <div class="footer-links">
+        <a href="https://github.com/Musfique-Ahmed" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/musfique-ahmed-3b8b1b1b3/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:anikmushfik@gmail.com">anikmushfik@gmail.com</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
+
