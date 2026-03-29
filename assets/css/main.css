@@ -344,6 +344,43 @@ main {
   padding: 1rem;
 }
 
+.hero-profile {
+  margin: 0 0 0.9rem;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 0.72rem;
+  align-items: center;
+  padding: 0.7rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(143, 163, 189, 0.24);
+  background: rgba(10, 19, 32, 0.75);
+}
+
+.hero-avatar {
+  width: 84px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1px solid rgba(45, 212, 191, 0.42);
+}
+
+.hero-profile figcaption {
+  display: grid;
+  gap: 0.16rem;
+}
+
+.hero-profile strong {
+  font-size: 0.95rem;
+  font-family: "Space Grotesk", "Segoe UI", Tahoma, sans-serif;
+}
+
+.hero-profile span {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  font-family: "JetBrains Mono", "Consolas", monospace;
+}
+
 .hero-board-head {
   display: flex;
   justify-content: space-between;
@@ -546,6 +583,42 @@ main {
 
 .page-lead {
   max-width: 68ch;
+}
+
+.author-spotlight {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.author-spotlight-media {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.author-spotlight-media img {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  object-fit: cover;
+  object-position: center 16%;
+  border: 1px solid rgba(45, 212, 191, 0.42);
+}
+
+.author-spotlight-name {
+  font-size: 1rem;
+  font-family: "Space Grotesk", "Segoe UI", Tahoma, sans-serif;
+}
+
+.author-spotlight-role {
+  color: var(--text-2);
+  font-size: 0.78rem;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+}
+
+.author-spotlight-note {
+  font-size: 0.9rem;
 }
 
 .chip-row {
@@ -762,6 +835,41 @@ textarea {
   border-radius: var(--radius-sm);
   background: rgba(23, 44, 73, 0.45);
   padding: 0.72rem;
+}
+
+.contact-photo {
+  margin: 0 0 0.95rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(143, 163, 189, 0.26);
+  background: rgba(10, 19, 32, 0.84);
+}
+
+.contact-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 14%;
+}
+
+.contact-photo figcaption {
+  padding: 0.6rem 0.72rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(143, 163, 189, 0.2);
+  background: rgba(18, 34, 58, 0.72);
+}
+
+.contact-photo strong {
+  font-size: 0.92rem;
+}
+
+.contact-photo span {
+  font-size: 0.76rem;
+  color: var(--text-2);
+  font-family: "JetBrains Mono", "Consolas", monospace;
 }
 
 .contact-item strong {
@@ -1002,8 +1110,22 @@ textarea {
     padding: 1.15rem;
   }
 
+  .hero-profile {
+    grid-template-columns: 96px 1fr;
+  }
+
+  .hero-avatar {
+    width: 96px;
+  }
+
   .article-layout {
     padding: 1.2rem;
+  }
+
+  .author-spotlight {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.9rem;
   }
 
   .article-nav {
