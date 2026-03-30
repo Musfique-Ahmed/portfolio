@@ -468,16 +468,23 @@ main {
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-top: 0.7rem;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .tag {
-  padding: 0.3rem 0.52rem;
+  padding: 0.35rem 0.6rem;
   border-radius: 999px;
   border: 1px solid rgba(45, 212, 191, 0.4);
   color: var(--accent);
   font-size: 0.72rem;
   font-family: "JetBrains Mono", "Consolas", monospace;
   background: rgba(10, 19, 32, 0.82);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tag-warn {
@@ -653,7 +660,7 @@ main {
 .project-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.8rem;
 }
 
@@ -667,8 +674,14 @@ main {
   color: var(--success);
   background: rgba(16, 185, 129, 0.12);
   border: 1px solid rgba(16, 185, 129, 0.34);
-  padding: 0.3rem 0.5rem;
+  padding: 0.35rem 0.6rem;
   border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .project-list {
@@ -687,6 +700,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .project-link {
@@ -695,6 +710,11 @@ main {
   border: 1px solid rgba(143, 163, 189, 0.28);
   color: var(--text-1);
   font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .project-link:hover {
