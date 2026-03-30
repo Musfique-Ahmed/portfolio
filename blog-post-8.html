@@ -60,6 +60,261 @@
     .resource-box a:hover {
       border-bottom-color: rgba(143, 163, 189, 0.9);
     }
+
+    .author-story {
+      margin: 1.15rem 0 1.65rem;
+      padding: 0.95rem;
+      border: 1px solid rgba(143, 163, 189, 0.26);
+      border-radius: var(--radius-md);
+      background:
+        radial-gradient(circle at right top, rgba(45, 212, 191, 0.16), transparent 48%),
+        rgba(18, 34, 58, 0.72);
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .author-story img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      object-position: center 18%;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(143, 163, 189, 0.24);
+    }
+
+    .author-story-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .author-story h3 {
+      margin: 0.2rem 0 0.45rem;
+      font-size: 1.18rem;
+    }
+
+    .author-story p {
+      margin: 0;
+      color: var(--text-1);
+    }
+
+    .author-story-tags {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem;
+    }
+
+    .author-chip {
+      padding: 0.28rem 0.58rem;
+      border-radius: 999px;
+      border: 1px solid rgba(143, 163, 189, 0.28);
+      font-size: 0.72rem;
+      color: var(--text-1);
+      background: rgba(10, 19, 32, 0.66);
+      font-family: "JetBrains Mono", monospace;
+      white-space: nowrap;
+    }
+
+    .snapshot-grid {
+      margin: 1.05rem 0 1.6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.62rem;
+    }
+
+    .snapshot-card {
+      border: 1px solid rgba(143, 163, 189, 0.23);
+      border-radius: var(--radius-sm);
+      padding: 0.78rem;
+      background: rgba(23, 44, 73, 0.53);
+    }
+
+    .snapshot-card strong {
+      display: block;
+      color: var(--accent);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .snapshot-card span {
+      display: block;
+      margin-top: 0.08rem;
+      color: var(--text-2);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .snapshot-card p {
+      margin: 0.45rem 0 0;
+      font-size: 0.84rem;
+      color: var(--text-1);
+    }
+
+    .article-content .system-visual {
+      margin: 1.1rem 0 1.55rem;
+      padding: 0.95rem;
+      border: 1px solid rgba(143, 163, 189, 0.24);
+      border-radius: var(--radius-md);
+      background: rgba(10, 19, 32, 0.52);
+    }
+
+    .article-content .system-visual figcaption {
+      margin-bottom: 0.65rem;
+      color: var(--text-2);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .system-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .flow-node {
+      border: 1px solid rgba(143, 163, 189, 0.26);
+      border-radius: var(--radius-sm);
+      background: rgba(23, 44, 73, 0.65);
+      color: var(--text-0);
+      padding: 0.54rem 0.62rem;
+      font-size: 0.82rem;
+      text-align: center;
+      flex: 1 1 170px;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-family: "JetBrains Mono", monospace;
+      flex: 0 0 auto;
+    }
+
+    .flow-notes {
+      margin: 0.75rem 0 0;
+      padding-left: 1rem;
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .flow-notes li {
+      font-size: 0.85rem;
+    }
+
+    .phase-timeline {
+      margin: 1rem 0 1.5rem;
+      padding: 0.95rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(143, 163, 189, 0.24);
+      background: rgba(23, 44, 73, 0.46);
+    }
+
+    .phase-timeline h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1rem;
+    }
+
+    .timeline-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.62rem;
+    }
+
+    .timeline-list li {
+      position: relative;
+      border-left: 2px solid rgba(45, 212, 191, 0.6);
+      background: rgba(10, 19, 32, 0.56);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 0.56rem 0.64rem 0.56rem 0.9rem;
+    }
+
+    .timeline-list li::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.18);
+    }
+
+    .timeline-list strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-0);
+    }
+
+    .timeline-list span {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.8rem;
+      color: var(--text-2);
+    }
+
+    .ops-pulse {
+      margin: 1rem 0 1.5rem;
+      padding: 0.95rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(143, 163, 189, 0.24);
+      background: rgba(18, 34, 58, 0.7);
+    }
+
+    .ops-pulse h3 {
+      margin: 0 0 0.68rem;
+      font-size: 1rem;
+    }
+
+    .ops-pulse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 0.56rem;
+    }
+
+    .ops-pulse-item {
+      border: 1px solid rgba(143, 163, 189, 0.22);
+      border-radius: var(--radius-sm);
+      background: rgba(10, 19, 32, 0.58);
+      padding: 0.62rem;
+    }
+
+    .ops-pulse-item span {
+      display: block;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.68rem;
+      font-family: "JetBrains Mono", monospace;
+      margin-bottom: 0.24rem;
+    }
+
+    .ops-pulse-item strong {
+      font-size: 0.86rem;
+      color: var(--text-0);
+    }
+
+    @media (min-width: 840px) {
+      .author-story {
+        grid-template-columns: 220px 1fr;
+        align-items: center;
+      }
+
+      .author-story img {
+        max-height: 300px;
+      }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -149,6 +404,45 @@
               <a href="https://boutiqo-bangladesh.vercel.app/" target="_blank" rel="noopener noreferrer">Live Platform</a> | <a href="https://github.com/Musfique-Ahmed/Boutiqo-Bangladesh" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
             </div>
 
+            <section class="author-story" data-animate aria-label="Author spotlight">
+              <img src="2.jpg" alt="Portrait of Musfique Ahmed, the engineer behind Boutiqo Bangladesh" loading="lazy" decoding="async">
+              <div>
+                <span class="author-story-kicker">Founder Build Notes</span>
+                <h3>From local boutique problem to full operational platform</h3>
+                <p>
+                  This write-up documents how one real commerce workflow evolved into a maintainable engineering system without paid infrastructure.
+                </p>
+                <div class="author-story-tags" aria-label="Case study tags">
+                  <span class="author-chip">Business-first build</span>
+                  <span class="author-chip">0-cost deployment</span>
+                  <span class="author-chip">Full-stack migration</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="snapshot-grid" data-animate aria-label="Case study snapshot">
+              <article class="snapshot-card">
+                <strong>$0</strong>
+                <span>Launch infra cost</span>
+                <p>Built on Vercel Hobby + Atlas M0 + GitHub workflow.</p>
+              </article>
+              <article class="snapshot-card">
+                <strong>1 Codebase</strong>
+                <span>System scope</span>
+                <p>Storefront, admin panel, and API routes in one repo.</p>
+              </article>
+              <article class="snapshot-card">
+                <strong>5+ Automations</strong>
+                <span>Operational speed</span>
+                <p>Realtime updates, notifications, and auto deployment loops.</p>
+              </article>
+              <article class="snapshot-card">
+                <strong>Phased Migration</strong>
+                <span>Risk strategy</span>
+                <p>Incremental shift from static to API-backed architecture.</p>
+              </article>
+            </section>
+
             <h2>Why I Built This</h2>
             <p>
               Boutiqo Bangladesh started as a practical business need: create a fast, elegant online storefront for boutique fashion in Bangladesh, while keeping operating costs near zero.
@@ -225,6 +519,24 @@
             <p>
               The project is organized as a modular full-stack platform with clear boundaries.
             </p>
+
+            <figure class="system-visual" data-animate>
+              <figcaption>System map: request flow from storefront to operations</figcaption>
+              <div class="system-flow" role="img" aria-label="Storefront UI to API layer to MongoDB and notification channels">
+                <div class="flow-node">Storefront + Admin UI</div>
+                <span class="flow-arrow" aria-hidden="true">-></span>
+                <div class="flow-node">Domain APIs in Next.js</div>
+                <span class="flow-arrow" aria-hidden="true">-></span>
+                <div class="flow-node">MongoDB Atlas State</div>
+                <span class="flow-arrow" aria-hidden="true">-></span>
+                <div class="flow-node">Pusher + Email + Telegram</div>
+              </div>
+              <ul class="flow-notes">
+                <li>Modular APIs keep business domains isolated and maintainable.</li>
+                <li>Each order event propagates instantly to operational channels.</li>
+                <li>One pipeline supports both customer experience and admin execution.</li>
+              </ul>
+            </figure>
 
             <h3>1) Application Layer (Next.js App Router)</h3>
             <p>
@@ -350,6 +662,28 @@
               I followed a phased migration rather than a risky full rewrite in one shot.
             </p>
 
+            <section class="phase-timeline" data-animate aria-label="Migration timeline">
+              <h3>Migration timeline at a glance</h3>
+              <ol class="timeline-list">
+                <li>
+                  <strong>Phase 1 - Static storefront baseline</strong>
+                  <span>Validate product demand and customer buying behavior quickly.</span>
+                </li>
+                <li>
+                  <strong>Phase 2 - API and database foundation</strong>
+                  <span>Replace hardcoded data and local-only flows with persistent backend modules.</span>
+                </li>
+                <li>
+                  <strong>Phase 3 - Admin + realtime operations</strong>
+                  <span>Add dashboards, status workflows, and live notifications for execution speed.</span>
+                </li>
+                <li>
+                  <strong>Phase 4 - Analytics and AI roadmap</strong>
+                  <span>Layer forecasting, reporting, and AI-assisted decision support on top.</span>
+                </li>
+              </ol>
+            </section>
+
             <h3>Legacy Baseline</h3>
             <p>
               The old site was static HTML/CSS/JS with:
@@ -430,6 +764,28 @@
             <p>
               These automations reduce manual overhead and improve operational reliability.
             </p>
+
+            <section class="ops-pulse" data-animate aria-label="Operations pulse board">
+              <h3>Operational pulse board</h3>
+              <div class="ops-pulse-grid">
+                <article class="ops-pulse-item">
+                  <span>Deployment loop</span>
+                  <strong>Git push to production through Vercel auto-deploy.</strong>
+                </article>
+                <article class="ops-pulse-item">
+                  <span>Order visibility</span>
+                  <strong>Pusher keeps dashboard state synchronized in real time.</strong>
+                </article>
+                <article class="ops-pulse-item">
+                  <span>Notification coverage</span>
+                  <strong>Email plus Telegram reduces missed order response windows.</strong>
+                </article>
+                <article class="ops-pulse-item">
+                  <span>Recovery confidence</span>
+                  <strong>Versioned Git history keeps rollback paths clean and fast.</strong>
+                </article>
+              </div>
+            </section>
 
             <h2>End-to-End Order Flow (Technical Sequence)</h2>
             <p>
